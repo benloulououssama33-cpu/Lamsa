@@ -1,1056 +1,1451 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="html-root">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAMSA لمسة للستكرات — متجر رشمات الحناء</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Marcellus&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --cream:#FBF3E4;--cream2:#F3E2C4;--paper:#FFFBF3;
-  --ink-900:#1C0D07;--ink-800:#2A160D;--brown-800:#3C2113;--brown-700:#4E2C18;--brown-600:#6B3F22;--brown-400:#9C7248;
-  --maroon:#5C2117;--maroon-deep:#3A140D;--gold:#C9A24B;--gold-light:#E8CE8E;--gold-hot:#F4E3A8;--gold-dark:#8C6A24;
-  --terracotta:#8C4A2F;--rose:#A85C6B;--skin:#E4C49A;
-  --green-ok:#2E7D4F;--red-out:#B33226;
-  --ink:#2A160D;--ease:cubic-bezier(.23,1,.32,1);--ease2:cubic-bezier(.16,1,.3,1);
-  --f-ar-disp:'Aref Ruqaa',serif;--f-ar-body:'Amiri',serif;
-  --f-en-disp:'Cormorant Garamond',serif;--f-en-eyebrow:'Marcellus',serif;
-  --fs-body:1.06rem;
-}
-html{scroll-behavior:smooth}
-body{background:var(--cream);color:var(--ink);font-family:var(--f-ar-body);font-size:var(--fs-body);line-height:1.75;overflow-x:hidden}
-body.lang-en{font-family:var(--f-en-disp)}
-.disp{font-family:var(--f-ar-disp)}
-body.lang-en .disp{font-family:var(--f-en-disp);font-weight:600;font-style:italic}
-.eyebrow{font-family:var(--f-ar-body);font-weight:700;letter-spacing:.04em}
-body.lang-en .eyebrow{font-family:var(--f-en-eyebrow);font-weight:400;letter-spacing:.16em;text-transform:uppercase}
-button,input,select{font-family:inherit}
-::selection{background:var(--gold);color:var(--ink-900)}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
-
-/* ============ REVEAL ============ */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease2),transform .9s var(--ease2)}
-.reveal.in{opacity:1;transform:none}
-.reveal.stagger.in > *{animation:fadeUp .8s var(--ease2) both}
-.reveal.stagger.in > *:nth-child(1){animation-delay:.03s}
-.reveal.stagger.in > *:nth-child(2){animation-delay:.09s}
-.reveal.stagger.in > *:nth-child(3){animation-delay:.15s}
-.reveal.stagger.in > *:nth-child(4){animation-delay:.21s}
-.reveal.stagger.in > *:nth-child(5){animation-delay:.27s}
-.reveal.stagger.in > *:nth-child(6){animation-delay:.33s}
-.reveal.stagger.in > *:nth-child(n+7){animation-delay:.38s}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-
-/* ============ TOPBAR ============ */
-.topbar{background:var(--ink-900);color:var(--gold-light);padding:0;overflow:hidden;border-bottom:1px solid rgba(201,162,75,.25)}
-.marquee{display:flex;white-space:nowrap;animation:marquee 26s linear infinite}
-.marquee span{padding:10px 34px;font-size:.82rem;font-weight:700;letter-spacing:.02em;display:inline-flex;align-items:center;gap:10px}
-.marquee span:after{content:'✦';color:var(--gold);opacity:.7;margin-inline-start:34px}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-[dir="ltr"] .marquee{animation-name:marqueeL}
-@keyframes marqueeL{from{transform:translateX(0)}to{transform:translateX(50%)}}
-
-/* ============ NAV ============ */
-nav{padding:16px 0;background:rgba(251,243,228,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,162,75,.18);position:sticky;top:0;z-index:600}
-.nc{max-width:1360px;margin:0 auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-ar-disp);font-size:1.65rem;color:var(--maroon);position:relative}
-.logo .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,162,75,.18)}
-body.lang-en .logo{font-family:var(--f-en-eyebrow);letter-spacing:.18em;font-size:1.2rem}
-.logo b{color:var(--gold-dark)}
-.nb{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.langtog{display:flex;border:1px solid rgba(140,106,36,.35);border-radius:50px;overflow:hidden;font-size:.76rem;font-weight:800}
-.langtog button{padding:8px 15px;background:transparent;border:none;color:var(--brown-600);cursor:pointer;font-family:'Marcellus',serif;transition:.25s}
-.langtog button.on{background:var(--maroon);color:var(--gold-light)}
-.btn-cart{position:relative;padding:12px 24px;border-radius:50px;background:var(--maroon);color:var(--gold-light);font-weight:800;font-size:.9rem;border:none;cursor:pointer;display:flex;align-items:center;gap:9px;transition:.3s var(--ease);box-shadow:0 6px 18px rgba(92,33,23,.25)}
-.btn-cart:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(92,33,23,.35)}
-.btn-cart .n{background:var(--gold);color:var(--brown-900);border-radius:50%;min-width:21px;height:21px;font-size:.72rem;display:flex;align-items:center;justify-content:center;padding:0 4px;transition:transform .3s var(--ease)}
-.btn-cart .n.bump{animation:bump .4s var(--ease)}
-@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
-
-/* ============ HERO ============ */
-.hero{position:relative;background:radial-gradient(ellipse 120% 90% at 30% -10%,var(--maroon-deep) 0%,var(--ink-900) 55%,#120904 100%);color:var(--cream);overflow:hidden;padding:86px 0 70px}
-.hero:before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(201,162,75,.14) 1px,transparent 1px);background-size:26px 26px;opacity:.5;mask-image:radial-gradient(ellipse 80% 80% at 50% 30%,#000 10%,transparent 75%)}
-.hero-glow{position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.22),transparent 70%);filter:blur(10px);top:-220px;inset-inline-end:-160px;animation:driftGlow 14s ease-in-out infinite alternate}
-@keyframes driftGlow{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,50px) scale(1.12)}}
-.hero-inner{position:relative;z-index:2;max-width:1360px;margin:0 auto;padding:0 30px;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold-light);font-size:.82rem;padding:7px 18px;border:1px solid rgba(232,206,142,.35);border-radius:50px;background:rgba(232,206,142,.06);margin-bottom:26px}
-.hero-eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--gold-hot);box-shadow:0 0 0 0 rgba(244,227,168,.6);animation:pulseDot 1.8s infinite}
-@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(244,227,168,.55)}70%{box-shadow:0 0 0 10px rgba(244,227,168,0)}100%{box-shadow:0 0 0 0 rgba(244,227,168,0)}}
-.hero h1{font-family:var(--f-ar-disp);font-size:clamp(2.9rem,6vw,5.1rem);line-height:1.12;margin-bottom:22px}
-body.lang-en .hero h1{font-family:var(--f-en-disp);font-weight:600;font-style:italic}
-.hero h1 .shine{background:linear-gradient(100deg,var(--gold-light) 0%,var(--gold-hot) 22%,#fff 40%,var(--gold-hot) 58%,var(--gold-light) 100%);background-size:250% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shineText 6s linear infinite}
-@keyframes shineText{to{background-position:-250% center}}
-.hero p{font-size:1.2rem;color:rgba(251,243,228,.82);max-width:520px;margin-bottom:34px;line-height:1.85}
-.hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
-.btn-primary{padding:16px 34px;border-radius:50px;background:linear-gradient(135deg,var(--gold-hot),var(--gold-dark));color:var(--ink-900);font-weight:800;font-size:1rem;border:none;cursor:pointer;box-shadow:0 12px 32px rgba(201,162,75,.35);transition:.35s var(--ease);display:inline-flex;align-items:center;gap:10px}
-.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 18px 42px rgba(201,162,75,.5)}
-.btn-ghost{padding:16px 30px;border-radius:50px;background:transparent;border:1.5px solid rgba(251,243,228,.35);color:var(--cream);font-weight:800;font-size:1rem;cursor:pointer;transition:.3s var(--ease)}
-.btn-ghost:hover{border-color:var(--gold-light);background:rgba(251,243,228,.06)}
-.hero-stats{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap}
-.hstat b{display:block;font-family:var(--f-ar-disp);font-size:1.7rem;color:var(--gold-light)}
-body.lang-en .hstat b{font-family:var(--f-en-disp)}
-.hstat span{font-size:.78rem;color:rgba(251,243,228,.6)}
-
-.hero-art{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
-.hero-art svg{width:100%;max-width:480px;height:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.45))}
-.ink-path{stroke-dasharray:900;stroke-dashoffset:900;animation:inkDraw 3.2s var(--ease2) forwards}
-.ink-path.d2{animation-delay:.25s}
-.ink-path.d3{animation-delay:.5s}
-.ink-path.d4{animation-delay:.75s}
-@keyframes inkDraw{to{stroke-dashoffset:0}}
-.hero-art .core{animation:corePulse 3.5s ease-in-out infinite;transform-origin:center}
-@keyframes corePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-.hero-art .ring-rot{animation:spinSlow 60s linear infinite;transform-origin:center}
-.hero-art .ring-rot2{animation:spinSlow 90s linear infinite reverse;transform-origin:center}
-@keyframes spinSlow{to{transform:rotate(360deg)}}
-.orbit-dot{animation:orbit 8s linear infinite;transform-origin:240px 240px}
-@keyframes orbit{to{transform:rotate(360deg)}}
-.scroll-cue{position:absolute;bottom:18px;inset-inline-start:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(251,243,228,.5);font-size:.72rem;z-index:2}
-[dir="rtl"] .scroll-cue{transform:translateX(50%)}
-.scroll-cue .line{width:1px;height:30px;background:linear-gradient(var(--gold-light),transparent);animation:cueMove 2s ease-in-out infinite}
-@keyframes cueMove{0%,100%{opacity:.3}50%{opacity:1}}
-
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;text-align:center}
-  .hero p{margin-inline:auto}
-  .hero-ctas{justify-content:center}
-  .hero-stats{justify-content:center}
-  .hero-art{max-width:340px;margin:0 auto}
-}
-
-/* ============ FEATURE STRIP ============ */
-.feature-strip{background:var(--paper);border-bottom:1px solid rgba(140,106,36,.14)}
-.fs-inner{max-width:1360px;margin:0 auto;padding:34px 30px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.fitem{display:flex;align-items:center;gap:14px}
-.fitem .ico{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--cream2),var(--cream));display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;border:1px solid rgba(201,162,75,.25);transition:transform .35s var(--ease)}
-.fitem:hover .ico{transform:rotate(-8deg) scale(1.08)}
-.fitem b{display:block;font-size:.98rem;color:var(--brown-900);margin-bottom:2px}
-.fitem span{font-size:.8rem;color:var(--brown-400)}
-@media(max-width:900px){.fs-inner{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.fs-inner{grid-template-columns:1fr}}
-
-/* ============ WING SWITCH ============ */
-.wing-bar{background:linear-gradient(135deg,var(--ink-800),var(--brown-800));padding:46px 0;position:relative}
-.wing-inner{max-width:1360px;margin:0 auto;padding:0 30px;text-align:center}
-.wing-title{font-family:var(--f-ar-disp);font-size:clamp(1.5rem,3vw,2.1rem);color:var(--gold-light);margin-bottom:8px}
-body.lang-en .wing-title{font-family:var(--f-en-disp);font-weight:600;font-style:italic}
-.wing-label{font-size:.85rem;color:var(--gold-light);opacity:.65;margin-bottom:22px;font-weight:700}
-.wing-switch{display:inline-flex;background:rgba(251,243,228,.06);border:1px solid rgba(201,162,75,.35);border-radius:50px;padding:6px}
-.wing-btn{padding:14px 36px;border-radius:50px;border:none;background:transparent;color:rgba(251,243,228,.55);font-weight:800;font-size:1rem;cursor:pointer;transition:.35s var(--ease);display:flex;align-items:center;gap:10px}
-.wing-btn.on{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--ink-900);box-shadow:0 8px 22px rgba(0,0,0,.3)}
-.wing-note{margin-top:18px;font-size:.85rem;color:rgba(251,243,228,.55)}
-.wing-note b{color:var(--gold-light)}
-
-/* ============ CATEGORY FILTER ============ */
-.filter-wrap{position:sticky;top:69px;z-index:400;padding:18px 0;background:rgba(251,243,228,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,162,75,.15)}
-.filter-inner{max-width:1360px;margin:0 auto;padding:0 30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.ftab{padding:11px 26px;border-radius:50px;background:var(--paper);border:1px solid rgba(140,106,36,.22);color:var(--brown-600);font-weight:700;font-size:.9rem;cursor:pointer;transition:.3s var(--ease)}
-.ftab:hover{border-color:var(--gold);transform:translateY(-1px)}
-.ftab.on{background:var(--maroon);border-color:var(--maroon);color:var(--gold-light);box-shadow:0 6px 16px rgba(92,33,23,.25)}
-
-/* ============ GRID ============ */
-.container{max-width:1360px;margin:0 auto;padding:0 30px}
-.prod-sec{padding:64px 0 100px}
-.sec-header{text-align:center;margin-bottom:48px}
-.sec-eyebrow{font-size:.82rem;font-weight:800;color:var(--gold-dark);letter-spacing:.06em;margin-bottom:10px;display:block}
-.sec-title{font-family:var(--f-ar-disp);font-size:clamp(2.1rem,4.6vw,3.1rem);color:var(--maroon)}
-body.lang-en .sec-title{font-family:var(--f-en-disp);font-weight:600;font-style:italic}
-.sec-lead{color:var(--brown-400);font-size:1.02rem;margin-top:10px}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}
-
-.pc{background:var(--paper);border:1px solid rgba(140,106,36,.16);border-radius:18px;overflow:hidden;transition:.5s var(--ease);position:relative}
-.pc:hover{transform:translateY(-8px);box-shadow:0 28px 56px rgba(92,33,23,.16);border-color:rgba(201,162,75,.4)}
-.pc.out{opacity:.72}
-.pc-media{position:relative;aspect-ratio:1/1;background:var(--cream2);overflow:hidden}
-.pc-media svg{transition:transform .6s var(--ease)}
-.pc:hover .pc-media svg.on{transform:scale(1.06)}
-.pc-cat-badge{position:absolute;top:14px;inset-inline-start:14px;font-size:.68rem;font-weight:800;padding:5px 13px;border-radius:50px;color:#fff;z-index:3;letter-spacing:.02em}
-.pc-stock-badge{position:absolute;top:14px;inset-inline-end:14px;font-size:.66rem;font-weight:800;padding:5px 12px;border-radius:50px;z-index:3;background:rgba(179,50,38,.92);color:#fff}
-.pc-view-tabs{position:absolute;bottom:12px;inset-inline-start:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:3}
-[dir="rtl"] .pc-view-tabs{transform:translateX(50%)}
-.pc-view-tabs button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(42,22,13,.55);color:#fff;font-size:.82rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s}
-.pc-view-tabs button.on{background:var(--gold);border-color:var(--gold);color:var(--brown-900)}
-.pc-art{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .4s var(--ease)}
-.pc-art.on{opacity:1}
-.pc-body{padding:22px}
-.pc-title{font-family:var(--f-ar-disp);font-size:1.22rem;color:var(--brown-900);margin-bottom:7px}
-body.lang-en .pc-title{font-family:var(--f-en-disp);font-weight:600}
-.pc-mat{font-size:.8rem;color:var(--brown-400);margin-bottom:15px}
-.pc-price-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px}
-.pc-price{font-family:var(--f-ar-disp);font-size:1.42rem;color:var(--maroon)}
-body.lang-en .pc-price{font-family:var(--f-en-disp)}
-.pc-price-tag{font-size:.7rem;font-weight:800;color:var(--gold-dark);background:rgba(201,162,75,.12);padding:4px 10px;border-radius:50px}
-.pc-btn{width:100%;padding:12px;border-radius:50px;background:transparent;border:1.5px solid var(--maroon);color:var(--maroon);font-weight:800;font-size:.88rem;cursor:pointer;transition:.3s}
-.pc-btn:hover{background:var(--maroon);color:var(--gold-light)}
-.pc-btn:disabled{border-color:rgba(140,106,36,.25);color:var(--brown-400);cursor:not-allowed}
-.pc-btn:disabled:hover{background:transparent;color:var(--brown-400)}
-
-/* ============ HOW IT WORKS ============ */
-.how-sec{background:var(--cream2);padding:80px 0}
-.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:20px}
-.how-card{background:var(--paper);border-radius:18px;padding:30px 24px;text-align:center;border:1px solid rgba(140,106,36,.15);position:relative;transition:.4s var(--ease)}
-.how-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(92,33,23,.12)}
-.how-num{position:absolute;top:-14px;inset-inline-start:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;background:var(--maroon);color:var(--gold-light);font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center}
-[dir="rtl"] .how-num{transform:translateX(50%)}
-.how-ico{font-size:2.2rem;margin:14px 0 14px}
-.how-card b{display:block;font-size:1.05rem;color:var(--brown-900);margin-bottom:8px}
-.how-card p{font-size:.86rem;color:var(--brown-400);line-height:1.7}
-@media(max-width:900px){.how-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.how-grid{grid-template-columns:1fr}}
-
-/* ============ CART MODAL ============ */
-.ov2{position:fixed;inset:0;background:rgba(28,13,7,.66);backdrop-filter:blur(7px);z-index:850;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
-.ov2.show{opacity:1;pointer-events:all}
-.cart-modal{position:fixed;top:0;bottom:0;inset-inline-end:-100%;width:480px;max-width:94vw;background:var(--paper);z-index:900;transition:inset-inline-end .5s var(--ease);display:flex;flex-direction:column;border-inline-start:1px solid rgba(201,162,75,.25)}
-.cart-modal.open{inset-inline-end:0}
-.cm-head{padding:22px 24px;border-bottom:1px solid rgba(140,106,36,.15);display:flex;align-items:center;justify-content:space-between}
-.cm-head h3{font-family:var(--f-ar-disp);font-size:1.35rem;color:var(--maroon)}
-.cm-close{width:36px;height:36px;border-radius:50%;border:1px solid rgba(140,106,36,.25);background:var(--cream);cursor:pointer;color:var(--brown-600);font-size:1rem;transition:.25s}
-.cm-close:hover{background:var(--maroon);color:var(--gold-light);border-color:var(--maroon)}
-.cm-wing{padding:13px 24px;background:var(--cream2);font-size:.85rem;font-weight:800;color:var(--brown-700);text-align:center}
-.cm-body{flex:1;overflow-y:auto;padding:18px 24px}
-.cm-empty{text-align:center;padding:56px 10px;color:var(--brown-400)}
-.cm-empty span{font-size:2.8rem;display:block;margin-bottom:12px;opacity:.4}
-.cm-item{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(140,106,36,.1)}
-.cm-item-name{flex:1;font-size:.92rem;font-weight:700;color:var(--brown-800)}
-.cm-item-price{font-size:.86rem;font-weight:800;color:var(--maroon);white-space:nowrap}
-.cm-qty{display:flex;align-items:center;gap:7px}
-.cm-qty button{width:26px;height:26px;border-radius:50%;border:1px solid rgba(140,106,36,.3);background:var(--cream);cursor:pointer;font-size:.85rem}
-.cm-remove{color:var(--red-out);background:none;border:none;cursor:pointer;font-size:.88rem}
-
-.wholesale-gate{margin:16px 0;padding:16px 18px;border-radius:12px;background:rgba(180,50,40,.08);border:1px solid rgba(180,50,40,.28)}
-.wholesale-gate.ok{background:rgba(46,125,79,.08);border-color:rgba(46,125,79,.28)}
-.wg-text{font-size:.85rem;color:var(--brown-700);margin-bottom:9px;line-height:1.75}
-.wg-bar{height:7px;border-radius:6px;background:rgba(140,106,36,.15);overflow:hidden}
-.wg-fill{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold));transition:width .5s var(--ease)}
-
-.cm-foot{padding:20px 24px 24px;border-top:1px solid rgba(140,106,36,.15)}
-.cm-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding:14px 18px;background:rgba(201,162,75,.09);border:1px solid rgba(201,162,75,.3);border-radius:10px}
-.cm-total b{font-family:var(--f-ar-disp);font-size:1.4rem;color:var(--maroon)}
-.cm-fields{display:none;flex-direction:column;gap:11px;margin-bottom:16px}
-.cm-fields.show{display:flex}
-.fc{width:100%;padding:13px 15px;border-radius:8px;border:1px solid rgba(140,106,36,.3);background:var(--cream);font-size:.92rem;color:var(--ink);outline:none;transition:.25s}
-.fc:focus{border-color:var(--gold-dark);box-shadow:0 0 0 3px rgba(201,162,75,.15)}
-.btn-checkout{width:100%;padding:15px;border-radius:50px;background:#25D366;color:#fff;font-weight:800;font-size:.95rem;border:none;cursor:pointer;transition:.3s}
-.btn-checkout:hover{filter:brightness(1.06);transform:translateY(-1px)}
-.btn-checkout:disabled{opacity:.4;cursor:not-allowed}
-.btn-toggle-fields{width:100%;padding:14px;border-radius:50px;background:var(--maroon);color:var(--gold-light);font-weight:800;font-size:.94rem;border:none;cursor:pointer;margin-bottom:11px;transition:.3s}
-.btn-toggle-fields:hover{filter:brightness(1.1)}
-.btn-toggle-fields:disabled{opacity:.4;cursor:not-allowed;background:var(--brown-400)}
-
-/* MESSENGER FAB */
-.msg-fab{position:fixed;bottom:30px;inset-inline-start:30px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#00B2FF,#006AFF);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(0,106,255,.4);z-index:500;text-decoration:none;font-size:1.6rem;color:#fff;animation:fabFloat 3.4s ease-in-out infinite}
-@keyframes fabFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-
-/* ============ SUBMIT SPINNER ============ */
-.spinner{display:inline-block;width:17px;height:17px;border-radius:50%;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .7s linear infinite;vertical-align:middle;margin-inline-end:8px}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ============ SUCCESS OVERLAY ============ */
-.result-ov{position:fixed;inset:0;background:rgba(28,13,7,.72);backdrop-filter:blur(8px);z-index:1200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s var(--ease);padding:20px}
-.result-ov.show{opacity:1;pointer-events:all}
-.result-card{background:var(--paper);border-radius:22px;padding:44px 36px;max-width:440px;width:100%;text-align:center;box-shadow:0 40px 90px rgba(0,0,0,.4);transform:scale(.88) translateY(18px);transition:transform .45s var(--ease2);border:1px solid rgba(201,162,75,.25)}
-.result-ov.show .result-card{transform:scale(1) translateY(0)}
-.result-ico{width:84px;height:84px;border-radius:50%;margin:0 auto 22px;display:flex;align-items:center;justify-content:center}
-.result-ico.ok{background:rgba(46,125,79,.12)}
-.result-ico.err{background:rgba(179,50,38,.12)}
-.result-ico svg{width:46px;height:46px}
-.ok-circle{stroke:var(--green-ok);stroke-width:3;fill:none;stroke-dasharray:166;stroke-dashoffset:166;animation:circleDraw .6s var(--ease2) forwards}
-.ok-check{stroke:var(--green-ok);stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:48;stroke-dashoffset:48;animation:checkDraw .4s var(--ease2) .55s forwards}
-@keyframes circleDraw{to{stroke-dashoffset:0}}
-@keyframes checkDraw{to{stroke-dashoffset:0}}
-.err-circle{stroke:var(--red-out);stroke-width:3;fill:none;stroke-dasharray:166;stroke-dashoffset:166;animation:circleDraw .6s var(--ease2) forwards}
-.err-x{stroke:var(--red-out);stroke-width:4;fill:none;stroke-linecap:round;stroke-dasharray:40;stroke-dashoffset:40;animation:checkDraw .35s var(--ease2) .5s forwards}
-.result-card h3{font-family:var(--f-ar-disp);font-size:1.55rem;color:var(--brown-900);margin-bottom:12px}
-body.lang-en .result-card h3{font-family:var(--f-en-disp);font-weight:600;font-style:italic}
-.result-card p{color:var(--brown-400);font-size:.96rem;line-height:1.8;margin-bottom:18px}
-.result-orderid{display:inline-flex;align-items:center;gap:10px;background:rgba(201,162,75,.1);border:1px dashed rgba(201,162,75,.5);border-radius:12px;padding:12px 20px;margin-bottom:26px}
-.result-orderid span{font-size:.78rem;color:var(--brown-400);font-weight:700}
-.result-orderid b{font-family:var(--f-en-eyebrow);font-size:1.15rem;color:var(--maroon);letter-spacing:.03em}
-.result-card .btn-primary,.result-card .btn-ghost2{width:100%;justify-content:center}
-.btn-ghost2{width:100%;padding:15px;border-radius:50px;background:transparent;border:1.5px solid rgba(140,106,36,.3);color:var(--brown-600);font-weight:800;font-size:.94rem;cursor:pointer;transition:.3s}
-.btn-ghost2:hover{border-color:var(--maroon);color:var(--maroon)}
-.result-card .btn-primary{padding:15px 20px;color:var(--ink-900)}
-
-/* TOAST */
-.toast-wrap{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:9px;align-items:center}
-.toast{background:var(--ink-900);color:var(--gold-light);padding:13px 26px;border-radius:50px;font-size:.9rem;font-weight:700;box-shadow:0 12px 32px rgba(0,0,0,.28);animation:tin .35s ease;white-space:nowrap;border:1px solid rgba(201,162,75,.3)}
-@keyframes tin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-
-/* DEV NOTE */
-.dev-wrap{max-width:1360px;margin:0 auto;padding:0 30px 60px}
-.dev-note{background:rgba(201,162,75,.09);border:1px dashed rgba(201,162,75,.5);border-radius:12px;padding:18px 22px;font-size:.86rem;color:var(--brown-700);line-height:1.9}
-.dev-note b{color:var(--maroon)}
-
-footer{background:var(--ink-900);padding:56px 0 34px;text-align:center;position:relative;overflow:hidden}
-footer:before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(201,162,75,.08) 1px,transparent 1px);background-size:22px 22px}
-.foot-logo{font-family:var(--f-ar-disp);font-size:1.9rem;color:var(--gold-light);margin-bottom:14px;position:relative}
-body.lang-en .foot-logo{font-family:var(--f-en-disp);font-style:italic}
-footer p{color:rgba(251,243,228,.5);font-size:.88rem;position:relative}
-footer a{color:var(--gold-light);text-decoration:none;transition:.25s}
-footer a:hover{color:var(--gold-hot)}
-.foot-links{display:flex;gap:22px;justify-content:center;margin:18px 0;flex-wrap:wrap;position:relative}
-
-@media(max-width:600px){
-  .container,.nc,.filter-inner,.wing-inner,.hero-inner,.fs-inner{padding-inline:18px}
-  .pgrid{grid-template-columns:1fr 1fr;gap:16px}
-  .cart-modal{width:100vw}
-  .hero{padding:56px 0 46px}
-}
-@media(max-width:420px){.pgrid{grid-template-columns:1fr}}
-</style>
-</head>
-<body class="lang-ar">
-
-<div class="topbar">
-  <div class="marquee" id="marquee"></div>
-</div>
-
-<nav>
-  <div class="nc">
-    <a href="#" class="logo"><span class="dot"></span>LAMSA <b data-i18n="logo_sub"></b></a>
-    <div class="nb">
-      <div class="langtog">
-        <button id="lang-ar-btn" class="on" onclick="setLang('ar')">AR</button>
-        <button id="lang-en-btn" onclick="setLang('en')">EN</button>
-      </div>
-      <button class="btn-cart" onclick="openCart()">🛒 <span data-i18n="cart_btn"></span><span class="n" id="cartCount">0</span></button>
-    </div>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="hero-eyebrow"><span class="pulse"></span><span data-i18n="hero_eyebrow"></span></div>
-      <h1 data-i18n-html="hero_title"></h1>
-      <p data-i18n="hero_sub"></p>
-      <div class="hero-ctas">
-        <button class="btn-primary" onclick="document.getElementById('shopSec').scrollIntoView({behavior:'smooth'})">✨ <span data-i18n="hero_cta1"></span></button>
-        <button class="btn-ghost" onclick="setWing('wholesale');document.getElementById('shopSec').scrollIntoView({behavior:'smooth'})"><span data-i18n="hero_cta2"></span></button>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><b>+1200</b><span data-i18n="stat1"></span></div>
-        <div class="hstat"><b>58</b><span data-i18n="stat2"></span></div>
-        <div class="hstat"><b>4.9★</b><span data-i18n="stat3"></span></div>
-      </div>
-    </div>
-    <div class="hero-art" id="heroArt"></div>
-  </div>
-  <div class="scroll-cue"><span data-i18n="scroll_cue"></span><span class="line"></span></div>
-</header>
-
-<section class="feature-strip">
-  <div class="fs-inner">
-    <div class="fitem"><div class="ico">🎨</div><div><b data-i18n="feat1_t"></b><span data-i18n="feat1_s"></span></div></div>
-    <div class="fitem"><div class="ico">💧</div><div><b data-i18n="feat2_t"></b><span data-i18n="feat2_s"></span></div></div>
-    <div class="fitem"><div class="ico">📦</div><div><b data-i18n="feat3_t"></b><span data-i18n="feat3_s"></span></div></div>
-    <div class="fitem"><div class="ico">💬</div><div><b data-i18n="feat4_t"></b><span data-i18n="feat4_s"></span></div></div>
-  </div>
-</section>
-
-<div class="wing-bar" id="shopSec">
-  <div class="wing-inner">
-    <div class="wing-title" data-i18n="wing_title"></div>
-    <div class="wing-label" data-i18n="wing_label"></div>
-    <div class="wing-switch">
-      <button class="wing-btn on" id="wing-retail" onclick="setWing('retail')">🛍️ <span data-i18n="wing_retail"></span></button>
-      <button class="wing-btn" id="wing-wholesale" onclick="setWing('wholesale')">🏷️ <span data-i18n="wing_wholesale"></span></button>
-    </div>
-    <div class="wing-note" id="wingNote"></div>
-  </div>
-</div>
-
-<div class="filter-wrap">
-  <div class="filter-inner">
-    <button class="ftab on" data-c="all" data-i18n="f_all"></button>
-    <button class="ftab" data-c="normal" data-i18n="f_normal"></button>
-    <button class="ftab" data-c="fabric" data-i18n="f_fabric"></button>
-    <button class="ftab" data-c="water" data-i18n="f_water"></button>
-  </div>
-</div>
-
-<section class="prod-sec">
-  <div class="container">
-    <div class="sec-header reveal">
-      <span class="sec-eyebrow" data-i18n="prod_eyebrow"></span>
-      <h2 class="sec-title" data-i18n="prod_title"></h2>
-      <p class="sec-lead" data-i18n="prod_lead"></p>
-    </div>
-    <div class="pgrid reveal stagger" id="pgrid"></div>
-  </div>
-</section>
-
-<section class="how-sec">
-  <div class="container">
-    <div class="sec-header reveal">
-      <span class="sec-eyebrow" data-i18n="how_eyebrow"></span>
-      <h2 class="sec-title" data-i18n="how_title"></h2>
-      <p class="sec-lead" data-i18n="how_lead"></p>
-    </div>
-    <div class="how-grid reveal stagger">
-      <div class="how-card"><div class="how-num">1</div><div class="how-ico">🧴</div><b data-i18n="how1_t"></b><p data-i18n="how1_s"></p></div>
-      <div class="how-card"><div class="how-num">2</div><div class="how-ico">✋</div><b data-i18n="how2_t"></b><p data-i18n="how2_s"></p></div>
-      <div class="how-card"><div class="how-num">3</div><div class="how-ico">🖼️</div><b data-i18n="how3_t"></b><p data-i18n="how3_s"></p></div>
-      <div class="how-card"><div class="how-num">4</div><div class="how-ico">🌙</div><b data-i18n="how4_t"></b><p data-i18n="how4_s"></p></div>
-    </div>
-  </div>
-</section>
-
-<div class="dev-wrap reveal">
-  <div class="dev-note">
-    🔧 <b data-i18n="dev_title"></b> — <span data-i18n="dev_text"></span>
-  </div>
-</div>
-
-<footer>
-  <div class="foot-logo">LAMSA لمسة</div>
-  <div class="foot-links">
-    <a href="tel:0656198526">📞 0656 19 85 26</a>
-    <a href="https://wa.me/213656198526" target="_blank">💬 WhatsApp</a>
-    <a href="https://m.me/lamsa.stickers" target="_blank">Messenger</a>
-  </div>
-  <p data-i18n="foot_text"></p>
-</footer>
-
-<a href="https://m.me/lamsa.stickers" target="_blank" class="msg-fab" title="Messenger">💬</a>
-
-<div class="ov2" id="ov2" onclick="closeCart()"></div>
-<div class="cart-modal" id="cartModal">
-  <div class="cm-head"><h3 data-i18n="cart_title"></h3><button class="cm-close" onclick="closeCart()">✕</button></div>
-  <div class="cm-wing" id="cmWing"></div>
-  <div class="cm-body" id="cmBody"></div>
-  <div class="cm-foot">
-    <div id="wholesaleGate"></div>
-    <div class="cm-total"><span data-i18n="cart_total"></span><b id="cmTotal">0 دج</b></div>
-    <button class="btn-toggle-fields" id="btnToggleFields" onclick="toggleFields()" data-i18n="btn_continue"></button>
-    <div class="cm-fields" id="cmFields">
-      <select class="fc" id="cust-wilaya"></select>
-      <input class="fc" id="cust-baladiya" type="text">
-      <input class="fc" id="cust-phone" type="tel">
-      <input class="fc" id="cust-name" type="text">
-      <button class="btn-checkout" id="btnCheckout" onclick="checkout()">💬 <span data-i18n="btn_checkout"></span></button>
-    </div>
-  </div>
-</div>
-
-<div class="result-ov" id="successOv">
-  <div class="result-card">
-    <div class="result-ico ok">
-      <svg viewBox="0 0 52 52"><circle class="ok-circle" cx="26" cy="26" r="23"/><path class="ok-check" d="M15 27l7 7 15-15"/></svg>
-    </div>
-    <h3 data-i18n="success_title"></h3>
-    <p data-i18n="success_msg"></p>
-    <div class="result-orderid"><span data-i18n="success_orderid_label"></span><b id="successOrderId"></b></div>
-    <button class="btn-primary" onclick="closeSuccessOv()" data-i18n="success_close"></button>
-  </div>
-</div>
-
-<div class="result-ov" id="errorOv">
-  <div class="result-card">
-    <div class="result-ico err">
-      <svg viewBox="0 0 52 52"><circle class="err-circle" cx="26" cy="26" r="23"/><path class="err-x" d="M18 18l16 16"/><path class="err-x" d="M34 18l-16 16"/></svg>
-    </div>
-    <h3 data-i18n="error_title"></h3>
-    <p id="errorMsg"></p>
-    <button class="btn-ghost2" onclick="closeErrorOv()" data-i18n="error_close"></button>
-  </div>
-</div>
-
-<div class="toast-wrap" id="toastWrap"></div>
-
-<script>
-/* ================= i18n ================= */
-const T={
-  logo_sub:{ar:"للستكرات",en:"Stickers"},
-  cart_btn:{ar:"السلة",en:"Cart"},
-  marquee_txt:{ar:"🌿 جودة فينيل أصلي Oracal 650 &nbsp; ✦ &nbsp; شحن لكل الولايات &nbsp; ✦ &nbsp; الدفع عند الاستلام &nbsp; ✦ &nbsp; أسعار خاصة للتجار",
-               en:"🌿 Genuine Oracal 650 Vinyl &nbsp; ✦ &nbsp; Nationwide Shipping &nbsp; ✦ &nbsp; Cash on Delivery &nbsp; ✦ &nbsp; Special Dealer Pricing"},
-  hero_eyebrow:{ar:"رشمات حناء بلمسة عصرية",en:"Henna Designs, Reimagined"},
-  hero_title:{ar:'لَمسة <span class="shine">فنّ</span> على يدك',en:'A <span class="shine">Touch</span> of Art on Your Hand'},
-  hero_sub:{ar:"ستكرات حناء عالية الجودة بثلاث خامات مختلفة، مصممة لتدوم وتلفت الأنظار — للاستعمال الشخصي أو للتجارة بالجملة.",
-            en:"Premium henna stickers in three finishes, made to last and turn heads — for personal use or wholesale reselling."},
-  hero_cta1:{ar:"تسوّقي المجموعة",en:"Shop the Collection"},
-  hero_cta2:{ar:"أسعار الجملة للتجار",en:"Wholesale Pricing"},
-  stat1:{ar:"قطعة مباعة",en:"Pieces Sold"},
-  stat2:{ar:"ولاية توصيل",en:"Wilayas Covered"},
-  stat3:{ar:"تقييم الزبائن",en:"Customer Rating"},
-  scroll_cue:{ar:"مرري للأسفل",en:"Scroll"},
-  feat1_t:{ar:"جودة مضمونة",en:"Guaranteed Quality"},
-  feat1_s:{ar:"خامات مختارة بعناية",en:"Carefully selected materials"},
-  feat2_t:{ar:"مقاومة للماء",en:"Water Resistant"},
-  feat2_s:{ar:"تدوم لأيام طويلة",en:"Lasts for many days"},
-  feat3_t:{ar:"توصيل سريع",en:"Fast Delivery"},
-  feat3_s:{ar:"لكل ولايات الوطن",en:"To every wilaya"},
-  feat4_t:{ar:"دعم مباشر",en:"Live Support"},
-  feat4_s:{ar:"عبر واتساب وماسنجر",en:"Via WhatsApp & Messenger"},
-  wing_title:{ar:"اختاري تجربتك",en:"Choose Your Experience"},
-  wing_label:{ar:"اختاري جناح التسوق",en:"Choose Your Shopping Wing"},
-  wing_retail:{ar:"جناح التجزئة",en:"Retail Wing"},
-  wing_wholesale:{ar:"جناح الجملة (للتجار)",en:"Wholesale Wing (Dealers)"},
-  wing_note_retail:{ar:"أسعار القطعة الواحدة — بدون حد أدنى للطلب",en:"Single-piece pricing — no minimum order"},
-  wing_note_wholesale:{ar:"أسعار مخفضة للتجار — الحد الأدنى للطلب 180 دج",en:"Discounted dealer pricing — 180 DZD minimum order"},
-  f_all:{ar:"كل الفئات",en:"All Categories"},
-  f_normal:{ar:"🎨 ستكرات عادية (Oracal 650)",en:"🎨 Regular (Oracal 650)"},
-  f_fabric:{ar:"🧵 ستكرات قماشية",en:"🧵 Fabric Stickers"},
-  f_water:{ar:"💧 ستكرات مائية مطبوعة",en:"💧 Printed Watercolor"},
-  prod_eyebrow:{ar:"المجموعة الكاملة",en:"The Full Collection"},
-  prod_title:{ar:"مجموعة رشمات لَمسة",en:"The LAMSA Collection"},
-  prod_lead:{ar:"اضغطي 🏷️ لرؤية الملصق أو 🤲 لرؤية شكله بعد التطبيق على اليد",en:"Tap 🏷️ for the sticker view or 🤲 to see it applied on the hand"},
-  cat_normal:{ar:"عادية",en:"Regular"},
-  cat_fabric:{ar:"قماشية",en:"Fabric"},
-  cat_water:{ar:"مائية",en:"Watercolor"},
-  mat_normal:{ar:"فينيل مطفي Oracal 650",en:"Matte Vinyl Oracal 650"},
-  mat_fabric:{ar:"قماش عالي الجودة",en:"Premium fabric"},
-  mat_water:{ar:"طباعة مائية دقيقة",en:"Fine watercolor print"},
-  stock_out:{ar:"نفدت الكمية",en:"Out of Stock"},
-  btn_add:{ar:"أضف للسلة",en:"Add to Cart"},
-  btn_unavailable:{ar:"غير متوفر",en:"Unavailable"},
-  tag_retail:{ar:"سعر القطعة",en:"per piece"},
-  tag_wholesale:{ar:"سعر الجملة",en:"wholesale"},
-  how_eyebrow:{ar:"سهلة الاستعمال",en:"Easy to Use"},
-  how_title:{ar:"كيف تستعملين رشمة لَمسة؟",en:"How to Use Your LAMSA Sticker"},
-  how_lead:{ar:"أربع خطوات بسيطة لنتيجة احترافية في دقائق",en:"Four simple steps for a professional result in minutes"},
-  how1_t:{ar:"نظّفي اليد",en:"Clean the Skin"},
-  how1_s:{ar:"امسحي اليد جيدًا لإزالة أي زيوت أو أوساخ",en:"Wipe the hand thoroughly to remove oils or dust"},
-  how2_t:{ar:"ثبّتي الرشمة",en:"Apply the Sticker"},
-  how2_s:{ar:"انزعي الطبقة الشفافة وضعي الرشمة بلطف على المكان المطلوب",en:"Peel the film and gently place the sticker where you want"},
-  how3_t:{ar:"اضغطي بالتساوي",en:"Press Evenly"},
-  how3_s:{ar:"اضغطي على كامل الرشمة لضمان التصاقها الجيد",en:"Press across the whole design to ensure it adheres well"},
-  how4_t:{ar:"انزعي الورق برفق",en:"Peel Off Gently"},
-  how4_s:{ar:"انزعي الطبقة العلوية ببطء لتظهر الرشمة بوضوح",en:"Slowly remove the top layer to reveal a crisp design"},
-  cart_title:{ar:"🛒 سلتك",en:"🛒 Your Cart"},
-  cart_total:{ar:"المجموع",en:"Total"},
-  cm_wing_retail:{ar:"🛍️ سلة جناح التجزئة",en:"🛍️ Retail Wing Cart"},
-  cm_wing_wholesale:{ar:"🏷️ سلة جناح الجملة",en:"🏷️ Wholesale Wing Cart"},
-  cm_empty_t:{ar:"سلتك فارغة",en:"Your cart is empty"},
-  cm_empty_s:{ar:"أضيفي رشمة من المجموعة",en:"Add a design from the collection"},
-  btn_continue:{ar:"متابعة الطلب",en:"Continue to Checkout"},
-  btn_checkout:{ar:"إرسال الطلب عبر واتساب",en:"Send Order via WhatsApp"},
-  btn_sending:{ar:"جارٍ إرسال طلبك...",en:"Sending your order..."},
-  success_title:{ar:"شكرًا لك! 🎉",en:"Thank You! 🎉"},
-  success_msg:{ar:"تم استلام طلبك بنجاح وسنتواصل معك قريبًا لتأكيد التوصيل.",en:"Your order has been received successfully. We'll contact you soon to confirm delivery."},
-  success_orderid_label:{ar:"رقم الطلب",en:"Order ID"},
-  success_close:{ar:"متابعة التسوق",en:"Continue Shopping"},
-  error_title:{ar:"تعذّر إرسال الطلب",en:"Order Couldn't Be Sent"},
-  error_close:{ar:"حسنًا، سأحاول مجددًا",en:"OK, I'll Try Again"},
-  err_generic:{ar:"حدث خطأ أثناء حفظ طلبك. سلتك لم تتغيّر — يرجى المحاولة مرة أخرى.",en:"Something went wrong while saving your order. Your cart is unchanged — please try again."},
-  err_network:{ar:"تعذّر الاتصال بالخادم. تحققي من اتصال الإنترنت وحاولي مجددًا. سلتك لم تتغيّر.",en:"Couldn't reach the server. Check your internet connection and try again. Your cart is unchanged."},
-  gate_need:{ar:"سلتك الحالية: <b>{cur} دج</b> — يلزم الوصول لـ <b>180 دج</b> لإتمام طلب الجملة. أضيفي <b>{rest} دج</b> أخرى، أو",en:"Your cart: <b>{cur} DZD</b> — wholesale orders require <b>180 DZD</b>. Add <b>{rest} DZD</b> more, or"},
-  gate_switch:{ar:"انتقلي لجناح التجزئة",en:"switch to Retail Wing"},
-  gate_ok:{ar:"✅ تم بلوغ الحد الأدنى لطلب الجملة (180 دج). يمكنك إتمام الطلب.",en:"✅ Wholesale minimum reached (180 DZD). You may proceed to checkout."},
-  ph_wilaya:{ar:"— اختاري الولاية —",en:"— Select Wilaya —"},
-  ph_baladiya:{ar:"البلدية",en:"Municipality"},
-  ph_phone:{ar:"رقم الهاتف",en:"Phone number"},
-  ph_name:{ar:"الاسم الكامل",en:"Full name"},
-  dev_title:{ar:"ملاحظة للمصمم",en:"Designer's Note"},
-  dev_text:{ar:"هذه معاينة أمامية كاملة للهوية والتدفق (السلة، الحد الأدنى للجملة، منع خلط الجناحين، صورتا المنتج). عند البناء الفعلي على WooCommerce/YouCan سيتحول: زر واتساب إلى نظام COD وإشعارات فورية حقيقية، وزر ماسنجر إلى تكامل حقيقي بصفحتكم، والمخزون إلى تتبع تلقائي متزامن لكل الزوار.",en:"This is a complete front-end preview of the identity and flow (cart, wholesale minimum, wing-mixing prevention, dual product images). On the real WooCommerce/YouCan build: the WhatsApp button becomes real COD + instant notifications, the Messenger button connects to your real Page, and stock becomes auto-synced for every visitor."},
-  foot_text:{ar:"© 2026 LAMSA للستكرات — صنع بحب في الجزائر 🇩🇿",en:"© 2026 LAMSA Stickers — Handcrafted in Algeria 🇩🇿"},
-  toast_added:{ar:"🛒 أُضيف للسلة",en:"🛒 Added to cart"},
-  toast_mixwing:{ar:"⚠️ لا يمكن الجمع بين جناحي التجزئة والجملة في نفس الطلب. أفرغي السلة أولاً أو أكملي طلبك الحالي.",en:"⚠️ You can't mix Retail and Wholesale items in one order. Empty your cart first, or complete your current order."},
-  toast_removed:{ar:"🗑 تمت الإزالة",en:"🗑 Removed"},
-  toast_needfields:{ar:"⚠️ يرجى تعبئة كل الحقول",en:"⚠️ Please fill in all fields"},
-  toast_gateblock:{ar:"⚠️ لم يبلغ الطلب الحد الأدنى لجناح الجملة بعد",en:"⚠️ Order hasn't reached the wholesale minimum yet"},
-};
-let LANG='ar';
-let WING='retail'; // retail | wholesale
-const MIN_WHOLESALE=180;
-const WA_NUM='213656198526';
-const API_URL='https://script.google.com/macros/s/AKfycbwdzlj-1DZP2N0G-cI7UkOT2slsmIm-1zd9Dl7PUPOxAeFfoP8jTk8bKknQFhLDcCH0/exec';
-let isSubmitting=false;
-
-const WILAYAS=["أدرار","الشلف","الأغواط","أم البواقي","باتنة","بجاية","بسكرة","بشار","البليدة","البويرة","تمنراست","تبسة","تلمسان","تيارت","تيزي وزو","الجزائر","الجلفة","جيجل","سطيف","سعيدة","سكيكدة","سيدي بلعباس","عنابة","قالمة","قسنطينة","المدية","مستغانم","المسيلة","معسكر","ورقلة","وهران","البيض","إليزي","برج بوعريريج","بومرداس","الطارف","تندوف","تيسمسيلت","الوادي","خنشلة","سوق أهراس","تيبازة","ميلة","عين الدفلى","النعامة","عين تموشنت","غرداية","غليزان","تيميمون","برج باجي مختار","أولاد جلال","بني عباس","عين صالح","عين قزام","تقرت","جانت","المغير","المنيعة"];
-
-/* ================= products ================= */
-const CAT_ACCENT={normal:'#5C2117',fabric:'#8C4A2F',water:'#A85C6B'};
-const CAT_ACCENT2={normal:'#C9A24B',fabric:'#C9A24B',water:'#C9A24B'};
-
-const PRODUCTS=[
-  {id:'n1',cat:'normal',petals:8,seed:0,retail:220,wholesale:150,stock:true,name:{ar:'التاج الملكي',en:'Royal Crown'}},
-  {id:'n2',cat:'normal',petals:6,seed:20,retail:200,wholesale:140,stock:true,name:{ar:'زهرة الصحراء',en:'Desert Flower'}},
-  {id:'n3',cat:'normal',petals:10,seed:12,retail:240,wholesale:160,stock:false,name:{ar:'نجمة المغرب',en:'Morocco Star'}},
-  {id:'n4',cat:'normal',petals:8,seed:35,retail:210,wholesale:150,stock:true,name:{ar:'أقواس ذهبية',en:'Golden Arches'}},
-  {id:'f1',cat:'fabric',petals:8,seed:8,retail:260,wholesale:180,stock:true,name:{ar:'ورد القماش',en:'Fabric Rose'}},
-  {id:'f2',cat:'fabric',petals:6,seed:28,retail:280,wholesale:190,stock:true,name:{ar:'نسيج الأميرة',en:'Princess Weave'}},
-  {id:'f3',cat:'fabric',petals:10,seed:16,retail:250,wholesale:170,stock:false,name:{ar:'ضفائر ذهبية',en:'Golden Braids'}},
-  {id:'f4',cat:'fabric',petals:8,seed:40,retail:270,wholesale:185,stock:true,name:{ar:'توليب القماش',en:'Fabric Tulip'}},
-  {id:'w1',cat:'water',petals:6,seed:5,retail:300,wholesale:210,stock:true,name:{ar:'غيمة وردية',en:'Rose Cloud'}},
-  {id:'w2',cat:'water',petals:8,seed:24,retail:320,wholesale:220,stock:true,name:{ar:'رذاذ الذهب',en:'Gold Mist'}},
-  {id:'w3',cat:'water',petals:10,seed:33,retail:290,wholesale:200,stock:true,name:{ar:'تدرج الفجر',en:'Dawn Gradient'}},
-  {id:'w4',cat:'water',petals:8,seed:14,retail:310,wholesale:215,stock:true,name:{ar:'ألوان الياسمين',en:'Jasmine Hues'}},
-];
-
-/* ================= mandala art generator ================= */
-function mandalaMarkup(cx,cy,scale,petals,seed,accent,accent2){
-  scale=scale||1;
-  const petal=`M${cx},${cy-70*scale} C${cx+22*scale},${cy-52*scale} ${cx+24*scale},${cy-28*scale} ${cx+10*scale},${cy-16*scale} C${cx+2*scale},${cy-10*scale} ${cx-8*scale},${cy-14*scale} ${cx-6*scale},${cy-24*scale} C${cx-4*scale},${cy-34*scale} ${cx+4*scale},${cy-36*scale} ${cx},${cy-28*scale}`;
-  let out='';
-  const step=360/petals;
-  for(let i=0;i<petals;i++){
-    out+=`<path d="${petal}" fill="none" stroke="${accent}" stroke-width="1.6" transform="rotate(${seed+i*step} ${cx} ${cy})"/>`;
-  }
-  return `
-    <circle cx="${cx}" cy="${cy}" r="${88*scale}" fill="none" stroke="${accent2}" stroke-width="1"/>
-    <circle cx="${cx}" cy="${cy}" r="${68*scale}" fill="none" stroke="${accent2}" stroke-width="1"/>
-    ${out}
-    <circle cx="${cx}" cy="${cy}" r="${16*scale}" fill="none" stroke="${accent}" stroke-width="1.6"/>
-    <circle cx="${cx}" cy="${cy}" r="${5*scale}" fill="${accent}"/>
-  `;
-}
-function bgForCat(cat,uid){
-  if(cat==='fabric'){
-    return `<defs><pattern id="wv-${uid}" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0,10 L10,0" stroke="#E8CE8E" stroke-width="0.6" opacity=".5"/></pattern></defs>
-    <rect width="260" height="260" fill="url(#wv-${uid})"/>`;
-  }
-  if(cat==='water'){
-    return `<defs><radialGradient id="wa-${uid}" cx="50%" cy="45%" r="60%"><stop offset="0%" stop-color="#F3E2C4"/><stop offset="100%" stop-color="#FBF3E4"/></radialGradient></defs>
-    <rect width="260" height="260" fill="url(#wa-${uid})"/>`;
-  }
-  return `<defs><pattern id="gr-${uid}" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M14,0 L0,0 0,14" fill="none" stroke="#E8CE8E" stroke-width="0.4" opacity=".5"/></pattern></defs>
-  <rect width="260" height="260" fill="url(#gr-${uid})"/>`;
-}
-function stickerSVG(p,uid){
-  const a=CAT_ACCENT[p.cat],a2=CAT_ACCENT2[p.cat];
-  return `${bgForCat(p.cat,uid)}
-    <rect x="6" y="6" width="248" height="248" rx="16" fill="none" stroke="${a}" stroke-width="1" stroke-dasharray="4 4" opacity=".5"/>
-    ${mandalaMarkup(130,130,1,p.petals,p.seed,a,a2)}`;
-}
-function appliedSVG(p,uid){
-  const a=CAT_ACCENT[p.cat],a2=CAT_ACCENT2[p.cat];
-  return `
-    <rect width="260" height="340" fill="#FBF3E4"/>
-    <ellipse cx="130" cy="322" rx="90" ry="10" fill="#3C2113" opacity=".07"/>
-    <rect x="70" y="170" width="120" height="150" rx="55" fill="#E4C49A"/>
-    <rect x="42" y="150" width="30" height="88" rx="15" fill="#E4C49A" transform="rotate(-40 57 194)"/>
-    <rect x="88" y="78" width="24" height="112" rx="12" fill="#E4C49A" transform="rotate(-7 100 134)"/>
-    <rect x="118" y="58" width="26" height="132" rx="13" fill="#E4C49A"/>
-    <rect x="150" y="72" width="24" height="118" rx="12" fill="#E4C49A" transform="rotate(7 162 131)"/>
-    <rect x="178" y="98" width="20" height="92" rx="10" fill="#E4C49A" transform="rotate(16 188 144)"/>
-    <rect x="70" y="170" width="120" height="150" rx="55" fill="none" stroke="#D2AD7C" stroke-width="1" opacity=".6"/>
-    ${mandalaMarkup(132,258,0.6,p.petals,p.seed,a,a2)}`;
-}
-
-/* ================= hero signature art ================= */
-function renderHeroArt(){
-  const el=document.getElementById('heroArt');
-  const gold='#E8CE8E',goldDim='rgba(232,206,142,.35)',hot='#F4E3A8';
-  let petals='';
-  for(let i=0;i<12;i++){
-    petals+=`<path class="ink-path d${(i%4)+1}" d="M240,90 C270,130 274,168 250,188 C238,198 222,192 224,174 C226,160 240,156 246,168"
-      fill="none" stroke="${gold}" stroke-width="2.2" stroke-linecap="round" transform="rotate(${i*30} 240 240)"/>`;
-  }
-  let orbits='';
-  for(let i=0;i<6;i++){
-    orbits+=`<circle class="orbit-dot" cx="240" cy="60" r="3.4" fill="${hot}" style="animation-delay:${i*1.3}s" transform="rotate(${i*60} 240 240)"/>`;
-  }
-  el.innerHTML=`<svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="heroGlowGrad" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="${hot}" stop-opacity=".35"/>
-        <stop offset="100%" stop-color="${hot}" stop-opacity="0"/>
-      </radialGradient>
-    </defs>
-    <circle cx="240" cy="240" r="210" fill="url(#heroGlowGrad)"/>
-    <g class="ring-rot"><circle cx="240" cy="240" r="188" fill="none" stroke="${goldDim}" stroke-width="1" stroke-dasharray="2 8"/></g>
-    <g class="ring-rot2"><circle cx="240" cy="240" r="160" fill="none" stroke="${goldDim}" stroke-width="1"/></g>
-    ${orbits}
-    ${petals}
-    <g class="core">
-      <circle cx="240" cy="240" r="46" fill="none" stroke="${gold}" stroke-width="2"/>
-      <circle cx="240" cy="240" r="30" fill="none" stroke="${hot}" stroke-width="1.4"/>
-      <circle cx="240" cy="240" r="7" fill="${hot}"/>
-    </g>
-  </svg>`;
-}
-
-/* ================= render products ================= */
-let currentFilter='all';
-function renderProducts(){
-  const grid=document.getElementById('pgrid');
-  grid.innerHTML=PRODUCTS.map(p=>{
-    const price=WING==='retail'?p.retail:p.wholesale;
-    const tag=WING==='retail'?T.tag_retail[LANG]:T.tag_wholesale[LANG];
-    const matKey='mat_'+p.cat, catKey='cat_'+p.cat;
-    return `<div class="pc${p.stock?'':' out'}" data-cat="${p.cat}">
-      <div class="pc-media">
-        <span class="pc-cat-badge" style="background:${CAT_ACCENT[p.cat]}">${T[catKey][LANG]}</span>
-        ${p.stock?'':`<span class="pc-stock-badge" data-i18n="stock_out"></span>`}
-        <svg class="pc-art on" viewBox="0 0 260 260" data-v="sticker">${stickerSVG(p,p.id+'a')}</svg>
-        <svg class="pc-art" viewBox="0 0 260 340" data-v="applied">${appliedSVG(p,p.id+'b')}</svg>
-        <div class="pc-view-tabs">
-          <button class="on" onclick="setCardView(this,'${p.id}','sticker')">🏷️</button>
-          <button onclick="setCardView(this,'${p.id}','applied')">🤲</button>
-        </div>
-      </div>
-      <div class="pc-body">
-        <div class="pc-title">${p.name[LANG]}</div>
-        <div class="pc-mat">${T[matKey][LANG]}</div>
-        <div class="pc-price-row">
-          <span class="pc-price">${price} ${LANG==='ar'?'دج':'DZD'}</span>
-          <span class="pc-price-tag">${tag}</span>
-        </div>
-        <button class="pc-btn" ${p.stock?'':'disabled'} onclick="addToCart('${p.id}')">${p.stock?T.btn_add[LANG]:T.btn_unavailable[LANG]}</button>
-      </div>
-    </div>`;
-  }).join('');
-  applyFilter(currentFilter);
-  initReveal();
-}
-function setCardView(btn,id,view){
-  const card=btn.closest('.pc');
-  card.querySelectorAll('.pc-view-tabs button').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  card.querySelectorAll('.pc-art').forEach(a=>a.classList.toggle('on',a.dataset.v===view));
-}
-window.setCardView=setCardView;
-
-function applyFilter(f){
-  currentFilter=f;
-  document.querySelectorAll('.ftab').forEach(b=>b.classList.toggle('on',b.dataset.c===f));
-  document.querySelectorAll('.pc').forEach(c=>{
-    c.style.display=(f==='all'||c.dataset.cat===f)?'':'none';
-  });
-}
-document.addEventListener('click',e=>{
-  const b=e.target.closest('.ftab');
-  if(b) applyFilter(b.dataset.c);
-});
-
-/* ================= wing ================= */
-function setWing(w){
-  WING=w;
-  document.getElementById('wing-retail').classList.toggle('on',w==='retail');
-  document.getElementById('wing-wholesale').classList.toggle('on',w==='wholesale');
-  document.getElementById('wingNote').innerHTML=(w==='retail'?T.wing_note_retail:T.wing_note_wholesale)[LANG];
-  renderProducts();
-}
-window.setWing=setWing;
-
-/* ================= cart ================= */
-const cart={items:[],wing:null}; // items: [{id, qty}]
-function cartTotal(){
-  return cart.items.reduce((s,i)=>{
-    const p=PRODUCTS.find(pp=>pp.id===i.id);
-    const price=cart.wing==='retail'?p.retail:p.wholesale;
-    return s+price*i.qty;
-  },0);
-}
-function cartCount(){return cart.items.reduce((s,i)=>s+i.qty,0);}
-
-function addToCart(id){
-  if(cart.items.length>0 && cart.wing!==WING){
-    showToast(T.toast_mixwing[LANG]);
-    return;
-  }
-  cart.wing=WING;
-  const ex=cart.items.find(i=>i.id===id);
-  if(ex) ex.qty+=1; else cart.items.push({id,qty:1});
-  const cc=document.getElementById('cartCount');
-  cc.textContent=cartCount();
-  cc.classList.remove('bump');void cc.offsetWidth;cc.classList.add('bump');
-  showToast(T.toast_added[LANG]);
-  renderCart();
-}
-window.addToCart=addToCart;
-
-function changeQty(id,d){
-  const it=cart.items.find(i=>i.id===id);
-  if(!it) return;
-  it.qty+=d;
-  if(it.qty<=0){
-    cart.items=cart.items.filter(i=>i.id!==id);
-    if(cart.items.length===0) cart.wing=null;
-  }
-  document.getElementById('cartCount').textContent=cartCount();
-  renderCart();
-}
-window.changeQty=changeQty;
-
-function removeItem(id){
-  cart.items=cart.items.filter(i=>i.id!==id);
-  if(cart.items.length===0) cart.wing=null;
-  document.getElementById('cartCount').textContent=cartCount();
-  showToast(T.toast_removed[LANG]);
-  renderCart();
-}
-window.removeItem=removeItem;
-
-function renderCart(){
-  const body=document.getElementById('cmBody');
-  const wingLabel=document.getElementById('cmWing');
-  const gateWrap=document.getElementById('wholesaleGate');
-  const total=cartTotal();
-  document.getElementById('cmTotal').textContent=total.toLocaleString('en-US')+' '+(LANG==='ar'?'دج':'DZD');
-
-  if(!cart.wing){
-    wingLabel.textContent='';
-  }else{
-    wingLabel.textContent=(cart.wing==='retail'?T.cm_wing_retail:T.cm_wing_wholesale)[LANG];
-  }
-
-  if(cart.items.length===0){
-    body.innerHTML=`<div class="cm-empty"><span>🛒</span><div style="font-weight:800;color:var(--brown-700)">${T.cm_empty_t[LANG]}</div><div style="font-size:.86rem;margin-top:6px">${T.cm_empty_s[LANG]}</div></div>`;
-  }else{
-    body.innerHTML=cart.items.map(i=>{
-      const p=PRODUCTS.find(pp=>pp.id===i.id);
-      const price=cart.wing==='retail'?p.retail:p.wholesale;
-      return `<div class="cm-item">
-        <div class="cm-item-name">${p.name[LANG]}<br><button class="cm-remove" onclick="removeItem('${p.id}')">${LANG==='ar'?'إزالة':'Remove'}</button></div>
-        <div class="cm-qty">
-          <button onclick="changeQty('${p.id}',-1)">−</button><span>${i.qty}</span><button onclick="changeQty('${p.id}',1)">+</button>
-        </div>
-        <div class="cm-item-price">${(price*i.qty).toLocaleString('en-US')} ${LANG==='ar'?'دج':'DZD'}</div>
-      </div>`;
-    }).join('');
-  }
-
-  const btnFields=document.getElementById('btnToggleFields');
-  const btnCheckout=document.getElementById('btnCheckout');
-  if(cart.wing==='wholesale' && total<MIN_WHOLESALE){
-    const rest=MIN_WHOLESALE-total;
-    gateWrap.innerHTML=`<div class="wholesale-gate">
-      <div class="wg-text">${T.gate_need[LANG].replace('{cur}',total).replace('{rest}',rest)} <a href="#" onclick="switchToRetailFromGate();return false;" style="color:var(--maroon);font-weight:800">${T.gate_switch[LANG]}</a></div>
-      <div class="wg-bar"><div class="wg-fill" style="width:${Math.min(100,total/MIN_WHOLESALE*100)}%"></div></div>
-    </div>`;
-    btnFields.disabled=true;
-  }else if(cart.wing==='wholesale' && total>=MIN_WHOLESALE){
-    gateWrap.innerHTML=`<div class="wholesale-gate ok"><div class="wg-text">${T.gate_ok[LANG]}</div></div>`;
-    btnFields.disabled=cart.items.length===0;
-  }else{
-    gateWrap.innerHTML='';
-    btnFields.disabled=cart.items.length===0;
-  }
-  document.getElementById('cmFields').classList.remove('show');
-  btnFields.style.display='block';
-}
-
-function switchToRetailFromGate(){
-  cart.items=[];cart.wing=null;
-  setWing('retail');
-  document.getElementById('cartCount').textContent='0';
-  renderCart();
-  showToast(LANG==='ar'?'تم تفريغ السلة والانتقال لجناح التجزئة':'Cart cleared, switched to Retail Wing');
-}
-window.switchToRetailFromGate=switchToRetailFromGate;
-
-function toggleFields(){
-  document.getElementById('cmFields').classList.add('show');
-  document.getElementById('btnToggleFields').style.display='none';
-}
-window.toggleFields=toggleFields;
-
-function openCart(){
-  renderCart();
-  document.getElementById('cartModal').classList.add('open');
-  document.getElementById('ov2').classList.add('show');
-  document.body.style.overflow='hidden';
-}
-window.openCart=openCart;
-function closeCart(){
-  document.getElementById('cartModal').classList.remove('open');
-  document.getElementById('ov2').classList.remove('show');
-  document.body.style.overflow='';
-}
-window.closeCart=closeCart;
-
-async function checkout(){
-  if(isSubmitting) return; // guard against double-clicks / duplicate submissions
-
-  const total=cartTotal();
-  if(cart.wing==='wholesale' && total<MIN_WHOLESALE){
-    showToast(T.toast_gateblock[LANG]);return;
-  }
-  const wilaya=document.getElementById('cust-wilaya').value;
-  const baladiya=document.getElementById('cust-baladiya').value.trim();
-  const phone=document.getElementById('cust-phone').value.trim();
-  const name=document.getElementById('cust-name').value.trim();
-  if(!wilaya||!baladiya||!phone||!name){showToast(T.toast_needfields[LANG]);return;}
-
-  // Snapshot cart data now — the cart may be cleared before async work resolves.
-  const orderType=cart.wing; // "retail" | "wholesale"
-  const items=cart.items.map(i=>{
-    const p=PRODUCTS.find(pp=>pp.id===i.id);
-    const price=cart.wing==='retail'?p.retail:p.wholesale;
-    return {name:p.name[LANG], qty:i.qty, price:price};
-  });
-  const waLines=cart.items.map(i=>{
-    const p=PRODUCTS.find(pp=>pp.id===i.id);
-    const price=cart.wing==='retail'?p.retail:p.wholesale;
-    return LANG==='ar'
-      ? `• ${p.name[LANG]} × ${i.qty} = ${price*i.qty} دج`
-      : `• ${p.name[LANG]} × ${i.qty} = ${price*i.qty} DZD`;
-  }).join('\n');
-
-  const payload={
-    orderType,
-    customerName:name,
-    phone,
-    wilaya,
-    commune:baladiya,
-    address:'',
-    notes:'',
-    totalPrice:total,
-    items
-  };
-
-  isSubmitting=true;
-  setCheckoutLoading(true);
-
-  try{
-    const res=await fetch(API_URL,{
-      method:'POST',
-      body:JSON.stringify(payload) // no Content-Type header on purpose — avoids a CORS preflight Apps Script can't answer
-    });
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const data=await res.json();
-
-    if(data && data.success){
-      openWhatsAppOrder(orderType,name,phone,wilaya,baladiya,waLines,total);
-      clearCartAfterSuccess();
-      showSuccessOv(data.orderId || '—');
-    }else{
-      showErrorOv((data && data.message) ? data.message : T.err_generic[LANG]);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LAMSA لمسة - متجر رشمات الحناء الفاخر. ستكرات عادية، قماشية، ومائية مطبوعة. بيع بالتجزئة والجملة. صناعة جزائرية يدوية فاخرة. توصيل لجميع الولايات.">
+    <meta name="keywords" content="حناء, رشمات, ستكرات حناء, LAMSA, لمسة, henna, stickers, tattoo, جملة, تجزئة, فينيل, Oracal 650">
+    <meta name="author" content="LAMSA لمسة">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#6E1423">
+
+    <meta property="og:title" content="LAMSA لمسة - متجر رشمات الحناء الفاخر">
+    <meta property="og:description" content="ستكرات حناء فاخرة - صناعة جزائرية يدوية - بيع بالتجزئة والجملة">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lamsa-stickers.com">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:locale" content="ar_DZ">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LAMSA لمسة - متجر رشمات الحناء الفاخر">
+    <meta name="twitter:description" content="ستكرات حناء فاخرة - صناعة جزائرية يدوية">
+
+    <title>LAMSA لمسة | متجر رشمات الحناء الفاخر</title>
+
+    <link rel="canonical" href="https://lamsa-stickers.com">
+    <!-- ═══ FAVICON: استبدل logo.png بشعارك ═══ -->
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "name": "LAMSA لمسة",
+        "description": "متجر رشمات الحناء الفاخر - صناعة جزائرية يدوية - بيع بالتجزئة والجملة",
+        "telephone": "+213656198526",
+        "url": "https://lamsa-stickers.com",
+        "priceRange": "$$",
+        "address": { "@type": "PostalAddress", "addressLocality": "القرارة", "addressRegion": "غرداية", "addressCountry": "DZ" },
+        "sameAs": ["https://www.facebook.com/lamsa.stickers","https://wa.me/213656198526"]
     }
-  }catch(err){
-    showErrorOv(T.err_network[LANG]);
-  }finally{
-    isSubmitting=false;
-    setCheckoutLoading(false);
-  }
-}
-window.checkout=checkout;
+    </script>
 
-function openWhatsAppOrder(orderType,name,phone,wilaya,baladiya,waLines,total){
-  const wingTxt=(orderType==='retail'?T.wing_retail:T.wing_wholesale)[LANG];
-  const msg=LANG==='ar'?[
-    '*🌿 طلب جديد — LAMSA للستكرات*','',
-    `الجناح: ${wingTxt}`,'',
-    '*👤 بيانات الزبون:*',`الاسم: ${name}`,`الهاتف: ${phone}`,`الولاية: ${wilaya}`,`البلدية: ${baladiya}`,'',
-    '*📦 المنتجات:*',waLines,'',
-    `*💰 المجموع: ${total.toLocaleString('en-US')} دج*`
-  ]:[
-    '*🌿 New order — LAMSA Stickers*','',
-    `Wing: ${wingTxt}`,'',
-    '*👤 Customer:*',`Name: ${name}`,`Phone: ${phone}`,`Wilaya: ${wilaya}`,`Municipality: ${baladiya}`,'',
-    '*📦 Products:*',waLines,'',
-    `*💰 Total: ${total.toLocaleString('en-US')} DZD*`
-  ];
-  window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg.join('\n'))}`,'_blank');
-}
+    <style>
+        /* ══════════════════════════════════════════════════════
+           DESIGN TOKENS — هوية LAMSA الحقيقية (بورغندي + كريمي + ذهبي)
+        ══════════════════════════════════════════════════════ */
+        :root{
+            --burgundy:#6E1423;
+            --burgundy-dark:#4A0E18;
+            --burgundy-light:#8E2436;
+            --burgundy-soft:rgba(110,20,35,.07);
+            --burgundy-soft2:rgba(110,20,35,.13);
+            --gold:#C6A15B;
+            --gold-light:#D9BE84;
+            --gold-dark:#A8863E;
+            --gold-soft:rgba(198,161,91,.12);
+            --cream:#FAF3EA;
+            --cream-2:#F4EADB;
+            --cream-3:#EFE2CF;
+            --paper:#FFFDF9;
+            --ink:#2A1417;
+            --ink-soft:#5E4648;
+            --ink-muted:#9A8384;
+            --white:#FFFFFF;
+            --line:#EADBC8;
+            --line-soft:#F1E6D6;
+            --success:#4A7C59;
+            --success-bg:rgba(74,124,89,.1);
+            --error:#B23A3A;
+            --error-bg:rgba(178,58,58,.09);
+            --overlay:rgba(42,20,23,.55);
 
-function setCheckoutLoading(loading){
-  const btn=document.getElementById('btnCheckout');
-  const fieldsBtn=document.getElementById('btnToggleFields');
-  if(!btn) return;
-  if(loading){
-    btn.dataset.origHtml=btn.innerHTML;
-    btn.innerHTML=`<span class="spinner"></span><span>${T.btn_sending[LANG]}</span>`;
-    btn.disabled=true;
-    if(fieldsBtn) fieldsBtn.disabled=true;
-  }else{
-    btn.innerHTML=btn.dataset.origHtml || `💬 <span>${T.btn_checkout[LANG]}</span>`;
-    btn.disabled=false;
-  }
-}
+            --font-body:'Segoe UI',Tahoma,'Helvetica Neue',Arial,sans-serif;
+            --font-head:'Georgia','Times New Roman',serif;
 
-function clearCartAfterSuccess(){
-  cart.items=[];
-  cart.wing=null;
-  document.getElementById('cartCount').textContent='0';
-  document.getElementById('cust-wilaya').value='';
-  document.getElementById('cust-baladiya').value='';
-  document.getElementById('cust-phone').value='';
-  document.getElementById('cust-name').value='';
-  closeCart();
-  renderCart();
-}
+            --fs-xs:.72rem; --fs-sm:.86rem; --fs-base:1rem; --fs-lg:1.12rem;
+            --fs-xl:1.3rem; --fs-2xl:1.6rem; --fs-3xl:2.1rem; --fs-4xl:2.9rem; --fs-5xl:3.6rem;
 
-function showSuccessOv(orderId){
-  document.getElementById('successOrderId').textContent=orderId;
-  document.getElementById('successOv').classList.add('show');
-  window.scrollTo({top:0,behavior:'smooth'});
-  document.body.style.overflow='hidden';
-}
-function closeSuccessOv(){
-  document.getElementById('successOv').classList.remove('show');
-  document.body.style.overflow='';
-}
-window.closeSuccessOv=closeSuccessOv;
+            --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.5rem;
+            --sp-6:2rem; --sp-7:3rem; --sp-8:4.5rem; --sp-9:6.5rem;
 
-function showErrorOv(message){
-  document.getElementById('errorMsg').textContent=message;
-  document.getElementById('errorOv').classList.add('show');
-  document.body.style.overflow='hidden';
-}
-function closeErrorOv(){
-  document.getElementById('errorOv').classList.remove('show');
-  document.body.style.overflow=document.getElementById('cartModal').classList.contains('open')?'hidden':'';
-}
-window.closeErrorOv=closeErrorOv;
+            --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-full:999px;
 
-function showToast(msg){
-  const w=document.getElementById('toastWrap');
-  const t=document.createElement('div');
-  t.className='toast';t.textContent=msg;
-  w.appendChild(t);
-  setTimeout(()=>t.remove(),2600);
-}
+            --sh-1:0 1px 3px rgba(74,14,24,.05);
+            --sh-2:0 6px 18px rgba(74,14,24,.07);
+            --sh-3:0 14px 40px rgba(74,14,24,.10);
+            --sh-4:0 28px 70px rgba(74,14,24,.14);
+            --sh-gold:0 8px 26px rgba(198,161,91,.28);
+            --sh-burg:0 10px 30px rgba(110,20,35,.22);
 
-/* ================= wilaya select ================= */
-function renderWilayas(){
-  const sel=document.getElementById('cust-wilaya');
-  sel.innerHTML=`<option value="">${T.ph_wilaya[LANG]}</option>`+WILAYAS.map(w=>`<option value="${w}">${w}</option>`).join('');
-}
+            --ease:cubic-bezier(.4,0,.2,1);
+            --ease-out:cubic-bezier(.16,1,.3,1);
+            --ease-spring:cubic-bezier(.34,1.56,.64,1);
+            --t-fast:.2s var(--ease);
+            --t-base:.35s var(--ease);
+            --t-slow:.6s var(--ease-out);
 
-/* ================= scroll reveal ================= */
-let revealObserver=null;
-function initReveal(){
-  if(!revealObserver){
-    revealObserver=new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{
-        if(en.isIntersecting){en.target.classList.add('in');revealObserver.unobserve(en.target);}
-      });
-    },{threshold:.15});
-  }
-  document.querySelectorAll('.reveal:not(.in)').forEach(el=>revealObserver.observe(el));
-}
+            --container:1240px;
+            --header-h:78px;
+            --icon:22px;
+        }
 
-/* ================= i18n apply ================= */
-function applyLang(){
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    if(T[k]) el.innerHTML=T[k][LANG];
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-    const k=el.getAttribute('data-i18n-html');
-    if(T[k]) el.innerHTML=T[k][LANG];
-  });
-  document.getElementById('marquee').innerHTML=`<span>${T.marquee_txt[LANG]}</span><span>${T.marquee_txt[LANG]}</span>`;
-  const html=document.getElementById('html-root');
-  html.lang=LANG;html.dir=(LANG==='ar'?'rtl':'ltr');
-  document.body.classList.toggle('lang-ar',LANG==='ar');
-  document.body.classList.toggle('lang-en',LANG==='en');
-  document.getElementById('lang-ar-btn').classList.toggle('on',LANG==='ar');
-  document.getElementById('lang-en-btn').classList.toggle('on',LANG==='en');
-  document.getElementById('cust-baladiya').placeholder=T.ph_baladiya[LANG];
-  document.getElementById('cust-phone').placeholder=T.ph_phone[LANG];
-  document.getElementById('cust-name').placeholder=T.ph_name[LANG];
-  document.getElementById('wingNote').innerHTML=(WING==='retail'?T.wing_note_retail:T.wing_note_wholesale)[LANG];
-  renderWilayas();
-  renderProducts();
-  renderCart();
-}
-function setLang(l){LANG=l;applyLang();}
-window.setLang=setLang;
+        /* ══════════════════════════════════════════════════════
+           RESET
+        ══════════════════════════════════════════════════════ */
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+        body{
+            font-family:var(--font-body);font-size:var(--fs-base);line-height:1.65;
+            color:var(--ink);background:var(--cream);overflow-x:hidden;
+            -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+            position:relative;
+        }
+        /* نسيج ورق فاخر خفيف جداً على كامل الصفحة */
+        body::before{
+            content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+            opacity:.025;mix-blend-mode:multiply;
+        }
+        img{max-width:100%;height:auto;display:block}
+        a{text-decoration:none;color:inherit;transition:color var(--t-fast)}
+        button{cursor:pointer;border:none;background:none;font-family:inherit;font-size:inherit;color:inherit}
+        ul,ol{list-style:none}
+        input,select,textarea{font-family:inherit;font-size:inherit}
+        :focus-visible{outline:2px solid var(--burgundy);outline-offset:3px;border-radius:var(--r-sm)}
+        ::selection{background:var(--burgundy);color:var(--cream)}
 
-/* ================= init ================= */
-renderHeroArt();
-applyLang();
-initReveal();
-</script>
+        /* ══════════════════════════════════════════════════════
+           زخارف حناء على الأطراف فقط — المركز نظيف
+        ══════════════════════════════════════════════════════ */
+        .ornament{position:fixed;z-index:1;pointer-events:none;color:var(--burgundy);opacity:.06}
+        .ornament svg{width:100%;height:100%;display:block}
+        .ornament--tl{top:-30px;right:-30px;width:280px;height:280px;transform:rotate(0deg)}
+        .ornament--tr{top:-30px;left:-30px;width:280px;height:280px;transform:scaleX(-1)}
+        .ornament--bl{bottom:-30px;right:-30px;width:240px;height:240px;transform:scaleY(-1)}
+        .ornament--br{bottom:-30px;left:-30px;width:240px;height:240px;transform:scale(-1)}
+        @media(max-width:768px){.ornament{width:150px!important;height:150px!important;opacity:.05}}
+
+        /* ══════════════════════════════════════════════════════
+           LAYOUT
+        ══════════════════════════════════════════════════════ */
+        .container{max-width:var(--container);margin:0 auto;padding:0 var(--sp-5);position:relative;z-index:2}
+        .section{padding:var(--sp-8) 0;position:relative}
+        .section--paper{background:var(--paper)}
+        .section--tint{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%)}
+
+        .eyebrow{display:inline-flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-xs);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);margin-bottom:var(--sp-4)}
+        .eyebrow::before,.eyebrow::after{content:'';width:26px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+        .eyebrow::after{background:linear-gradient(90deg,var(--gold),transparent)}
+
+        .sec-head{text-align:center;max-width:640px;margin:0 auto var(--sp-7)}
+        .sec-head__title{font-family:var(--font-head);font-size:var(--fs-3xl);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:var(--sp-3)}
+        .sec-head__title em{font-style:normal;color:var(--burgundy)}
+        .sec-head__sub{font-size:var(--fs-base);color:var(--ink-soft)}
+        .sec-head__rule{width:64px;height:2px;margin:var(--sp-5) auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent);position:relative}
+        .sec-head__rule::after{content:'';position:absolute;top:50%;left:50%;width:7px;height:7px;background:var(--burgundy);transform:translate(-50%,-50%) rotate(45deg)}
+
+        /* ══════════════════════════════════════════════════════
+           HEADER + LOGO SYSTEM
+        ══════════════════════════════════════════════════════ */
+        .header{position:sticky;top:0;z-index:1000;height:var(--header-h);
+            background:rgba(250,243,234,.82);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
+            border-bottom:1px solid transparent;transition:all var(--t-base)}
+        .header.scrolled{background:rgba(255,253,249,.92);border-bottom-color:var(--line);box-shadow:var(--sh-2)}
+        .header__inner{display:flex;align-items:center;justify-content:space-between;height:100%;gap:var(--sp-4)}
+
+        /* الشعار: img قابل للاستبدال + fallback SVG */
+        .logo{display:flex;align-items:center;gap:var(--sp-3)}
+        .logo__mark{width:46px;height:46px;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center}
+        .logo__img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0}
+        .logo__fallback{width:100%;height:100%;color:var(--burgundy)}
+        .logo__img:not([src=""]):not([src="logo.png"]) + .logo__fallback{display:none}
+        .logo__txt{display:flex;flex-direction:column;line-height:1}
+        .logo__name{font-family:var(--font-head);font-size:var(--fs-xl);font-weight:700;color:var(--burgundy);letter-spacing:.04em}
+        .logo__tag{font-size:var(--fs-xs);color:var(--ink-muted);letter-spacing:.05em;margin-top:3px}
+
+        .nav{display:flex;align-items:center;gap:var(--sp-6)}
+        .nav__link{font-size:var(--fs-sm);font-weight:600;color:var(--ink-soft);position:relative;padding:var(--sp-1) 0;transition:color var(--t-fast)}
+        .nav__link::after{content:'';position:absolute;bottom:-3px;right:50%;width:0;height:2px;background:var(--burgundy);border-radius:var(--r-full);transition:all var(--t-base);transform:translateX(50%)}
+        .nav__link:hover{color:var(--burgundy)}
+        .nav__link:hover::after{width:100%}
+
+        .actions{display:flex;align-items:center;gap:var(--sp-2)}
+        .icon-btn{position:relative;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:var(--r-full);color:var(--ink);transition:all var(--t-fast)}
+        .icon-btn:hover{background:var(--burgundy-soft);color:var(--burgundy);transform:translateY(-1px)}
+        .icon-btn svg{width:var(--icon);height:var(--icon)}
+        .badge{position:absolute;top:5px;left:5px;min-width:18px;height:18px;padding:0 5px;background:var(--burgundy);color:var(--cream);font-size:10px;font-weight:700;border-radius:var(--r-full);display:flex;align-items:center;justify-content:center;transform:scale(0);transition:transform .35s var(--ease-spring);box-shadow:0 0 0 2px var(--cream)}
+        .badge.show{transform:scale(1)}
+
+        .burger{display:none;flex-direction:column;gap:5px;width:44px;height:44px;align-items:center;justify-content:center}
+        .burger span{width:22px;height:2px;background:var(--ink);border-radius:var(--r-full);transition:all var(--t-base)}
+        .burger.on span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .burger.on span:nth-child(2){opacity:0}
+        .burger.on span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+        /* ══════════════════════════════════════════════════════
+           HERO
+        ══════════════════════════════════════════════════════ */
+        .hero{position:relative;padding:var(--sp-9) 0 var(--sp-8);overflow:hidden;
+            background:radial-gradient(120% 90% at 50% 0%,var(--cream) 0%,var(--cream-2) 55%,var(--cream-3) 100%)}
+        .hero__glow{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;z-index:0;pointer-events:none}
+        .hero__glow--1{width:420px;height:420px;background:radial-gradient(circle,rgba(198,161,91,.35),transparent 70%);top:-120px;right:-80px}
+        .hero__glow--2{width:380px;height:380px;background:radial-gradient(circle,rgba(110,20,35,.18),transparent 70%);bottom:-140px;left:-60px}
+        .hero__float{position:absolute;color:var(--burgundy);opacity:.10;z-index:0;pointer-events:none;animation:floaty 7s ease-in-out infinite}
+        .hero__float svg{width:100%;height:100%}
+        .hero__float--a{width:90px;height:90px;top:18%;right:8%;animation-delay:0s}
+        .hero__float--b{width:64px;height:64px;top:30%;left:10%;animation-delay:1.5s}
+        .hero__float--c{width:48px;height:48px;bottom:22%;right:18%;animation-delay:3s;color:var(--gold)}
+
+        .hero__inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:var(--sp-7);align-items:center}
+        .hero__badge{display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-2) var(--sp-4);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-full);font-size:var(--fs-xs);font-weight:700;letter-spacing:.05em;color:var(--burgundy);box-shadow:var(--sh-1);animation:fadeDown .8s var(--ease-out) both}
+        .hero__badge svg{width:15px;height:15px;color:var(--gold)}
+        .hero__title{font-family:var(--font-head);font-size:var(--fs-5xl);font-weight:700;line-height:1.12;color:var(--ink);margin:var(--sp-5) 0 var(--sp-4);animation:fadeUp .9s var(--ease-out) .1s both}
+        .hero__title em{font-style:normal;position:relative;color:var(--burgundy);white-space:nowrap}
+        .hero__title em::after{content:'';position:absolute;right:0;bottom:6px;width:100%;height:10px;background:var(--gold-soft);z-index:-1;border-radius:4px}
+        .hero__lead{font-size:var(--fs-lg);color:var(--ink-soft);max-width:520px;margin-bottom:var(--sp-6);animation:fadeUp .9s var(--ease-out) .2s both}
+        .hero__cta{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-bottom:var(--sp-7);animation:fadeUp .9s var(--ease-out) .3s both}
+
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);padding:var(--sp-4) var(--sp-6);border-radius:var(--r-full);font-size:var(--fs-sm);font-weight:700;letter-spacing:.02em;transition:all var(--t-base);position:relative;overflow:hidden}
+        .btn svg{width:18px;height:18px;transition:transform var(--t-base)}
+        .btn--primary{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-light));color:var(--cream);box-shadow:var(--sh-burg)}
+        .btn--primary:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(110,20,35,.32)}
+        .btn--primary:hover svg{transform:translateX(-4px)}
+        .btn--ghost{background:var(--paper);color:var(--burgundy);border:1.5px solid var(--line);box-shadow:var(--sh-1)}
+        .btn--ghost:hover{border-color:var(--burgundy);transform:translateY(-3px);box-shadow:var(--sh-2)}
+        .btn--gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--white);box-shadow:var(--sh-gold)}
+        .btn--gold:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(198,161,91,.4)}
+
+        .hero__stats{display:flex;gap:var(--sp-6);animation:fadeUp .9s var(--ease-out) .4s both}
+        .hero__stat{position:relative;padding-right:var(--sp-5)}
+        .hero__stat:not(:last-child)::after{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:34px;background:var(--line)}
+        .hero__stat b{display:block;font-family:var(--font-head);font-size:var(--fs-2xl);color:var(--burgundy);line-height:1}
+        .hero__stat span{font-size:var(--fs-xs);color:var(--ink-muted);letter-spacing:.04em}
+
+        /* Hero visual */
+        .hero__visual{position:relative;display:flex;justify-content:center;align-items:center;animation:fadeUp 1s var(--ease-out) .25s both}
+        .hero__frame{position:relative;width:100%;max-width:420px;aspect-ratio:4/5;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-4);border:6px solid var(--paper);background:var(--cream-2)}
+        .hero__frame img{width:100%;height:100%;object-fit:cover}
+        .hero__frame-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--sp-3);color:var(--burgundy);background:linear-gradient(160deg,var(--cream-2),var(--cream-3))}
+        .hero__frame-ph svg{width:80px;height:80px;opacity:.5}
+        .hero__ring{position:absolute;border:1.5px dashed var(--gold);border-radius:50%;opacity:.4;animation:spin 40s linear infinite}
+        .hero__ring--1{width:120%;height:120%;top:-10%;left:-10%}
+        .hero__ring--2{width:140%;height:140%;top:-20%;left:-20%;animation-direction:reverse;border-color:var(--burgundy);opacity:.18}
+        .hero__chip{position:absolute;background:var(--paper);border-radius:var(--r-lg);padding:var(--sp-3) var(--sp-4);box-shadow:var(--sh-3);display:flex;align-items:center;gap:var(--sp-3);z-index:3;animation:floaty 5s ease-in-out infinite}
+        .hero__chip svg{width:22px;height:22px;color:var(--burgundy)}
+        .hero__chip b{font-size:var(--fs-sm);color:var(--ink);display:block;line-height:1.2}
+        .hero__chip span{font-size:var(--fs-xs);color:var(--ink-muted)}
+        .hero__chip--1{top:8%;right:-6%;animation-delay:.5s}
+        .hero__chip--2{bottom:10%;left:-8%;animation-delay:2s}
+
+        /* ══════════════════════════════════════════════════════
+           WING TABS (تجزئة / جملة)
+        ══════════════════════════════════════════════════════ */
+        .wings{display:flex;justify-content:center;padding:var(--sp-7) 0 0}
+        .wings__bar{display:inline-flex;gap:var(--sp-1);padding:var(--sp-1);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-full);box-shadow:var(--sh-2)}
+        .wing{display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-3) var(--sp-6);border-radius:var(--r-full);font-size:var(--fs-sm);font-weight:700;color:var(--ink-soft);transition:all var(--t-base)}
+        .wing svg{width:18px;height:18px}
+        .wing:hover{color:var(--burgundy)}
+        .wing.on{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-light));color:var(--cream);box-shadow:var(--sh-burg)}
+
+        /* ══════════════════════════════════════════════════════
+           CATEGORIES (pill filters)
+        ══════════════════════════════════════════════════════ */
+        .cats{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--sp-3);margin-bottom:var(--sp-7)}
+        .cat-pill{display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-3) var(--sp-5);background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r-full);font-size:var(--fs-sm);font-weight:600;color:var(--ink-soft);transition:all var(--t-base);box-shadow:var(--sh-1)}
+        .cat-pill svg{width:18px;height:18px;transition:transform var(--t-base)}
+        .cat-pill:hover{border-color:var(--burgundy);color:var(--burgundy);transform:translateY(-2px)}
+        .cat-pill:hover svg{transform:rotate(-8deg) scale(1.1)}
+        .cat-pill.on{background:var(--burgundy);border-color:var(--burgundy);color:var(--cream);box-shadow:var(--sh-burg)}
+        .cat-pill.on svg{color:var(--gold-light)}
+
+        /* ══════════════════════════════════════════════════════
+           PRODUCTS + GALLERY
+        ══════════════════════════════════════════════════════ */
+        .pgrid-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:var(--sp-4)}
+        .pgrid-scroll::-webkit-scrollbar{display:none}
+        .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:var(--sp-5)}
+
+        .pcard{background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r-lg);overflow:hidden;transition:all var(--t-base);position:relative;display:flex;flex-direction:column;box-shadow:var(--sh-1)}
+        .pcard:hover{transform:translateY(-8px);box-shadow:var(--sh-4);border-color:rgba(110,20,35,.18)}
+
+        /* Gallery */
+        .gallery{position:relative;aspect-ratio:1;background:var(--cream-2);overflow:hidden}
+        .gallery__slide{position:absolute;inset:0;opacity:0;transition:opacity .55s var(--ease);display:flex;align-items:center;justify-content:center}
+        .gallery__slide.on{opacity:1}
+        .gallery__slide img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-slow)}
+        .pcard:hover .gallery__slide.on img{transform:scale(1.06)}
+        .gallery__ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--sp-2);color:var(--burgundy)}
+        .gallery__ph svg{width:54px;height:54px;opacity:.45}
+        .gallery__ph span{font-size:var(--fs-xs);color:var(--ink-muted);letter-spacing:.05em}
+        .gallery__ph--applied{background:linear-gradient(160deg,var(--cream-2),var(--cream-3))}
+
+        .gallery__badge{position:absolute;top:var(--sp-3);right:var(--sp-3);z-index:3;padding:var(--sp-1) var(--sp-3);border-radius:var(--r-full);font-size:var(--fs-xs);font-weight:700;color:var(--cream);background:var(--burgundy);box-shadow:var(--sh-2);backdrop-filter:blur(4px)}
+        .gallery__badge--new{background:var(--gold-dark)}
+        .gallery__badge--out{background:var(--ink-muted)}
+        .gallery__badge--hot{background:linear-gradient(135deg,var(--burgundy),var(--burgundy-light))}
+
+        .gallery__label{position:absolute;top:var(--sp-3);left:var(--sp-3);z-index:3;padding:var(--sp-1) var(--sp-3);border-radius:var(--r-full);font-size:10px;font-weight:700;letter-spacing:.06em;background:rgba(255,253,249,.9);color:var(--burgundy);backdrop-filter:blur(4px);transition:opacity var(--t-fast)}
+
+        .gallery__thumbs{position:absolute;bottom:var(--sp-3);left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:var(--sp-2)}
+        .gthumb{width:38px;height:38px;border-radius:var(--r-sm);overflow:hidden;border:2px solid rgba(255,253,249,.85);box-shadow:var(--sh-2);cursor:pointer;transition:all var(--t-fast);opacity:.75;background:var(--cream-2);display:flex;align-items:center;justify-content:center;color:var(--burgundy)}
+        .gthumb svg{width:18px;height:18px}
+        .gthumb img{width:100%;height:100%;object-fit:cover}
+        .gthumb:hover{opacity:1;transform:scale(1.08)}
+        .gthumb.on{opacity:1;border-color:var(--burgundy);transform:scale(1.08)}
+
+        .pcard__body{padding:var(--sp-5);display:flex;flex-direction:column;flex:1}
+        .pcard__cat{font-size:var(--fs-xs);color:var(--gold-dark);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--sp-1)}
+        .pcard__name{font-size:var(--fs-base);font-weight:700;color:var(--ink);margin-bottom:var(--sp-2);line-height:1.35}
+        .pcard__price{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-1)}
+        .pcard__price b{font-family:var(--font-head);font-size:var(--fs-xl);color:var(--burgundy)}
+        .pcard__price del{font-size:var(--fs-sm);color:var(--ink-muted)}
+        .pcard__stock{font-size:var(--fs-xs);color:var(--success);display:flex;align-items:center;gap:var(--sp-1);margin-bottom:var(--sp-4)}
+        .pcard__stock svg{width:13px;height:13px}
+        .pcard__stock--out{color:var(--error)}
+        .pcard__add{margin-top:auto;width:100%;padding:var(--sp-3) var(--sp-4);border-radius:var(--r-full);background:var(--ink);color:var(--cream);font-size:var(--fs-sm);font-weight:700;display:flex;align-items:center;justify-content:center;gap:var(--sp-2);transition:all var(--t-base)}
+        .pcard__add svg{width:17px;height:17px;transition:transform var(--t-fast)}
+        .pcard__add:hover{background:var(--burgundy);box-shadow:var(--sh-burg)}
+        .pcard__add:hover svg{transform:scale(1.15)}
+        .pcard__add:active{transform:scale(.97)}
+        .pcard__add:disabled{background:var(--cream-3);color:var(--ink-muted);cursor:not-allowed;box-shadow:none}
+
+        /* ══════════════════════════════════════════════════════
+           ABOUT THE BRAND
+        ══════════════════════════════════════════════════════ */
+        .about__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--sp-8);align-items:center}
+        .about__visual{position:relative;display:flex;justify-content:center}
+        .about__logo-card{position:relative;width:100%;max-width:380px;aspect-ratio:1;border-radius:var(--r-xl);background:linear-gradient(160deg,var(--cream),var(--cream-3));border:1px solid var(--line);box-shadow:var(--sh-3);display:flex;align-items:center;justify-content:center;padding:var(--sp-7);overflow:hidden}
+        .about__logo-card::before{content:'';position:absolute;inset:14px;border:1px solid var(--gold);border-radius:var(--r-lg);opacity:.4}
+        .about__logo-img{max-width:78%;max-height:78%;object-fit:contain;position:relative;z-index:2}
+        .about__logo-fallback{width:78%;height:78%;color:var(--burgundy);position:relative;z-index:2}
+        .about__logo-img:not([src=""]):not([src="logo.png"]) ~ .about__logo-fallback{display:none}
+        .about__seal{position:absolute;bottom:-22px;left:-22px;width:96px;height:96px;background:var(--burgundy);color:var(--cream);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--sh-burg);z-index:3;text-align:center;line-height:1.1}
+        .about__seal b{font-family:var(--font-head);font-size:var(--fs-xl)}
+        .about__seal span{font-size:9px;letter-spacing:.1em;opacity:.85}
+
+        .about__txt h2{font-family:var(--font-head);font-size:var(--fs-3xl);color:var(--ink);line-height:1.2;margin-bottom:var(--sp-4)}
+        .about__txt h2 em{font-style:normal;color:var(--burgundy)}
+        .about__txt p{color:var(--ink-soft);margin-bottom:var(--sp-4);font-size:var(--fs-base)}
+        .about__values{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);margin-top:var(--sp-6)}
+        .about__val{display:flex;gap:var(--sp-3);align-items:flex-start}
+        .about__val-ic{width:42px;height:42px;flex-shrink:0;border-radius:var(--r-md);background:var(--burgundy-soft);color:var(--burgundy);display:flex;align-items:center;justify-content:center}
+        .about__val-ic svg{width:20px;height:20px}
+        .about__val b{display:block;font-size:var(--fs-sm);color:var(--ink);margin-bottom:2px}
+        .about__val span{font-size:var(--fs-xs);color:var(--ink-muted);line-height:1.5}
+
+        /* ══════════════════════════════════════════════════════
+           TRUST / WHY US
+        ══════════════════════════════════════════════════════ */
+        .trust__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--sp-5)}
+        .tcard{position:relative;padding:var(--sp-6) var(--sp-5);background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r-lg);text-align:center;transition:all var(--t-base);overflow:hidden}
+        .tcard::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 0%,var(--burgundy-soft),transparent 70%);opacity:0;transition:opacity var(--t-base)}
+        .tcard:hover{transform:translateY(-6px);box-shadow:var(--sh-3);border-color:rgba(110,20,35,.15)}
+        .tcard:hover::after{opacity:1}
+        .tcard>*{position:relative;z-index:1}
+        .tcard__ic{width:62px;height:62px;margin:0 auto var(--sp-4);border-radius:var(--r-lg);background:linear-gradient(160deg,var(--burgundy-soft),var(--gold-soft));color:var(--burgundy);display:flex;align-items:center;justify-content:center;transition:transform var(--t-base)}
+        .tcard:hover .tcard__ic{transform:scale(1.08) rotate(-4deg)}
+        .tcard__ic svg{width:28px;height:28px}
+        .tcard__t{font-size:var(--fs-base);font-weight:700;color:var(--ink);margin-bottom:var(--sp-2)}
+        .tcard__d{font-size:var(--fs-sm);color:var(--ink-muted);line-height:1.6}
+
+        /* ══════════════════════════════════════════════════════
+           FEATURES / HOW TO USE
+        ══════════════════════════════════════════════════════ */
+        .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--sp-5);counter-reset:step}
+        .step{position:relative;text-align:center;padding:var(--sp-6) var(--sp-4);counter-increment:step}
+        .step__num{font-family:var(--font-head);font-size:var(--fs-4xl);font-weight:700;color:var(--cream-3);line-height:1;margin-bottom:var(--sp-3);transition:color var(--t-base)}
+        .step:hover .step__num{color:var(--gold-light)}
+        .step__ic{width:60px;height:60px;margin:0 auto var(--sp-4);border-radius:50%;background:var(--paper);border:1.5px solid var(--line);color:var(--burgundy);display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-2);transition:all var(--t-base)}
+        .step:hover .step__ic{background:var(--burgundy);color:var(--cream);border-color:var(--burgundy);transform:translateY(-4px)}
+        .step__ic svg{width:26px;height:26px}
+        .step__t{font-size:var(--fs-base);font-weight:700;color:var(--ink);margin-bottom:var(--sp-2)}
+        .step__d{font-size:var(--fs-sm);color:var(--ink-muted);line-height:1.6}
+
+        /* ══════════════════════════════════════════════════════
+           TESTIMONIALS
+        ══════════════════════════════════════════════════════ */
+        .tmon__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--sp-5)}
+        .tmon{position:relative;padding:var(--sp-6);background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r-lg);box-shadow:var(--sh-1);transition:all var(--t-base)}
+        .tmon:hover{transform:translateY(-5px);box-shadow:var(--sh-3)}
+        .tmon__quote{position:absolute;top:var(--sp-4);left:var(--sp-5);font-family:var(--font-head);font-size:3.5rem;color:var(--burgundy-soft2);line-height:1}
+        .tmon__stars{display:flex;gap:2px;color:var(--gold);margin-bottom:var(--sp-3)}
+        .tmon__stars svg{width:16px;height:16px}
+        .tmon__txt{font-size:var(--fs-sm);color:var(--ink-soft);line-height:1.75;margin-bottom:var(--sp-5);position:relative;z-index:1}
+        .tmon__who{display:flex;align-items:center;gap:var(--sp-3)}
+        .tmon__av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--burgundy),var(--burgundy-light));color:var(--cream);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--font-head);flex-shrink:0}
+        .tmon__who b{display:block;font-size:var(--fs-sm);color:var(--ink)}
+        .tmon__who span{font-size:var(--fs-xs);color:var(--ink-muted)}
+
+        /* ══════════════════════════════════════════════════════
+           FAQ ACCORDION
+        ══════════════════════════════════════════════════════ */
+        .faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:var(--sp-3)}
+        .faq__item{background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--r-md);overflow:hidden;transition:all var(--t-base)}
+        .faq__item.on{border-color:rgba(110,20,35,.25);box-shadow:var(--sh-2)}
+        .faq__q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);padding:var(--sp-5) var(--sp-5);text-align:right;font-size:var(--fs-base);font-weight:700;color:var(--ink);transition:color var(--t-fast)}
+        .faq__item.on .faq__q{color:var(--burgundy)}
+        .faq__q-ic{width:30px;height:30px;flex-shrink:0;border-radius:50%;background:var(--burgundy-soft);color:var(--burgundy);display:flex;align-items:center;justify-content:center;transition:all var(--t-base)}
+        .faq__item.on .faq__q-ic{background:var(--burgundy);color:var(--cream);transform:rotate(45deg)}
+        .faq__q-ic svg{width:16px;height:16px}
+        .faq__a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+        .faq__a-inner{padding:0 var(--sp-5) var(--sp-5);font-size:var(--fs-sm);color:var(--ink-soft);line-height:1.8}
+
+        /* ══════════════════════════════════════════════════════
+           NEWSLETTER / CTA BAND
+        ══════════════════════════════════════════════════════ */
+        .cta-band{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--burgundy-dark),var(--burgundy));color:var(--cream);border-radius:var(--r-xl);padding:var(--sp-8) var(--sp-7);text-align:center;box-shadow:var(--sh-burg)}
+        .cta-band__orn{position:absolute;color:var(--gold);opacity:.12;pointer-events:none}
+        .cta-band__orn svg{width:100%;height:100%}
+        .cta-band__orn--1{width:200px;height:200px;top:-60px;right:-40px}
+        .cta-band__orn--2{width:180px;height:180px;bottom:-60px;left:-40px}
+        .cta-band h2{font-family:var(--font-head);font-size:var(--fs-3xl);margin-bottom:var(--sp-3);position:relative}
+        .cta-band p{opacity:.85;max-width:520px;margin:0 auto var(--sp-6);position:relative}
+        .cta-band .btn{position:relative}
+
+        /* ══════════════════════════════════════════════════════
+           FOOTER
+        ══════════════════════════════════════════════════════ */
+        .footer{background:var(--ink);color:var(--cream);padding:var(--sp-8) 0 var(--sp-5);position:relative;overflow:hidden}
+        .footer::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--burgundy),var(--gold),var(--burgundy))}
+        .footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:var(--sp-7);margin-bottom:var(--sp-7)}
+        .footer .logo__name{color:var(--cream)}
+        .footer .logo__tag{color:rgba(250,243,234,.55)}
+        .footer .logo__fallback{color:var(--gold-light)}
+        .footer__desc{font-size:var(--fs-sm);color:rgba(250,243,234,.65);line-height:1.8;margin-top:var(--sp-4);max-width:300px}
+        .footer__social{display:flex;gap:var(--sp-2);margin-top:var(--sp-5)}
+        .footer__social a{width:40px;height:40px;border-radius:50%;background:rgba(250,243,234,.08);display:flex;align-items:center;justify-content:center;color:var(--cream);transition:all var(--t-fast)}
+        .footer__social a:hover{background:var(--burgundy);transform:translateY(-3px)}
+        .footer__social svg{width:18px;height:18px}
+        .footer__h{font-size:var(--fs-sm);font-weight:700;letter-spacing:.06em;color:var(--gold-light);margin-bottom:var(--sp-5);text-transform:uppercase}
+        .footer__links li{margin-bottom:var(--sp-3)}
+        .footer__links a{font-size:var(--fs-sm);color:rgba(250,243,234,.65);transition:all var(--t-fast);display:inline-flex;align-items:center;gap:var(--sp-2)}
+        .footer__links a:hover{color:var(--gold-light);transform:translateX(-4px)}
+        .footer__contact{display:flex;align-items:flex-start;gap:var(--sp-3);margin-bottom:var(--sp-4);font-size:var(--fs-sm);color:rgba(250,243,234,.7)}
+        .footer__contact svg{width:18px;height:18px;color:var(--gold-light);flex-shrink:0;margin-top:2px}
+        .footer__bottom{padding-top:var(--sp-5);border-top:1px solid rgba(250,243,234,.1);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--sp-3);font-size:var(--fs-xs);color:rgba(250,243,234,.45)}
+
+        /* ══════════════════════════════════════════════════════
+           CART DRAWER
+        ══════════════════════════════════════════════════════ */
+        .overlay{position:fixed;inset:0;background:var(--overlay);z-index:2000;opacity:0;visibility:hidden;transition:all var(--t-base);backdrop-filter:blur(3px)}
+        .overlay.on{opacity:1;visibility:visible}
+        .drawer{position:fixed;top:0;left:0;width:430px;max-width:92vw;height:100vh;height:100dvh;background:var(--paper);z-index:2001;transform:translateX(-100%);transition:transform var(--t-base);display:flex;flex-direction:column;box-shadow:var(--sh-4)}
+        .drawer.on{transform:translateX(0)}
+        .drawer__head{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-5);border-bottom:1px solid var(--line)}
+        .drawer__title{font-family:var(--font-head);font-size:var(--fs-lg);font-weight:700;color:var(--ink);display:flex;align-items:center;gap:var(--sp-2)}
+        .drawer__title svg{width:22px;height:22px;color:var(--burgundy)}
+        .drawer__body{flex:1;overflow-y:auto;padding:var(--sp-5)}
+        .drawer__empty{text-align:center;padding:var(--sp-8) var(--sp-5);color:var(--ink-muted)}
+        .drawer__empty svg{width:64px;height:64px;margin:0 auto var(--sp-4);opacity:.35;color:var(--burgundy)}
+        .citem{display:flex;gap:var(--sp-3);padding:var(--sp-3);border:1px solid var(--line-soft);border-radius:var(--r-md);margin-bottom:var(--sp-3);animation:fadeUp .3s var(--ease)}
+        .citem__img{width:66px;height:66px;border-radius:var(--r-sm);background:var(--cream-2);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--burgundy)}
+        .citem__img svg{width:26px;height:26px;opacity:.5}
+        .citem__img img{width:100%;height:100%;object-fit:cover}
+        .citem__info{flex:1;min-width:0}
+        .citem__name{font-size:var(--fs-sm);font-weight:700;color:var(--ink);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .citem__meta{font-size:var(--fs-xs);color:var(--ink-muted)}
+        .citem__price{font-size:var(--fs-sm);color:var(--burgundy);font-weight:700}
+        .qty{display:flex;align-items:center;gap:var(--sp-2);margin-top:var(--sp-2)}
+        .qty button{width:26px;height:26px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);transition:all var(--t-fast)}
+        .qty button:hover{background:var(--burgundy);color:var(--cream);border-color:var(--burgundy)}
+        .qty button svg{width:13px;height:13px}
+        .qty span{font-size:var(--fs-sm);font-weight:700;min-width:22px;text-align:center}
+        .citem__rm{align-self:flex-start;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--ink-muted);transition:all var(--t-fast);flex-shrink:0}
+        .citem__rm:hover{background:var(--error-bg);color:var(--error)}
+        .citem__rm svg{width:15px;height:15px}
+        .drawer__foot{padding:var(--sp-5);border-top:1px solid var(--line);background:var(--cream)}
+        .ws-note{font-size:var(--fs-xs);padding:var(--sp-3) var(--sp-4);border-radius:var(--r-sm);margin-bottom:var(--sp-3);display:none;line-height:1.6}
+        .ws-note.show{display:block}
+        .ws-note.ok{background:var(--success-bg);color:var(--success)}
+        .ws-note.warn{background:var(--error-bg);color:var(--error)}
+        .drawer__total{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-4)}
+        .drawer__total span{color:var(--ink-soft)}
+        .drawer__total b{font-family:var(--font-head);font-size:var(--fs-xl);color:var(--burgundy)}
+        .drawer__checkout{width:100%;padding:var(--sp-4);border-radius:var(--r-full);background:linear-gradient(135deg,var(--burgundy),var(--burgundy-light));color:var(--cream);font-weight:700;display:flex;align-items:center;justify-content:center;gap:var(--sp-2);transition:all var(--t-base);box-shadow:var(--sh-burg)}
+        .drawer__checkout:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 14px 34px rgba(110,20,35,.32)}
+        .drawer__checkout:disabled{background:var(--ink-muted);box-shadow:none;cursor:not-allowed}
+        .drawer__checkout svg{width:18px;height:18px}
+
+        /* ══════════════════════════════════════════════════════
+           CHECKOUT MODAL
+        ══════════════════════════════════════════════════════ */
+        .modal-wrap{position:fixed;inset:0;background:var(--overlay);z-index:3000;opacity:0;visibility:hidden;transition:all var(--t-base);display:flex;align-items:center;justify-content:center;padding:var(--sp-4);backdrop-filter:blur(4px)}
+        .modal-wrap.on{opacity:1;visibility:visible}
+        .modal{background:var(--paper);border-radius:var(--r-xl);width:100%;max-width:540px;max-height:92vh;overflow-y:auto;transform:scale(.92) translateY(20px);transition:transform var(--t-base);box-shadow:var(--sh-4)}
+        .modal-wrap.on .modal{transform:scale(1) translateY(0)}
+        .modal__head{display:flex;align-items:center;justify-content:space-between;padding:var(--sp-5);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--paper);z-index:2}
+        .modal__title{font-family:var(--font-head);font-size:var(--fs-lg);font-weight:700;color:var(--ink);display:flex;align-items:center;gap:var(--sp-2)}
+        .modal__title svg{width:22px;height:22px;color:var(--burgundy)}
+        .modal__body{padding:var(--sp-5)}
+        .typebar{display:flex;gap:var(--sp-1);padding:var(--sp-1);background:var(--cream-2);border-radius:var(--r-full);margin-bottom:var(--sp-5)}
+        .typebar button{flex:1;padding:var(--sp-2) var(--sp-4);border-radius:var(--r-full);font-size:var(--fs-sm);font-weight:700;color:var(--ink-soft);transition:all var(--t-fast)}
+        .typebar button.on{background:var(--paper);color:var(--burgundy);box-shadow:var(--sh-1)}
+        .summary{background:var(--cream);border-radius:var(--r-md);padding:var(--sp-4);margin-bottom:var(--sp-5)}
+        .summary__row{display:flex;justify-content:space-between;font-size:var(--fs-sm);color:var(--ink-soft);margin-bottom:var(--sp-2)}
+        .summary__row:last-child{margin-bottom:0;font-weight:700;color:var(--ink);font-size:var(--fs-base);padding-top:var(--sp-2);border-top:1px dashed var(--line)}
+        .fg{margin-bottom:var(--sp-4)}
+        .fg label{display:block;font-size:var(--fs-sm);font-weight:700;color:var(--ink);margin-bottom:var(--sp-2)}
+        .fg label i{color:var(--error);font-style:normal}
+        .fi{width:100%;padding:var(--sp-3) var(--sp-4);border:1.5px solid var(--line);border-radius:var(--r-md);background:var(--paper);color:var(--ink);transition:all var(--t-fast)}
+        .fi:focus{outline:none;border-color:var(--burgundy);box-shadow:0 0 0 3px var(--burgundy-soft)}
+        .fi::placeholder{color:var(--ink-muted)}
+        .fi.err{border-color:var(--error)}
+        select.fi{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A8384' stroke-width='2'%3E%3Cpolyline points='6,9 12,15 18,9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 14px center;padding-left:38px}
+        textarea.fi{resize:vertical;min-height:74px}
+        .ferr{font-size:var(--fs-xs);color:var(--error);margin-top:var(--sp-1);display:none}
+        .ferr.show{display:block}
+        .submit{width:100%;padding:var(--sp-4);border-radius:var(--r-full);background:linear-gradient(135deg,var(--burgundy),var(--burgundy-dark));color:var(--cream);font-weight:700;display:flex;align-items:center;justify-content:center;gap:var(--sp-2);transition:all var(--t-base);box-shadow:var(--sh-burg);position:relative}
+        .submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 14px 34px rgba(110,20,35,.32)}
+        .submit:disabled{opacity:.7;cursor:not-allowed}
+        .submit svg{width:18px;height:18px}
+        .submit .spin{width:18px;height:18px;border:2px solid rgba(250,243,234,.3);border-top-color:var(--cream);border-radius:50%;animation:spin .8s linear infinite;display:none}
+        .submit.loading .spin{display:block}
+        .submit.loading .stxt,.submit.loading .sic{display:none}
+
+        /* ══════════════════════════════════════════════════════
+           SUCCESS / ERROR
+        ══════════════════════════════════════════════════════ */
+        .success{position:fixed;inset:0;background:var(--cream);z-index:4000;opacity:0;visibility:hidden;transition:all var(--t-base);display:flex;align-items:center;justify-content:center;padding:var(--sp-5)}
+        .success.on{opacity:1;visibility:visible}
+        .success__card{text-align:center;max-width:480px;animation:pop .6s var(--ease-spring)}
+        .success__ic{width:104px;height:104px;margin:0 auto var(--sp-6);border-radius:50%;background:var(--success-bg);color:var(--success);display:flex;align-items:center;justify-content:center;position:relative}
+        .success__ic::after{content:'';position:absolute;inset:-8px;border:2px dashed var(--success);border-radius:50%;opacity:.4;animation:spin 12s linear infinite}
+        .success__ic svg{width:50px;height:50px}
+        .success__card h2{font-family:var(--font-head);font-size:var(--fs-2xl);color:var(--ink);margin-bottom:var(--sp-4)}
+        .success__oid{display:inline-flex;align-items:center;gap:var(--sp-2);padding:var(--sp-3) var(--sp-5);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-full);font-family:var(--font-head);font-size:var(--fs-lg);font-weight:700;color:var(--burgundy);margin-bottom:var(--sp-5);box-shadow:var(--sh-1)}
+        .success__oid svg{width:18px;height:18px;color:var(--gold)}
+        .success__card p{color:var(--ink-soft);margin-bottom:var(--sp-6);line-height:1.8}
+
+        .errpop{position:fixed;inset:0;background:var(--overlay);z-index:5000;opacity:0;visibility:hidden;transition:all var(--t-base);display:flex;align-items:center;justify-content:center;padding:var(--sp-5);backdrop-filter:blur(4px)}
+        .errpop.on{opacity:1;visibility:visible}
+        .errpop__card{background:var(--paper);border-radius:var(--r-xl);padding:var(--sp-7);text-align:center;max-width:400px;width:100%;transform:scale(.9);transition:transform var(--t-base);box-shadow:var(--sh-4)}
+        .errpop.on .errpop__card{transform:scale(1)}
+        .errpop__ic{width:72px;height:72px;margin:0 auto var(--sp-4);border-radius:50%;background:var(--error-bg);color:var(--error);display:flex;align-items:center;justify-content:center}
+        .errpop__ic svg{width:36px;height:36px}
+        .errpop__card h3{font-family:var(--font-head);font-size:var(--fs-xl);color:var(--ink);margin-bottom:var(--sp-2)}
+        .errpop__card p{font-size:var(--fs-sm);color:var(--ink-soft);margin-bottom:var(--sp-5);line-height:1.7}
+
+        /* ══════════════════════════════════════════════════════
+           FLOATS + TOAST
+        ══════════════════════════════════════════════════════ */
+        .floats{position:fixed;bottom:var(--sp-5);left:var(--sp-5);z-index:900;display:flex;flex-direction:column;gap:var(--sp-3)}
+        .fab{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:var(--sh-3);transition:all var(--t-base)}
+        .fab:hover{transform:scale(1.12) translateY(-2px)}
+        .fab svg{width:26px;height:26px}
+        .fab--wa{background:#25D366;animation:floaty 3.5s ease-in-out infinite}
+        .fab--wa:hover{box-shadow:0 10px 30px rgba(37,211,102,.45)}
+        .fab--ms{background:linear-gradient(135deg,#0084FF,#A033FF)}
+        .fab--ms:hover{box-shadow:0 10px 30px rgba(0,132,255,.4)}
+
+        .toasts{position:fixed;top:calc(var(--header-h) + var(--sp-4));left:50%;transform:translateX(-50%);z-index:6000;display:flex;flex-direction:column;gap:var(--sp-2);pointer-events:none;width:max-content;max-width:92vw}
+        .toast{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-3) var(--sp-5);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-full);box-shadow:var(--sh-3);font-size:var(--fs-sm);font-weight:600;color:var(--ink);animation:toastIn .4s var(--ease-spring);pointer-events:auto}
+        .toast.out{animation:toastOut .3s var(--ease) forwards}
+        .toast__ic{width:20px;height:20px;flex-shrink:0}
+        .toast--success .toast__ic{color:var(--success)}
+        .toast--error .toast__ic{color:var(--error)}
+        .toast--warning .toast__ic{color:var(--gold-dark)}
+
+        /* ══════════════════════════════════════════════════════
+           MOBILE NAV
+        ══════════════════════════════════════════════════════ */
+        .mnav{position:fixed;top:var(--header-h);right:0;left:0;background:var(--paper);border-bottom:1px solid var(--line);padding:var(--sp-4) var(--sp-5);z-index:999;transform:translateY(-120%);opacity:0;visibility:hidden;transition:all var(--t-base);box-shadow:var(--sh-3)}
+        .mnav.on{transform:translateY(0);opacity:1;visibility:visible}
+        .mnav a{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);font-weight:600;color:var(--ink);transition:all var(--t-fast)}
+        .mnav a:hover{background:var(--burgundy-soft);color:var(--burgundy)}
+        .mnav a svg{width:20px;height:20px;color:var(--burgundy)}
+
+        /* ══════════════════════════════════════════════════════
+           ANIMATIONS
+        ══════════════════════════════════════════════════════ */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        @keyframes pop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+        @keyframes toastIn{from{opacity:0;transform:translateY(-18px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+        @keyframes toastOut{to{opacity:0;transform:translateY(-12px) scale(.92)}}
+        .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+        .reveal.in{opacity:1;transform:none}
+
+        /* ══════════════════════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════════════════════ */
+        @media(max-width:1024px){
+            .nav{display:none}
+            .burger{display:flex}
+            .hero__inner{grid-template-columns:1fr;text-align:center;gap:var(--sp-7)}
+            .hero__lead{margin-inline:auto}
+            .hero__cta,.hero__stats{justify-content:center}
+            .hero__visual{order:-1}
+            .hero__frame{max-width:340px}
+            .about__grid{grid-template-columns:1fr;gap:var(--sp-7)}
+            .footer__grid{grid-template-columns:1fr 1fr}
+        }
+        @media(max-width:768px){
+            :root{--sp-5:1.1rem;--sp-7:2.4rem;--sp-8:3.4rem;--sp-9:4rem;--fs-4xl:2.2rem;--fs-5xl:2.6rem;--fs-3xl:1.7rem}
+            .hero__title em::after{height:7px}
+            .pgrid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78vw;max-width:300px;scroll-snap-type:x mandatory}
+            .pcard{scroll-snap-align:center}
+            .about__values{grid-template-columns:1fr}
+            .footer__grid{grid-template-columns:1fr;gap:var(--sp-6)}
+            .drawer{width:100%;max-width:100vw}
+            .hero__chip--1{right:0}
+            .hero__chip--2{left:0}
+            .cta-band{padding:var(--sp-7) var(--sp-5)}
+        }
+        @media(max-width:480px){
+            :root{--fs-5xl:2.1rem;--fs-3xl:1.5rem}
+            .pgrid{grid-auto-columns:82vw}
+            .hero__stats{gap:var(--sp-4)}
+            .hero__stat{padding-right:var(--sp-4)}
+            .floats{bottom:var(--sp-4);left:var(--sp-4)}
+            .fab{width:52px;height:52px}
+            .wings__bar{width:100%}
+            .wing{flex:1;justify-content:center;padding:var(--sp-3)}
+        }
+        @media(prefers-reduced-motion:reduce){
+            *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+            html{scroll-behavior:auto}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ زخارف حناء على الأطراف ═══ -->
+    <div class="ornament ornament--tl" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="100" cy="100" r="90"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="50"/><path d="M100 10 Q120 60 100 100 Q80 60 100 10Z"/><path d="M190 100 Q140 120 100 100 Q140 80 190 100Z"/><path d="M100 190 Q80 140 100 100 Q120 140 100 190Z"/><path d="M10 100 Q60 80 100 100 Q60 120 10 100Z"/><path d="M100 100 Q130 70 160 40 M100 100 Q70 70 40 40 M100 100 Q130 130 160 160 M100 100 Q70 130 40 160"/><circle cx="100" cy="100" r="8" fill="currentColor"/></svg></div>
+    <div class="ornament ornament--tr" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="100" cy="100" r="90"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="50"/><path d="M100 10 Q120 60 100 100 Q80 60 100 10Z"/><path d="M190 100 Q140 120 100 100 Q140 80 190 100Z"/><path d="M100 190 Q80 140 100 100 Q120 140 100 190Z"/><path d="M10 100 Q60 80 100 100 Q60 120 10 100Z"/><circle cx="100" cy="100" r="8" fill="currentColor"/></svg></div>
+    <div class="ornament ornament--bl" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="100" cy="100" r="90"/><circle cx="100" cy="100" r="65"/><path d="M100 10 Q120 60 100 100 Q80 60 100 10Z"/><path d="M190 100 Q140 120 100 100 Q140 80 190 100Z"/><path d="M100 190 Q80 140 100 100 Q120 140 100 190Z"/><path d="M10 100 Q60 80 100 100 Q60 120 10 100Z"/><circle cx="100" cy="100" r="8" fill="currentColor"/></svg></div>
+    <div class="ornament ornament--br" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="100" cy="100" r="90"/><circle cx="100" cy="100" r="65"/><path d="M100 10 Q120 60 100 100 Q80 60 100 10Z"/><path d="M190 100 Q140 120 100 100 Q140 80 190 100Z"/><path d="M100 190 Q80 140 100 100 Q120 140 100 190Z"/><path d="M10 100 Q60 80 100 100 Q60 120 10 100Z"/><circle cx="100" cy="100" r="8" fill="currentColor"/></svg></div>
+
+    <!-- Toasts -->
+    <div class="toasts" id="toasts" role="alert" aria-live="polite"></div>
+
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header class="header" id="header" role="banner">
+        <div class="container header__inner">
+            <!-- LOGO TOP NAV: استبدل logo.png بشعارك -->
+            <a href="#home" class="logo" aria-label="LAMSA لمسة - الرئيسية">
+                <span class="logo__mark">
+                    <img class="logo__img" src="logo.png" alt="LAMSA لمسة">
+                    <svg class="logo__fallback" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                        <path d="M62 18 l3 9 9 3 -9 3 -3 9 -3 -9 -9 -3 9 -3z" fill="currentColor"/>
+                        <path d="M44 22 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" fill="currentColor" opacity=".7"/>
+                        <path d="M50 38 C44 44 42 50 44 56 C40 54 36 52 34 50 C36 56 40 60 46 62 C44 66 40 70 36 72 C44 72 50 70 54 66 C58 70 64 74 70 76 C66 70 62 64 60 58 C64 56 68 52 70 46 C66 50 62 52 58 52 C58 46 56 42 50 38Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                        <circle cx="58" cy="58" r="3" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </span>
+                <span class="logo__txt">
+                    <span class="logo__name">LAMSA</span>
+                    <span class="logo__tag">لمسة · رشمات الحناء</span>
+                </span>
+            </a>
+
+            <nav class="nav" aria-label="التنقل الرئيسي">
+                <a href="#home" class="nav__link">الرئيسية</a>
+                <a href="#categories" class="nav__link">الأقسام</a>
+                <a href="#products" class="nav__link">المنتجات</a>
+                <a href="#about" class="nav__link">عن العلامة</a>
+                <a href="#faq" class="nav__link">الأسئلة</a>
+                <a href="#contact" class="nav__link">تواصل</a>
+            </nav>
+
+            <div class="actions">
+                <button class="icon-btn" id="cartBtn" aria-label="سلة التسوق">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="badge" id="cartBadge">0</span>
+                </button>
+                <button class="burger" id="burger" aria-label="القائمة" aria-expanded="false"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <nav class="mnav" id="mnav" aria-label="قائمة الجوال">
+        <a href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>الرئيسية</a>
+        <a href="#categories"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>الأقسام</a>
+        <a href="#products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>المنتجات</a>
+        <a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>عن العلامة</a>
+        <a href="#faq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>الأسئلة</a>
+        <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>تواصل</a>
+    </nav>
+
+    <main role="main">
+
+        <!-- ═══════════ HERO ═══════════ -->
+        <section class="hero" id="home" aria-labelledby="heroTitle">
+            <div class="hero__glow hero__glow--1" aria-hidden="true"></div>
+            <div class="hero__glow hero__glow--2" aria-hidden="true"></div>
+            <div class="hero__float hero__float--a" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6z"/></svg></div>
+            <div class="hero__float hero__float--b" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
+            <div class="hero__float hero__float--c" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6z"/></svg></div>
+
+            <div class="container hero__inner">
+                <div class="hero__copy">
+                    <span class="hero__badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6z"/></svg>
+                        صناعة جزائرية يدوية فاخرة
+                    </span>
+                    <h1 class="hero__title" id="heroTitle">رشمات حناء <em>فاخرة</em><br>بلمسة عصرية أنيقة</h1>
+                    <p class="hero__lead">ستكرات فينيل مطفية، قماشية، ومائية مطبوعة بدقة عالية. تصاميم حصرية تجمع بين الأصالة والفخامة — بيع بالتجزئة والجملة مع توصيل لكل الولايات.</p>
+                    <div class="hero__cta">
+                        <a href="#products" class="btn btn--primary">
+                            تسوّقي الآن
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                        </a>
+                        <a href="#about" class="btn btn--ghost">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                            تعرفي على لمسة
+                        </a>
+                    </div>
+                    <div class="hero__stats">
+                        <div class="hero__stat"><b>+1200</b><span>تصميم حصري</span></div>
+                        <div class="hero__stat"><b>4.9</b><span>تقييم العملاء</span></div>
+                        <div class="hero__stat"><b>58</b><span>ولاية توصيل</span></div>
+                    </div>
+                </div>
+
+                <div class="hero__visual">
+                    <div class="hero__ring hero__ring--1" aria-hidden="true"></div>
+                    <div class="hero__ring hero__ring--2" aria-hidden="true"></div>
+                    <div class="hero__frame">
+                        <!-- صورة Hero: ضعي رابط صورتك هنا -->
+                        <div class="hero__frame-ph">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+                            <span style="font-size:.8rem;letter-spacing:.1em">صورة Hero</span>
+                        </div>
+                    </div>
+                    <div class="hero__chip hero__chip--1">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                        <div><b>جودة أصلية</b><span>Oracal 650</span></div>
+                    </div>
+                    <div class="hero__chip hero__chip--2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="m16 8 5 3-5 3z"/></svg>
+                        <div><b>توصيل سريع</b><span>لكل الولايات</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ WING TABS ═══════════ -->
+        <div class="container">
+            <div class="wings" role="tablist" aria-label="نوع الشراء">
+                <div class="wings__bar">
+                    <button class="wing on" data-wing="retail" role="tab" aria-selected="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        بيع بالتجزئة
+                    </button>
+                    <button class="wing" data-wing="wholesale" role="tab" aria-selected="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+                        بيع بالجملة
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ CATEGORIES + PRODUCTS ═══════════ -->
+        <section class="section" id="products" aria-labelledby="productsTitle">
+            <div class="container">
+                <div class="sec-head reveal">
+                    <span class="eyebrow">التشكيلة</span>
+                    <h2 class="sec-head__title" id="productsTitle">اكتشفي <em>تصاميمنا</em></h2>
+                    <p class="sec-head__sub" id="productsSub">أحدث النقشات الفاخرة — بيع بالتجزئة</p>
+                    <div class="sec-head__rule"></div>
+                </div>
+
+                <div class="cats reveal" id="cats" role="tablist" aria-label="تصنيفات المنتجات">
+                    <button class="cat-pill on" data-cat="vinyl" role="tab" aria-selected="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                        ستكرات عادية
+                    </button>
+                    <button class="cat-pill" data-cat="fabric" role="tab" aria-selected="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+                        ستكرات قماشية
+                    </button>
+                    <button class="cat-pill" data-cat="water" role="tab" aria-selected="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                        ستكرات مائية
+                    </button>
+                </div>
+
+                <div class="pgrid-scroll">
+                    <div class="pgrid" id="pgrid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ ABOUT THE BRAND ═══════════ -->
+        <section class="section section--paper" id="about" aria-labelledby="aboutTitle">
+            <div class="container">
+                <div class="about__grid">
+                    <div class="about__visual reveal">
+                        <div class="about__logo-card">
+                            <!-- LOGO ABOUT: استبدل logo.png بشعارك -->
+                            <img class="about__logo-img" src="logo.png" alt="شعار LAMSA لمسة">
+                            <svg class="about__logo-fallback" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                                <path d="M118 36 l4 12 12 4 -12 4 -4 12 -4 -12 -12 -4 12 -4z" fill="currentColor"/>
+                                <path d="M88 44 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" fill="currentColor" opacity=".7"/>
+                                <path d="M100 76 C88 88 84 100 88 112 C80 108 72 104 68 100 C72 112 80 120 92 124 C88 132 80 140 72 144 C88 144 100 140 108 132 C116 140 128 148 140 152 C132 140 124 128 120 116 C128 112 136 104 140 92 C132 100 124 104 116 104 C116 92 112 84 100 76Z" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
+                                <circle cx="116" cy="116" r="6" stroke="currentColor" stroke-width="3.5"/>
+                                <text x="100" y="182" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="6">LAMSA</text>
+                            </svg>
+                            <div class="about__seal"><b>100%</b><span>HANDMADE</span></div>
+                        </div>
+                    </div>
+                    <div class="about__txt reveal">
+                        <span class="eyebrow">عن العلامة</span>
+                        <h2 id="aboutTitle">قصة <em>لمسة</em> — حيث تلتقي الأصالة بالفخامة</h2>
+                        <p>وُلدت LAMSA لمسة من شغف عميق بفن الحناء الجزائري الأصيل، ورغبة في تقديمه بروح عصرية راقية. كل رشمّة نصمّمها يدوياً بعناية فائقة، لنمنحك تجربة جمال فاخرة تليق بكِ.</p>
+                        <p>نؤمن أن التفاصيل الصغيرة تصنع الفرق — لذلك نختار أجود الخامات، ونهتم بكل خط ومنحنى، لنقدّم لكِ تصاميم تدوم وتبهر.</p>
+                        <div class="about__values">
+                            <div class="about__val">
+                                <span class="about__val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>
+                                <div><b>خامات أصلية</b><span>فينيل Oracal 650 وقماش فاخر</span></div>
+                            </div>
+                            <div class="about__val">
+                                <span class="about__val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+                                <div><b>تصاميم يدوية</b><span>حرفية جزائرية أصيلة</span></div>
+                            </div>
+                            <div class="about__val">
+                                <span class="about__val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+                                <div><b>جودة مضمونة</b><span>آمنة على البشرة وطويلة الأمد</span></div>
+                            </div>
+                            <div class="about__val">
+                                <span class="about__val-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/></svg></span>
+                                <div><b>أناقة عصرية</b><span>لمسة فاخرة في كل تفصيل</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ TRUST / WHY US ═══════════ -->
+        <section class="section section--tint" id="trust" aria-labelledby="trustTitle">
+            <div class="container">
+                <div class="sec-head reveal">
+                    <span class="eyebrow">لماذا لمسة</span>
+                    <h2 class="sec-head__title" id="trustTitle">تجربة <em>ثقة</em> وفخامة</h2>
+                    <p class="sec-head__sub">نلتزم بأعلى معايير الجودة لنمنحك راحة بال تامة</p>
+                    <div class="sec-head__rule"></div>
+                </div>
+                <div class="trust__grid">
+                    <article class="tcard reveal"><div class="tcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div><h3 class="tcard__t">جودة عالية</h3><p class="tcard__d">خامات أصلية مختارة بعناية لضمان أفضل نتيجة.</p></article>
+                    <article class="tcard reveal"><div class="tcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3 class="tcard__t">مواد أصلية</h3><p class="tcard__d">آمنة على البشرة وخالية من المواد الضارة.</p></article>
+                    <article class="tcard reveal"><div class="tcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="m16 8 5 3-5 3z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><h3 class="tcard__t">توصيل سريع</h3><p class="tcard__d">شحن لجميع الولايات الـ 58 بأمان وسرعة.</p></article>
+                    <article class="tcard reveal"><div class="tcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3 class="tcard__t">دعم متواصل</h3><p class="tcard__d">فريقنا جاهز للرد عليك عبر واتساب وماسنجر.</p></article>
+                    <article class="tcard reveal"><div class="tcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div><h3 class="tcard__t">سهولة التطبيق</h3><p class="tcard__d">خطوات بسيطة ونتيجة احترافية في دقائق.</p></article>
+                    <article class="tcard reveal"><div class="tcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3 class="tcard__t">ثبات طويل</h3><p class="tcard__d">رشمّة تدوم لأيام وتحافظ على بريقها.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ HOW TO USE ═══════════ -->
+        <section class="section" id="features" aria-labelledby="featuresTitle">
+            <div class="container">
+                <div class="sec-head reveal">
+                    <span class="eyebrow">طريقة الاستخدام</span>
+                    <h2 class="sec-head__title" id="featuresTitle">أربع خطوات <em>لنتيجة مذهلة</em></h2>
+                    <p class="sec-head__sub">تطبيق سهل وسريع يمنحك رشمة مثالية</p>
+                    <div class="sec-head__rule"></div>
+                </div>
+                <div class="steps">
+                    <article class="step reveal"><div class="step__num">01</div><div class="step__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><h3 class="step__t">اختاري التصميم</h3><p class="step__d">تصفّحي تشكيلتنا الواسعة واختاري ما يناسب ذوقك.</p></article>
+                    <article class="step reveal"><div class="step__num">02</div><div class="step__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div><h3 class="step__t">نظّفي البشرة</h3><p class="step__d">تأكدي من نظافة وجفاف المنطقة قبل التطبيق.</p></article>
+                    <article class="step reveal"><div class="step__num">03</div><div class="step__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></div><h3 class="step__t">ثبّتي الاستيكر</h3><p class="step__d">ضعيه واضغطي بلطف لثلاثين ثانية فقط.</p></article>
+                    <article class="step reveal"><div class="step__num">04</div><div class="step__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/></svg></div><h3 class="step__t">استمتعي بالنتيجة</h3><p class="step__d">أزيليه برفق وتمتّعي برشمة حناء فاخرة.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ TESTIMONIALS ═══════════ -->
+        <section class="section section--paper" id="testimonials" aria-labelledby="tmonTitle">
+            <div class="container">
+                <div class="sec-head reveal">
+                    <span class="eyebrow">آراء العملاء</span>
+                    <h2 class="sec-head__title" id="tmonTitle">ماذا تقول <em>عميلاتنا</em></h2>
+                    <p class="sec-head__sub">ثقة تتجدد مع كل طلبية</p>
+                    <div class="sec-head__rule"></div>
+                </div>
+                <div class="tmon__grid" id="tmonGrid"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════ FAQ ═══════════ -->
+        <section class="section section--tint" id="faq" aria-labelledby="faqTitle">
+            <div class="container">
+                <div class="sec-head reveal">
+                    <span class="eyebrow">أسئلة شائعة</span>
+                    <h2 class="sec-head__title" id="faqTitle">كل ما <em>تودّين معرفته</em></h2>
+                    <p class="sec-head__sub">إجابات واضحة لأكثر الأسئلة تكراراً</p>
+                    <div class="sec-head__rule"></div>
+                </div>
+                <div class="faq reveal" id="faqList"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════ CTA BAND ═══════════ -->
+        <section class="section" aria-label="عرض خاص">
+            <div class="container">
+                <div class="cta-band reveal">
+                    <div class="cta-band__orn cta-band__orn--1" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="100" cy="100" r="90"/><circle cx="100" cy="100" r="60"/><path d="M100 10 Q120 60 100 100 Q80 60 100 10Z"/><path d="M190 100 Q140 120 100 100 Q140 80 190 100Z"/></svg></div>
+                    <div class="cta-band__orn cta-band__orn--2" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="100" cy="100" r="90"/><circle cx="100" cy="100" r="60"/><path d="M100 190 Q80 140 100 100 Q120 140 100 190Z"/><path d="M10 100 Q60 80 100 100 Q60 120 10 100Z"/></svg></div>
+                    <h2>انضمّي لعائلة لمسة</h2>
+                    <p>احصلي على أحدث التصاميم والعروض الحصرية مباشرة. تواصلي معنا الآن عبر واتساب واستمتعي بتجربة تسوّق فاخرة.</p>
+                    <a href="https://wa.me/213656198526" target="_blank" rel="noopener" class="btn btn--gold">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20z"/></svg>
+                        تواصلي عبر واتساب
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer" id="contact" role="contentinfo">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <a href="#home" class="logo" aria-label="LAMSA لمسة">
+                        <span class="logo__mark">
+                            <img class="logo__img" src="logo.png" alt="LAMSA لمسة">
+                            <svg class="logo__fallback" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M62 18 l3 9 9 3 -9 3 -3 9 -3 -9 -9 -3 9 -3z" fill="currentColor"/><path d="M50 38 C44 44 42 50 44 56 C40 54 36 52 34 50 C36 56 40 60 46 62 C44 66 40 70 36 72 C44 72 50 70 54 66 C58 70 64 74 70 76 C66 70 62 64 60 58 C64 56 68 52 70 46 C66 50 62 52 58 52 C58 46 56 42 50 38Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="logo__txt"><span class="logo__name">LAMSA</span><span class="logo__tag">لمسة · رشمات الحناء</span></span>
+                    </a>
+                    <p class="footer__desc">متجر جزائري متخصص في رشمات الحناء الفاخرة. تصاميم يدوية أصيلة بخامات أصلية، بيع بالتجزئة والجملة مع توصيل لكل الولايات.</p>
+                    <div class="footer__social">
+                        <a href="https://wa.me/213656198526" target="_blank" rel="noopener" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg></a>
+                        <a href="https://m.me/lamsa.stickers" target="_blank" rel="noopener" aria-label="ماسنجر"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 4.97 0 11.1c0 3.5 1.74 6.62 4.47 8.66V24l4.09-2.24c1.09.3 2.24.46 3.44.46 6.6 0 12-4.97 12-11.1S18.6 0 12 0zm1.19 14.96-3.05-3.26-5.97 3.26L10.73 8l3.13 3.26L19.75 8z"/></svg></a>
+                        <a href="https://www.facebook.com/lamsa.stickers" target="_blank" rel="noopener" aria-label="فيسبوك"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
+                        <a href="https://instagram.com/lamsa_crea" target="_blank" rel="noopener" aria-label="انستغرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__h">روابط سريعة</h4>
+                    <ul class="footer__links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#products">المنتجات</a></li>
+                        <li><a href="#about">عن العلامة</a></li>
+                        <li><a href="#faq">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer__h">الأقسام</h4>
+                    <ul class="footer__links">
+                        <li><a href="#products">ستكرات عادية</a></li>
+                        <li><a href="#products">ستكرات قماشية</a></li>
+                        <li><a href="#products">ستكرات مائية</a></li>
+                        <li><a href="#products">بيع بالجملة</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer__h">تواصلي معنا</h4>
+                    <div class="footer__contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:0656198526" style="color:inherit">0656 19 85 26</a></div>
+                    <div class="footer__contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>القرارة - ولاية غرداية - الجزائر</span></div>
+                    <div class="footer__contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>الدفع عند الاستلام (COD)</span></div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>&copy; 2026 LAMSA لمسة. جميع الحقوق محفوظة.</span>
+                <span>صُنع بشغف في الجزائر</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════ CART DRAWER ═══════════ -->
+    <div class="overlay" id="cartOverlay" aria-hidden="true"></div>
+    <aside class="drawer" id="cartDrawer" role="dialog" aria-label="سلة التسوق" aria-hidden="true">
+        <div class="drawer__head">
+            <h2 class="drawer__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>سلة التسوق</h2>
+            <button class="icon-btn" id="cartClose" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="drawer__body" id="cartBody">
+            <div class="drawer__empty" id="cartEmpty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <p>سلّتك فارغة حالياً</p>
+            </div>
+        </div>
+        <div class="drawer__foot" id="cartFoot" style="display:none">
+            <div class="ws-note" id="wsNote"></div>
+            <div class="drawer__total"><span>المجموع</span><b id="cartTotal">0 دج</b></div>
+            <button class="drawer__checkout" id="checkoutBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>إتمام الطلب</button>
+        </div>
+    </aside>
+
+    <!-- ═══════════ CHECKOUT MODAL ═══════════ -->
+    <div class="modal-wrap" id="checkoutWrap" aria-hidden="true">
+        <div class="modal" role="dialog" aria-label="إتمام الطلب" aria-modal="true">
+            <div class="modal__head">
+                <h2 class="modal__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>إتمام الطلب</h2>
+                <button class="icon-btn" id="checkoutClose" aria-label="إغلاق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+            </div>
+            <div class="modal__body">
+                <div class="typebar" role="radiogroup" aria-label="نوع الطلب">
+                    <button type="button" class="on" data-type="retail" role="radio" aria-checked="true">تجزئة</button>
+                    <button type="button" data-type="wholesale" role="radio" aria-checked="false">جملة</button>
+                </div>
+                <div class="summary" id="coSummary"></div>
+                <form id="coForm" novalidate>
+                    <div class="fg"><label for="cName">الاسم الكامل <i>*</i></label><input type="text" id="cName" class="fi" placeholder="أدخلي اسمك الكامل" required autocomplete="name"><span class="ferr" id="cNameE">الرجاء إدخال الاسم الكامل</span></div>
+                    <div class="fg"><label for="cPhone">رقم الهاتف <i>*</i></label><input type="tel" id="cPhone" class="fi" placeholder="06XX XX XX XX" required autocomplete="tel" dir="ltr" style="text-align:right"><span class="ferr" id="cPhoneE">الرجاء إدخال رقم هاتف صحيح</span></div>
+                    <div class="fg"><label for="cWilaya">الولاية <i>*</i></label>
+                        <select id="cWilaya" class="fi" required><option value="">اختاري الولاية</option>
+                        <option>01 - أدرار</option><option>02 - الشلف</option><option>03 - الأغواط</option><option>04 - أم البواقي</option><option>05 - باتنة</option><option>06 - بجاية</option><option>07 - بسكرة</option><option>08 - بشار</option><option>09 - البليدة</option><option>10 - البويرة</option><option>11 - تمنراست</option><option>12 - تبسة</option><option>13 - تلمسان</option><option>14 - تيارت</option><option>15 - تيزي وزو</option><option>16 - الجزائر</option><option>17 - الجلفة</option><option>18 - جيجل</option><option>19 - سطيف</option><option>20 - سعيدة</option><option>21 - سكيكدة</option><option>22 - سيدي بلعباس</option><option>23 - عنابة</option><option>24 - قالمة</option><option>25 - قسنطينة</option><option>26 - المدية</option><option>27 - مستغانم</option><option>28 - المسيلة</option><option>29 - معسكر</option><option>30 - ورقلة</option><option>31 - وهران</option><option>32 - البيض</option><option>33 - إليزي</option><option>34 - برج بوعريريج</option><option>35 - بومرداس</option><option>36 - الطارف</option><option>37 - تندوف</option><option>38 - تيسمسيلت</option><option>39 - الوادي</option><option>40 - خنشلة</option><option>41 - سوق أهراس</option><option>42 - تيبازة</option><option>43 - ميلة</option><option>44 - عين الدفلى</option><option>45 - النعامة</option><option>46 - عين تموشنت</option><option>47 - غرداية</option><option>48 - غليزان</option><option>49 - تيميمون</option><option>50 - برج باجي مختار</option><option>51 - أولاد جلال</option><option>52 - بني عباس</option><option>53 - عين صالح</option><option>54 - عين قزام</option><option>55 - تقرت</option><option>56 - جانت</option><option>57 - المغير</option><option>58 - المنيعة</option>
+                        </select><span class="ferr" id="cWilayaE">الرجاء اختيار الولاية</span></div>
+                    <div class="fg"><label for="cCommune">البلدية <i>*</i></label><input type="text" id="cCommune" class="fi" placeholder="أدخلي اسم البلدية" required><span class="ferr" id="cCommuneE">الرجاء إدخال البلدية</span></div>
+                    <div class="fg"><label for="cAddr">العنوان التفصيلي</label><input type="text" id="cAddr" class="fi" placeholder="الحي، الشارع، رقم المنزل..."></div>
+                    <div class="fg"><label for="cNotes">ملاحظات</label><textarea id="cNotes" class="fi" placeholder="أي ملاحظات إضافية..." rows="2"></textarea></div>
+                    <button type="submit" class="submit" id="submitBtn"><span class="spin"></span><svg class="sic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10.01-3-3"/></svg><span class="stxt">تأكيد الطلب</span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ SUCCESS ═══════════ -->
+    <div class="success" id="successWrap" aria-hidden="true">
+        <div class="success__card">
+            <div class="success__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10.01-3-3"/></svg></div>
+            <h2>تم تأكيد طلبك بنجاح</h2>
+            <div class="success__oid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><path d="M7 7h.01"/></svg><span id="oidTxt">LAMSA-0000</span></div>
+            <p>شكراً لثقتك بـ LAMSA لمسة!<br>سيتم التواصل معك قريباً لتأكيد الطلب والتوصيل.<br>الدفع عند الاستلام (COD).</p>
+            <button class="btn btn--primary" id="successBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>العودة للمتجر</button>
+        </div>
+    </div>
+
+    <!-- ═══════════ ERROR ═══════════ -->
+    <div class="errpop" id="errPop" aria-hidden="true">
+        <div class="errpop__card">
+            <div class="errpop__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg></div>
+            <h3>حدث خطأ</h3>
+            <p id="errTxt">تعذر إرسال الطلب. يرجى المحاولة مرة أخرى.</p>
+            <button class="btn btn--primary" id="errClose">حسناً، فهمت</button>
+        </div>
+    </div>
+
+    <!-- ═══════════ FLOATS ═══════════ -->
+    <div class="floats">
+        <a href="https://wa.me/213656198526" target="_blank" rel="noopener" class="fab fab--wa" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg></a>
+        <a href="https://m.me/lamsa.stickers" target="_blank" rel="noopener" class="fab fab--ms" aria-label="ماسنجر"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 4.97 0 11.1c0 3.5 1.74 6.62 4.47 8.66V24l4.09-2.24c1.09.3 2.24.46 3.44.46 6.6 0 12-4.97 12-11.1S18.6 0 12 0zm1.19 14.96-3.05-3.26-5.97 3.26L10.73 8l3.13 3.26L19.75 8z"/></svg></a>
+    </div>
+
+    <!-- ═══════════ JAVASCRIPT ═══════════ -->
+    <script>
+    (function(){
+        'use strict';
+
+        /* ═══ CONFIG ═══ */
+        const API_URL = 'https://script.google.com/macros/s/AKfycbwdzlj-1DZP2N0G-cI7UkOT2slsmIm-1zd9Dl7PUPOxAeFfoP8jTk8bKknQFhLDcCH0/exec';
+        const WS_MIN = 180;
+
+        /* ═══ DATA — لكل منتج صورتان: image (الستيكر) + applied (على اليد) ═══
+           ضعي روابط صورك الحقيقية في image و applied لاحقاً */
+        const products = [
+            {id:1, code:'D-04', name:'رشمّة الأصابع الملكية', price:450, ws:320, old:550, cat:'vinyl', badge:'جديد', stock:25, image:'https://i.postimg.cc/RZw1t3PM/Whats-App-Image-2026-07-20-at-12-34-11-PM.jpg', applied:''},
+            {id:2, code:'D-05', name:'رشمّة الزهرة المتفتحة', price:480, ws:340, old:null, cat:'vinyl', badge:null, stock:0, image:'', applied:''},
+            {id:3, code:'F-12', name:'رشمّة قماشية ناعمة', price:520, ws:380, old:null, cat:'fabric', badge:'جديد', stock:15, image:'', applied:''},
+            {id:4, code:'F-13', name:'رشمّة قماشية كلاسيك', price:480, ws:350, old:null, cat:'fabric', badge:null, stock:0, image:'', applied:''},
+            {id:5, code:'W-21', name:'رشمّة مائية فاخرة', price:450, ws:310, old:500, cat:'water', badge:'hot', stock:40, image:'', applied:''},
+            {id:6, code:'W-22', name:'رشمّة مائية عصرية', price:400, ws:280, old:null, cat:'water', badge:'جديد', stock:30, image:'', applied:''},
+            {id:7, code:'D-06', name:'رشمّة فينيل مطفية', price:520, ws:370, old:600, cat:'vinyl', badge:'hot', stock:20, image:'', applied:''},
+            {id:8, code:'F-14', name:'رشمّة قماشية أنيقة', price:350, ws:250, old:null, cat:'fabric', badge:null, stock:50, image:'', applied:''},
+            {id:9, code:'W-23', name:'رشمّة مائية دقيقة', price:480, ws:340, old:null, cat:'water', badge:null, stock:0, image:'', applied:''},
+            {id:10, code:'D-07', name:'رشمّة فينيل حصرية', price:450, ws:320, old:520, cat:'vinyl', badge:'جديد', stock:35, image:'', applied:''},
+            {id:11, code:'F-15', name:'رشمّة قماشية راقية', price:380, ws:270, old:null, cat:'fabric', badge:null, stock:45, image:'', applied:''},
+            {id:12, code:'W-24', name:'رشمّة مائية مميزة', price:550, ws:400, old:650, cat:'water', badge:'جديد', stock:10, image:'', applied:''}
+        ];
+
+        const testimonials = [
+            {name:'أمينة ب.', city:'الجزائر', txt:'جودة رائعة والتصاميم فاخرة جداً! الرشمة ثبتت لأيام وبقيت أنيقة. أنصح بها بشدة.', init:'أ'},
+            {name:'سارة م.', city:'وهران', txt:'التوصيل كان سريع والتغليف فاخر. أحسست أنني أتسوق من علامة عالمية. شكراً لمسة!', init:'س'},
+            {name:'هدى ك.', city:'قسنطينة', txt:'أطلب بالجملة لمحلي والأسعار ممتازة والجودة ثابتة. تعامل راقي ومحترف.', init:'ه'},
+            {name:'نور ل.', city:'سطيف', txt:'التطبيق سهل جداً والنتيجة احترافية كأنها مرسومة باليد. تصاميمهم لا تُقاوم.', init:'ن'}
+        ];
+
+        const faqs = [
+            {q:'كم تدوم الرشمة على البشرة؟', a:'تدوم رشمّاتنا عادةً من 3 إلى 7 أيام حسب نوع البشرة والعناية، مع الحفاظ على لونها وأناقتها طوال المدة.'},
+            {q:'هل المواد آمنة على البشرة؟', a:'نعم، نستخدم خامات أصلية مختارة بعناية (فينيل Oracal 650 وقماش فاخر) وهي آمنة على البشرة وخالية من المواد الضارة.'},
+            {q:'كيف يتم الدفع والتوصيل؟', a:'نعتمد نظام الدفع عند الاستلام (COD) مع توصيل لجميع الولايات الـ 58. يتم التواصل معك لتأكيد الطلب قبل الشحن.'},
+            {q:'ما هو الحد الأدنى لطلبات الجملة؟', a:'الحد الأدنى لطلبات الجملة هو 180 دج. عند بلوغ هذا المبلغ تُفعّل الأسعار المخفضة المخصصة للتجار تلقائياً.'},
+            {q:'هل يمكنني طلب تصميم خاص؟', a:'بالتأكيد! تواصلي معنا عبر واتساب وسنعمل على تنفيذ تصميمك الخاص بما يناسب ذوقك ومناسبتك.'},
+            {q:'كيف أطبّق الاستيكر بشكل صحيح؟', a:'نظّفي البشرة وجفّفيها جيداً، ثم ثبّتي الاستيكر واضغطي بلطف لـ 30 ثانية، وأزيليه برفق لتمتّعي بالنتيجة.'}
+        ];
+
+        const catNames = {vinyl:'ستكرات عادية', fabric:'ستكرات قماشية', water:'ستكرات مائية'};
+
+        /* ═══ STATE ═══ */
+        let cart = [];
+        let wing = 'retail';
+        let cat = 'vinyl';
+        let submitting = false;
+
+        /* ═══ DOM ═══ */
+        const $ = s => document.querySelector(s);
+        const $$ = s => document.querySelectorAll(s);
+        const D = {
+            header:$('#header'), burger:$('#burger'), mnav:$('#mnav'),
+            cartBtn:$('#cartBtn'), badge:$('#cartBadge'),
+            cartOv:$('#cartOverlay'), drawer:$('#cartDrawer'), cartClose:$('#cartClose'),
+            cartBody:$('#cartBody'), cartEmpty:$('#cartEmpty'), cartFoot:$('#cartFoot'),
+            cartTotal:$('#cartTotal'), wsNote:$('#wsNote'), checkoutBtn:$('#checkoutBtn'),
+            pgrid:$('#pgrid'), pSub:$('#productsSub'), toasts:$('#toasts'),
+            coWrap:$('#checkoutWrap'), coClose:$('#checkoutClose'), coForm:$('#coForm'),
+            coSummary:$('#coSummary'), submitBtn:$('#submitBtn'),
+            successWrap:$('#successWrap'), oidTxt:$('#oidTxt'), successBack:$('#successBack'),
+            errPop:$('#errPop'), errTxt:$('#errTxt'), errClose:$('#errClose'),
+            tmonGrid:$('#tmonGrid'), faqList:$('#faqList')
+        };
+
+        /* ═══ ICONS ═══ */
+        const I = {
+            cart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+            plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+            minus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>',
+            trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>',
+            check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10.01-3-3"/></svg>',
+            alert:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>',
+            pkg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>',
+            hand:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>',
+            star:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"/></svg>',
+            stock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
+        };
+
+        /* ═══ PLACEHOLDERS (تُستبدل بالصور الحقيقية عند توفرها) ═══ */
+        function phSticker(code){
+            return `<div class="gallery__ph"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="60" cy="60" r="46"/><circle cx="60" cy="60" r="32"/><circle cx="60" cy="60" r="18"/><path d="M60 14 Q72 38 60 60 Q48 38 60 14Z"/><path d="M106 60 Q82 72 60 60 Q82 48 106 60Z"/><path d="M60 106 Q48 82 60 60 Q72 82 60 106Z"/><path d="M14 60 Q38 48 60 60 Q38 72 14 60Z"/><circle cx="60" cy="60" r="5" fill="currentColor"/></svg><span>${code}</span></div>`;
+        }
+        function phApplied(code){
+            return `<div class="gallery__ph gallery__ph--applied"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M78 30v-6a4 4 0 0 0-8 0M70 28v-8a4 4 0 0 0-8 0v4M62 30v-6a4 4 0 0 0-8 0v22"/><path d="M78 26a4 4 0 0 1 8 0v22a20 20 0 0 1-20 20h-4c-6 0-9-2-13-6l-7-7a4 4 0 0 1 6-6l4 4"/><path d="M64 50 q4 8 0 16 M58 56 q3 6 0 12" stroke-width="1"/></svg><span>على اليد</span></div>`;
+        }
+        function mediaHTML(p, which){
+            const url = which==='applied' ? p.applied : p.image;
+            return url ? `<img src="${url}" alt="${p.name} - ${which==='applied'?'على اليد':'الستيكر'}" loading="lazy">`
+                       : (which==='applied' ? phApplied(p.code) : phSticker(p.code));
+        }
+
+        /* ═══ HELPERS ═══ */
+        const price = p => wing==='wholesale' ? p.ws : p.price;
+        const cartTotal = () => cart.reduce((s,i)=>s+i.price*i.qty,0);
+        const cartCount = () => cart.reduce((s,i)=>s+i.qty,0);
+        const isOut = p => !p.stock || p.stock<=0;
+
+        /* ═══ RENDER PRODUCTS + GALLERY ═══ */
+        function renderProducts(){
+            const list = products.filter(p=>p.cat===cat);
+            D.pgrid.innerHTML = list.map(p=>{
+                const pr = price(p);
+                const old = wing==='wholesale' ? p.price : p.old;
+                const out = isOut(p);
+                let badge='';
+                if(out) badge=`<span class="gallery__badge gallery__badge--out">نفدت الكمية</span>`;
+                else if(p.badge==='hot') badge=`<span class="gallery__badge gallery__badge--hot">الأكثر طلباً</span>`;
+                else if(p.badge) badge=`<span class="gallery__badge gallery__badge--new">${p.badge}</span>`;
+                if(wing==='wholesale' && !out) badge=`<span class="gallery__badge">سعر جملة</span>`+badge;
+                return `<article class="pcard" data-id="${p.id}">
+                    <div class="gallery" data-id="${p.id}">
+                        ${badge}
+                        <span class="gallery__label" data-label>الستيكر</span>
+                        <div class="gallery__slide on" data-slide="0">${mediaHTML(p,'image')}</div>
+                        <div class="gallery__slide" data-slide="1">${mediaHTML(p,'applied')}</div>
+                        <div class="gallery__thumbs">
+                            <button class="gthumb on" data-g="0" aria-label="صورة الستيكر">${I.pkg}</button>
+                            <button class="gthumb" data-g="1" aria-label="صورة على اليد">${I.hand}</button>
+                        </div>
+                    </div>
+                    <div class="pcard__body">
+                        <span class="pcard__cat">${catNames[p.cat]}</span>
+                        <h3 class="pcard__name">${p.name}</h3>
+                        <div class="pcard__price">${old?`<del>${old} دج</del>`:''}<b>${pr} دج</b></div>
+                        <p class="pcard__stock ${out?'pcard__stock--out':''}">${out?'غير متوفر حالياً':I.stock+` متوفر: ${p.stock}`}</p>
+                        <button class="pcard__add" data-id="${p.id}" ${out?'disabled':''} aria-label="${out?'غير متوفر':'أضيفي للسلة: '+p.name}">${I.cart}${out?'نفدت الكمية':'أضيفي للسلة'}</button>
+                    </div>
+                </article>`;
+            }).join('');
+
+            D.pgrid.querySelectorAll('.pcard__add:not([disabled])').forEach(b=>b.addEventListener('click',addToCart));
+            D.pgrid.querySelectorAll('.gallery').forEach(g=>bindGallery(g));
+        }
+
+        /* ═══ GALLERY LOGIC (fade + hover + thumbs) ═══ */
+        function bindGallery(g){
+            const slides = g.querySelectorAll('.gallery__slide');
+            const thumbs = g.querySelectorAll('.gthumb');
+            const label = g.querySelector('[data-label]');
+            const labels = ['الستيكر','على اليد'];
+            function show(i){
+                slides.forEach((s,idx)=>s.classList.toggle('on', idx===i));
+                thumbs.forEach((t,idx)=>t.classList.toggle('on', idx===i));
+                if(label) label.textContent = labels[i];
+            }
+            thumbs.forEach(t=>t.addEventListener('click', e=>{ e.stopPropagation(); show(+t.dataset.g); }));
+            // hover auto-switch على الديسكوب
+            g.addEventListener('mouseenter', ()=>{ if(window.matchMedia('(hover:hover)').matches) show(1); });
+            g.addEventListener('mouseleave', ()=>{ if(window.matchMedia('(hover:hover)').matches) show(0); });
+        }
+
+        /* ═══ CART ═══ */
+        function addToCart(e){
+            const id = +e.currentTarget.dataset.id;
+            const p = products.find(x=>x.id===id);
+            if(!p) return;
+            const pr = price(p);
+            const ex = cart.find(i=>i.id===id && i.wing===wing);
+            if(ex){
+                if(ex.qty>=p.stock){ toast('warning','وصلتِ للحد المتوفر'); return; }
+                ex.qty++;
+            } else {
+                cart.push({id:p.id, name:p.name, price:pr, qty:1, wing, stock:p.stock, image:p.image});
+            }
+            updateCart();
+            toast('success', `أُضيفت "${p.name}" للسلة`);
+            e.currentTarget.style.transform='scale(.94)';
+            setTimeout(()=>e.currentTarget.style.transform='',180);
+        }
+
+        function updateCart(){
+            const c = cartCount(), t = cartTotal();
+            D.badge.textContent = c;
+            D.badge.classList.toggle('show', c>0);
+            if(!cart.length){
+                D.cartEmpty.style.display='block'; D.cartFoot.style.display='none';
+                D.cartBody.querySelectorAll('.citem').forEach(e=>e.remove());
+                return;
+            }
+            D.cartEmpty.style.display='none'; D.cartFoot.style.display='block';
+            D.cartTotal.textContent = t.toLocaleString('ar-DZ')+' دج';
+            renderCart();
+            wsCheck(t);
+        }
+
+        function wsCheck(t){
+            const hasWs = cart.some(i=>i.wing==='wholesale');
+            if(hasWs){
+                D.wsNote.classList.add('show');
+                if(t<WS_MIN){
+                    D.wsNote.className='ws-note show warn';
+                    D.wsNote.textContent=`الحد الأدنى للجملة ${WS_MIN} دج. أضيفي ${(WS_MIN-t).toLocaleString('ar-DZ')} دج أو انتقلي للتجزئة.`;
+                    D.checkoutBtn.disabled=true;
+                } else {
+                    D.wsNote.className='ws-note show ok';
+                    D.wsNote.textContent=`طلب جملة — الحد الأدنى (${WS_MIN} دج) محقق.`;
+                    D.checkoutBtn.disabled=false;
+                }
+            } else {
+                D.wsNote.className='ws-note'; D.checkoutBtn.disabled=false;
+            }
+        }
+
+        function renderCart(){
+            D.cartBody.querySelectorAll('.citem').forEach(e=>e.remove());
+            cart.forEach((it,idx)=>{
+                const el=document.createElement('div');
+                el.className='citem'; el.dataset.idx=idx;
+                const img = it.image ? `<img src="${it.image}" alt="${it.name}">` : I.pkg;
+                el.innerHTML=`<div class="citem__img">${img}</div>
+                    <div class="citem__info">
+                        <div class="citem__name">${it.name}</div>
+                        <div class="citem__meta">${it.wing==='wholesale'?'جملة':'تجزئة'} · ${it.price} دج</div>
+                        <div class="qty">
+                            <button data-a="dec" data-i="${idx}" aria-label="إنقاص">${I.minus}</button>
+                            <span>${it.qty}</span>
+                            <button data-a="inc" data-i="${idx}" aria-label="زيادة">${I.plus}</button>
+                        </div>
+                    </div>
+                    <button class="citem__rm" data-a="rm" data-i="${idx}" aria-label="حذف">${I.trash}</button>`;
+                D.cartBody.appendChild(el);
+            });
+            D.cartBody.querySelectorAll('.qty button, .citem__rm').forEach(b=>b.addEventListener('click',cartAction));
+        }
+
+        function cartAction(e){
+            const b=e.currentTarget, a=b.dataset.a, i=+b.dataset.i, it=cart[i];
+            if(!it) return;
+            if(a==='inc'){ if(it.qty>=it.stock){toast('warning','الحد المتوفر');return;} it.qty++; }
+            else if(a==='dec'){ it.qty--; if(it.qty<=0) cart.splice(i,1); }
+            else { cart.splice(i,1); toast('success','حُذف المنتج'); }
+            updateCart();
+        }
+
+        /* ═══ DRAWER ═══ */
+        function openCart(){ D.cartOv.classList.add('on'); D.drawer.classList.add('on'); D.drawer.setAttribute('aria-hidden','false'); lock(true); }
+        function closeCart(){ D.cartOv.classList.remove('on'); D.drawer.classList.remove('on'); D.drawer.setAttribute('aria-hidden','true'); lock(false); }
+
+        /* ═══ CHECKOUT ═══ */
+        function openCheckout(){
+            if(!cart.length) return;
+            const t=cartTotal();
+            if(cart.some(i=>i.wing==='wholesale') && t<WS_MIN){ toast('error',`الحد الأدنى للجملة ${WS_MIN} دج`); return; }
+            closeCart();
+            coSummary();
+            $$('.typebar button').forEach(b=>{ const on=b.dataset.type===wing; b.classList.toggle('on',on); b.setAttribute('aria-checked',on); });
+            D.coWrap.classList.add('on'); D.coWrap.setAttribute('aria-hidden','false'); lock(true);
+        }
+        function closeCheckout(){ D.coWrap.classList.remove('on'); D.coWrap.setAttribute('aria-hidden','true'); lock(false); }
+        function coSummary(){
+            D.coSummary.innerHTML=`<div class="summary__row"><span>عدد القطع</span><span>${cartCount()}</span></div>
+                <div class="summary__row"><span>نوع الطلب</span><span>${wing==='wholesale'?'جملة':'تجزئة'}</span></div>
+                <div class="summary__row"><span>المجموع الكلي</span><span>${cartTotal().toLocaleString('ar-DZ')} دج</span></div>`;
+        }
+
+        /* ═══ VALIDATION ═══ */
+        function validate(){
+            let ok=true;
+            const f=[
+                ['cName','cNameE',v=>v.trim().length>=3],
+                ['cPhone','cPhoneE',v=>/^0[5-7]\d{8}$/.test(v.replace(/\s/g,''))],
+                ['cWilaya','cWilayaE',v=>v!==''],
+                ['cCommune','cCommuneE',v=>v.trim().length>=2]
+            ];
+            f.forEach(([id,eid,fn])=>{
+                const inp=document.getElementById(id), er=document.getElementById(eid), v=fn(inp.value);
+                inp.classList.toggle('err',!v); er.classList.toggle('show',!v); if(!v) ok=false;
+            });
+            return ok;
+        }
+
+        /* ═══ SUBMIT → API ═══ */
+        async function submit(e){
+            e.preventDefault();
+            if(submitting) return;
+            if(!validate()) return;
+            submitting=true;
+            D.submitBtn.classList.add('loading'); D.submitBtn.disabled=true;
+
+            const payload={
+                orderType: wing,
+                customerName: $('#cName').value.trim(),
+                phone: $('#cPhone').value.replace(/\s/g,''),
+                wilaya: $('#cWilaya').value,
+                commune: $('#cCommune').value.trim(),
+                address: $('#cAddr').value.trim(),
+                notes: $('#cNotes').value.trim(),
+                totalPrice: cartTotal(),
+                items: cart.map(i=>({name:i.name, qty:i.qty, price:i.price}))
+            };
+
+            try{
+                const res = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+                const r = await res.json();
+                if(r.success || r.status==='success'){
+                    const oid = r.orderId || r.id || ('LAMSA-'+Date.now().toString(36).toUpperCase());
+                    cart=[]; updateCart(); D.coForm.reset(); closeCheckout(); showSuccess(oid);
+                } else { throw new Error(r.message||'خطأ في معالجة الطلب'); }
+            }catch(err){
+                showError(err.message||'تعذر الاتصال بالخادم. تحققي من الإنترنت وأعيدي المحاولة.');
+            }finally{
+                submitting=false; D.submitBtn.classList.remove('loading'); D.submitBtn.disabled=false;
+            }
+        }
+
+        function showSuccess(oid){ D.oidTxt.textContent=oid; D.successWrap.classList.add('on'); D.successWrap.setAttribute('aria-hidden','false'); lock(true); window.scrollTo({top:0,behavior:'smooth'}); }
+        function hideSuccess(){ D.successWrap.classList.remove('on'); D.successWrap.setAttribute('aria-hidden','true'); lock(false); }
+        function showError(m){ D.errTxt.textContent=m; D.errPop.classList.add('on'); D.errPop.setAttribute('aria-hidden','false'); }
+        function hideError(){ D.errPop.classList.remove('on'); D.errPop.setAttribute('aria-hidden','true'); }
+
+        /* ═══ WINGS / CATS ═══ */
+        function setWing(b){
+            wing=b.dataset.wing;
+            $$('.wing').forEach(t=>{const on=t===b; t.classList.toggle('on',on); t.setAttribute('aria-selected',on);});
+            D.pSub.textContent = wing==='wholesale' ? 'أسعار مخفضة للتجار — بيع بالجملة' : 'أحدث النقشات الفاخرة — بيع بالتجزئة';
+            renderProducts(); updateCart();
+        }
+        function setCat(c){
+            cat=c.dataset.cat;
+            $$('.cat-pill').forEach(t=>{const on=t===c; t.classList.toggle('on',on); t.setAttribute('aria-selected',on);});
+            renderProducts();
+        }
+
+        /* ═══ TESTIMONIALS / FAQ ═══ */
+        function renderTestimonials(){
+            D.tmonGrid.innerHTML = testimonials.map(t=>`<article class="tmon reveal">
+                <span class="tmon__quote">”</span>
+                <div class="tmon__stars">${I.star.repeat(5)}</div>
+                <p class="tmon__txt">${t.txt}</p>
+                <div class="tmon__who"><span class="tmon__av">${t.init}</span><div><b>${t.name}</b><span>${t.city}</span></div></div>
+            </article>`).join('');
+        }
+        function renderFaq(){
+            D.faqList.innerHTML = faqs.map((f,i)=>`<div class="faq__item" data-faq>
+                <button class="faq__q" aria-expanded="false">${f.q}<span class="faq__q-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+                <div class="faq__a"><div class="faq__a-inner">${f.a}</div></div>
+            </div>`).join('');
+            D.faqList.querySelectorAll('[data-faq]').forEach(item=>{
+                const q=item.querySelector('.faq__q'), a=item.querySelector('.faq__a');
+                q.addEventListener('click',()=>{
+                    const open=item.classList.contains('on');
+                    D.faqList.querySelectorAll('[data-faq]').forEach(o=>{o.classList.remove('on'); o.querySelector('.faq__a').style.maxHeight=null; o.querySelector('.faq__q').setAttribute('aria-expanded','false');});
+                    if(!open){ item.classList.add('on'); a.style.maxHeight=a.scrollHeight+'px'; q.setAttribute('aria-expanded','true'); }
+                });
+            });
+        }
+
+        /* ═══ TOAST ═══ */
+        function toast(type,msg){
+            const t=document.createElement('div'); t.className=`toast toast--${type}`;
+            const ic={success:I.check,error:I.alert,warning:I.alert}[type]||I.alert;
+            t.innerHTML=`<span class="toast__ic">${ic}</span><span>${msg}</span>`;
+            D.toasts.appendChild(t);
+            setTimeout(()=>{t.classList.add('out'); setTimeout(()=>t.remove(),300);},3200);
+        }
+
+        /* ═══ MISC ═══ */
+        function lock(on){ document.body.style.overflow = on?'hidden':''; }
+        function toggleMnav(){ const on=D.mnav.classList.toggle('on'); D.burger.classList.toggle('on',on); D.burger.setAttribute('aria-expanded',on); }
+
+        /* ═══ REVEAL (IntersectionObserver) ═══ */
+        function initReveal(){
+            const io=new IntersectionObserver((ents)=>{
+                ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+            },{threshold:.12, rootMargin:'0px 0px -60px 0px'});
+            $$('.reveal').forEach(el=>io.observe(el));
+        }
+
+        /* ═══ EVENTS ═══ */
+        D.cartBtn.addEventListener('click',openCart);
+        D.cartClose.addEventListener('click',closeCart);
+        D.cartOv.addEventListener('click',closeCart);
+        D.burger.addEventListener('click',toggleMnav);
+        D.checkoutBtn.addEventListener('click',openCheckout);
+        D.coClose.addEventListener('click',closeCheckout);
+        D.coForm.addEventListener('submit',submit);
+        D.successBack.addEventListener('click',hideSuccess);
+        D.errClose.addEventListener('click',hideError);
+        D.coWrap.addEventListener('click',e=>{if(e.target===D.coWrap)closeCheckout();});
+        D.errPop.addEventListener('click',e=>{if(e.target===D.errPop)hideError();});
+
+        $$('.wing').forEach(b=>b.addEventListener('click',()=>setWing(b)));
+        $$('.cat-pill').forEach(c=>c.addEventListener('click',()=>setCat(c)));
+        $$('.typebar button').forEach(b=>b.addEventListener('click',()=>{
+            $$('.typebar button').forEach(x=>{const on=x===b; x.classList.toggle('on',on); x.setAttribute('aria-checked',on);});
+            wing=b.dataset.type; coSummary();
+        }));
+        D.mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{D.mnav.classList.remove('on');D.burger.classList.remove('on');D.burger.setAttribute('aria-expanded','false');}));
+
+        document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeCart(); closeCheckout(); hideError(); D.mnav.classList.remove('on'); D.burger.classList.remove('on'); } });
+
+        // header shadow
+        let ticking=false;
+        window.addEventListener('scroll',()=>{ if(!ticking){ requestAnimationFrame(()=>{ D.header.classList.toggle('scrolled', window.scrollY>10); ticking=false; }); ticking=true; } },{passive:true});
+
+        /* ═══ INIT ══ */
+        function init(){
+            renderProducts(); updateCart(); renderTestimonials(); renderFaq();
+            requestAnimationFrame(initReveal);
+        }
+        if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+
+    })();
+    </script>
 </body>
 </html>
