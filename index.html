@@ -1348,7 +1348,7 @@
                 phone: $('#cPhone').value.replace(/\s/g,''),
                 wilaya: $('#cWilaya').value,
                 commune: $('#cCommune').value.trim(),
-                district: '',
+                district: $('#cAddr').value.trim(),
                 address: $('#cAddr').value.trim(),
                 products: cart.map(i=>({ name:i.name, qty:i.qty, price:i.price })),
                 total: cartTotal(),
