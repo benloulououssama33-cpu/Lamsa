@@ -1361,9 +1361,14 @@
         async function sendOrder(payload, retriesLeft){
             if(retriesLeft===undefined) retriesLeft = MAX_RETRIES;
             try{
+                // ملاحظة: نستخدم text/plain بدل application/json عمداً — Google Apps Script
+                // لا يستجيب لطلبات OPTIONS (CORS preflight)، فلو استخدمنا application/json
+                // سيرسل المتصفح preflight يفشل ويُحجب الطلب بالكامل (يظهر كخطأ شبكة وهمي).
+                // text/plain يُعتبر "simple request" فلا يحتاج preflight، والسكربت
+                // يقرأ e.postData.contents ثم يحوّله بنفسه عبر JSON.parse.
                 const res = await fetch(APPS_SCRIPT_URL, {
                     method:'POST',
-                    headers:{ 'Content-Type':'application/json' },
+                    headers:{ 'Content-Type':'text/plain;charset=utf-8' },
                     body: JSON.stringify(payload)
                 });
                 let data = null;
