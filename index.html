@@ -3466,18 +3466,39 @@ button img, a img, .gallery__thumbs img, .gthumb img,
         }
 
         /*  TESTIMONIALS / FAQ  */
+        /* ════════════════════════════════════════
+   📸 روابط صور آراء العميلات (Postimages)
+   استبدلي كل رابط فارغ "" بـ رابط الصورة
+   ════════════════════════════════════════ */
+        const reviewImages = [
+            "",  // رأي 1  ← ضعي الرابط هنا
+            "",  // رأي 2  ← ضعي الرابط هنا
+            "",  // رأي 3  ← ضعي الرابط هنا
+            "",  // رأي 4  ← ضعي الرابط هنا
+            "",  // رأي 5  ← ضعي الرابط هنا
+            "",  // رأي 6  ← ضعي الرابط هنا
+            "",  // رأي 7  ← ضعي الرابط هنا
+            "",  // رأي 8  ← ضعي الرابط هنا
+            "",  // رأي 9  ← ضعي الرابط هنا
+            "",  // رأي 10 ← ضعي الرابط هنا
+            ""   // رأي 11 ← ضعي الرابط هنا
+        ];
+
         function renderTestimonials(){
             let html = '';
-            for(let i=1; i<=11; i++){
+            for(let i=0; i<11; i++){
+                const src = reviewImages[i] || '';
+                const hasImg = src.trim() !== '';
                 html += `<div class="tmon reveal" style="padding:0; overflow:hidden; border-radius:var(--radius-lg); background:var(--paper); border:1px solid var(--line-soft); box-shadow:var(--shadow-sm); transition:all var(--duration-slow) var(--ease-out-expo);">
                     <div style="position:relative; width:100%; aspect-ratio:1/1; background:var(--alabaster-2); overflow:hidden;">
-                        <img src="images/review-${i}.jpg" alt="رأي عميلة ${i}" 
-                             style="width:100%; height:100%; object-fit:cover; display:block; user-select:none; -webkit-user-drag:none; transition:transform var(--duration-slower) var(--ease-out-expo);"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div style="display:none; position:absolute; inset:0; align-items:center; justify-content:center; color:var(--ink-muted); font-size:var(--text-sm); font-weight:600; flex-direction:column; gap:var(--space-2);">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span>ضعي صورة رأي ${i} هنا</span>
-                        </div>
+                        ${hasImg 
+                            ? `<img src="${src}" alt="رأي عميلة ${i+1}" 
+                                 style="width:100%; height:100%; object-fit:cover; display:block; user-select:none; -webkit-user-drag:none; pointer-events:none; transition:transform var(--duration-slower) var(--ease-out-expo);">`
+                            : `<div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-size:var(--text-sm); font-weight:600; flex-direction:column; gap:var(--space-2);">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                <span>رأي ${i+1} — ضعي الرابط في الكود</span>
+                               </div>`
+                        }
                     </div>
                 </div>`;
             }
