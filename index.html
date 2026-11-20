@@ -3277,7 +3277,7 @@ body.is-admin .admin-bar { display: flex; }
             if(ex){
                 ex.qty += addQty;
             } else {
-                cart.push({id:p.id, name:p.name, price:pr, qty:addQty, wing, stock:p.stock, image:p.image});
+                cart.push({id:p.id, code:p.code, name:p.name, price:pr, qty:addQty, wing, stock:p.stock, image:p.image});
             }
             updateCart();
             toast('success', `أُضيفت "${p.name}" (${addQty}) للسلة`);
@@ -3418,7 +3418,7 @@ body.is-admin .admin-bar { display: flex; }
                 commune: $('#cCommune').value.trim(),
                 district: $('#cAddr').value.trim(),
                 address: $('#cAddr').value.trim(),
-                products: cart.map(i=>({ name:i.name, qty:i.qty, price:i.price })),
+                products: cart.map(i=>({ code:i.code, name:i.name, qty:i.qty, price:i.price })),
                 total: cartTotal(),
                 notes: $('#cNotes').value.trim()
             };
@@ -3654,11 +3654,30 @@ body.is-admin .admin-bar { display: flex; }
         });
         window.addEventListener('hashchange', checkAdmin);
 
+        /*  LIVE STOCK من الجوجل شيت (ورقة المخزون)  */
+        async function loadStock(){
+            try{
+                const res = await fetch(APPS_SCRIPT_URL + '?action=stock&t=' + Date.now());
+                const data = await res.json();
+                if(data && data.success && data.stock){
+                    products.forEach(p=>{
+                        if(typeof data.stock[p.code] === 'number') p.stock = data.stock[p.code];
+                    });
+                    cart.forEach(it=>{
+                        const p = products.find(x=>x.id===it.id);
+                        if(p) it.stock = p.stock;
+                    });
+                    renderProducts(); updateCart();
+                }
+            }catch(e){ /* إذا فشل الجلب نبقى على الأرقام الافتراضية */ }
+        }
+
         /*  INIT  */
         function init(){
             checkAdmin();
             renderProducts(); updateCart(); renderTestimonials(); renderFaq();
             requestAnimationFrame(initReveal);
+            loadStock();
         }
         if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
 
