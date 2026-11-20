@@ -41,14 +41,6 @@
 
     <style>
 
-/* 
-   LAMSA PROFESSIONAL PREMIUM DESIGN SYSTEM
-   Palette: Obsidian + Liquid Gold + Alabaster
-   Typography: Cairo + Amiri
-   Effects: Glassmorphism, 3D Tilt, Magnetic Hover, Stagger Reveal
-   Icons: 100% SVG — Zero Emoji
-    */
-
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
@@ -2434,9 +2426,6 @@ textarea.fi { resize: vertical; min-height: 80px; }
 }
 .mnav a svg { width: 20px; height: 20px; color: var(--gold-dark); stroke-width: 1.6; }
 
-/* 
-   ANIMATIONS
-    */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -2475,7 +2464,6 @@ textarea.fi { resize: vertical; min-height: 80px; }
 }
 .reveal.in { opacity: 1; transform: none; }
 
-/* Stagger children animation */
 .stagger-children > * {
     opacity: 0;
     transform: translateY(20px);
@@ -2488,9 +2476,6 @@ textarea.fi { resize: vertical; min-height: 80px; }
 .stagger-children > *:nth-child(5) { animation-delay: 0.4s; }
 .stagger-children > *:nth-child(6) { animation-delay: 0.5s; }
 
-/* 
-   RESPONSIVE
-    */
 @media (max-width: 1024px) {
     .nav { display: none; }
     .burger { display: flex; }
@@ -2556,7 +2541,6 @@ textarea.fi { resize: vertical; min-height: 80px; }
     html { scroll-behavior: auto; }
 }
 
-        
 /* ── حماية الصور من السرقة ── */
 img {
     user-select: none !important;
@@ -2566,7 +2550,6 @@ img {
     -webkit-user-drag: none !important;
     pointer-events: none !important;
 }
-/* استثناء: الأيقونات والأزرار والشعارات التفاعلية */
 .icon-btn img, .logo__img, .fab img, .footer__social img, 
 button img, a img, .gallery__thumbs img, .gthumb img,
 .citem__img img, .toast img, .drawer__empty img,
@@ -2574,7 +2557,6 @@ button img, a img, .gallery__thumbs img, .gthumb img,
 .gallery__ph svg, .gallery__ph img, .hero__chip img {
     pointer-events: auto !important;
 }
-/* طبقة حماية إضافية فوق صور المنتجات */
 .gallery {
     position: relative;
 }
@@ -2585,27 +2567,78 @@ button img, a img, .gallery__thumbs img, .gthumb img,
     background: transparent;
     pointer-events: auto;
 }
-/* تفعيل hover على الإطار بدلاً من الصورة */
 .hero__frame:hover .hero__frame-inner,
 .pcard:hover .gallery__slide.on img {
     transform: scale(1.05);
 }
 
+/* ── وضع المدير: إظهار المخزون ── */
+.pcard__admin-stock {
+    display: none;
+    align-self: flex-start;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: var(--obsidian);
+    color: var(--gold);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    font-family: var(--font-body);
+}
+body.is-admin .pcard__admin-stock { display: inline-flex; }
+body.is-admin .pcard__admin-stock--low { background: var(--error); color: #fff; }
+
+.admin-bar {
+    display: none;
+    position: fixed;
+    bottom: var(--space-5);
+    right: var(--space-5);
+    z-index: 900;
+    background: var(--obsidian);
+    color: var(--gold);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    box-shadow: var(--shadow-lg);
+    align-items: center;
+    gap: var(--space-3);
+}
+body.is-admin .admin-bar { display: flex; }
+.admin-bar button { color: var(--alabaster); text-decoration: underline; font-size: var(--text-xs); }
+
+.admin-login {
+    position: fixed; inset: 0; z-index: 7000;
+    background: var(--overlay);
+    display: none; align-items: center; justify-content: center;
+    padding: var(--space-4);
+    backdrop-filter: blur(6px);
+}
+.admin-login.on { display: flex; }
+.admin-login__card {
+    background: var(--paper);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    width: 100%; max-width: 360px;
+    box-shadow: var(--shadow-xl);
+    text-align: center;
+}
+.admin-login__card h3 { font-family: var(--font-head); font-size: var(--text-xl); margin-bottom: var(--space-4); }
+.admin-login__row { display: flex; gap: var(--space-3); margin-top: var(--space-4); }
+.admin-login__row .btn { flex: 1; padding: var(--space-3) var(--space-4); }
+
 </style>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<base target="_blank">
-<base target="_blank">
 </head>
 <body>
 
-    <!--  زخارف حناء على الأطراف  -->
     <!-- Toasts -->
     <div class="toasts" id="toasts" role="alert" aria-live="polite"></div>
 
     <!--  HEADER  -->
     <header class="header" id="header" role="banner">
         <div class="container header__inner">
-            <!-- LOGO TOP NAV: استبدل logo.png بشعارك -->
             <a href="#home" class="logo" aria-label="LAMSA لمسة - الرئيسية">
                 <span class="logo__mark">
                     <img class="logo__img" src="https://i.postimg.cc/6QpmhJy1/Whats-App-Image-2026-07-20-at-1-19-29-PM.jpg" alt="LAMSA لمسة">
@@ -2624,7 +2657,6 @@ button img, a img, .gallery__thumbs img, .gthumb img,
 
             <nav class="nav" aria-label="التنقل الرئيسي">
                 <a href="#home" class="nav__link">الرئيسية</a>
-                <a href="#categories" class="nav__link">الأقسام</a>
                 <a href="#products" class="nav__link">المنتجات</a>
                 <a href="#about" class="nav__link">عن العلامة</a>
                 <a href="#faq" class="nav__link">الأسئلة</a>
@@ -2644,7 +2676,6 @@ button img, a img, .gallery__thumbs img, .gthumb img,
     <!-- Mobile Nav -->
     <nav class="mnav" id="mnav" aria-label="قائمة الجوال">
         <a href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>الرئيسية</a>
-        <a href="#categories"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>الأقسام</a>
         <a href="#products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>المنتجات</a>
         <a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>عن العلامة</a>
         <a href="#faq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>الأسئلة</a>
@@ -2683,9 +2714,9 @@ button img, a img, .gallery__thumbs img, .gthumb img,
                     </div>
                 </div>
 
-                 <div class="hero__frame">
-                   <img src="https://i.postimg.cc/6QpmhJy1/Whats-App-Image-2026-07-20-at-1-19-29-PM.jpg" alt="LAMSA Hero">
-                  </div>
+                <div class="hero__visual">
+                    <div class="hero__frame">
+                        <img src="https://i.postimg.cc/6QpmhJy1/Whats-App-Image-2026-07-20-at-1-19-29-PM.jpg" alt="LAMSA Hero">
                     </div>
                 </div>
             </div>
@@ -2729,7 +2760,6 @@ button img, a img, .gallery__thumbs img, .gthumb img,
                 <div class="about__grid">
                     <div class="about__visual reveal">
                         <div class="about__logo-card">
-                            <!-- LOGO ABOUT: استبدل logo.png بشعارك -->
                             <img class="about__logo-img" src="https://i.postimg.cc/6QpmhJy1/Whats-App-Image-2026-07-20-at-1-19-29-PM.jpg" alt="شعار LAMSA لمسة">
                             <svg class="about__logo-fallback" viewBox="0 0 200 200" fill="none" aria-hidden="true">
                                 <path d="M118 36 l4 12 12 4 -12 4 -4 12 -4 -12 -12 -4 12 -4z" fill="currentColor"/>
@@ -2878,7 +2908,6 @@ button img, a img, .gallery__thumbs img, .gthumb img,
                     <p class="footer__desc">متجر جزائري متخصص في رشمات الحناء الفاخرة. تصاميم يدوية أصيلة بخامات أصلية، بيع بالتجزئة والجملة مع توصيل لكل الولايات.</p>
                     <div class="footer__social">
                         <a href="https://wa.me/213656198526" target="_blank" rel="noopener" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.35 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12.02 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.18c-1.62 0-3.14-.44-4.45-1.2l-.32-.19-3.01.79.8-2.94-.2-.3a8.17 8.17 0 0 1-1.26-4.34c0-4.52 3.68-8.2 8.44-8.2 4.76 0 8.44 3.68 8.44 8.2 0 4.52-3.68 8.18-8.44 8.18zm4.63-6.13c-.25-.13-1.5-.74-1.73-.82-.23-.09-.4-.13-.57.12-.17.25-.65.82-.8 1-.15.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.13-.57-1.37-.78-1.88-.2-.49-.42-.42-.57-.43h-.49c-.17 0-.44.06-.67.31s-.88.86-.88 2.1.9 2.44 1.03 2.61c.13.17 1.77 2.71 4.3 3.8.6.26 1.07.42 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.5-.61 1.71-1.2.21-.6.21-1.1.15-1.21-.06-.11-.23-.17-.48-.3z"/></svg></a>
-
                         <a href="https://www.facebook.com/lamsa.stickers" target="_blank" rel="noopener" aria-label="فيسبوك"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
                         <a href="https://instagram.com/lamsa_crea" target="_blank" rel="noopener" aria-label="انستغرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
                     </div>
@@ -2992,6 +3021,24 @@ button img, a img, .gallery__thumbs img, .gthumb img,
         <a href="https://m.me/lamsa.stickers" target="_blank" rel="noopener" class="fab fab--ms" aria-label="ماسنجر"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 4.97 0 11.1c0 3.5 1.74 6.62 4.47 8.66V24l4.09-2.24c1.09.3 2.24.46 3.44.46 6.6 0 12-4.97 12-11.1S18.6 0 12 0zm1.19 14.96-3.05-3.26-5.97 3.26L10.73 8l3.13 3.26L19.75 8z"/></svg></a>
     </div>
 
+    <!--  ADMIN LOGIN  -->
+    <div class="admin-login" id="adminLogin">
+        <div class="admin-login__card">
+            <h3>دخول المدير</h3>
+            <input type="password" id="adminPass" class="fi" placeholder="كلمة السر" autocomplete="off">
+            <div class="admin-login__row">
+                <button type="button" class="btn btn--primary" id="adminLoginBtn">دخول</button>
+                <button type="button" class="btn btn--ghost" id="adminCancel">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!--  ADMIN BAR  -->
+    <div class="admin-bar">
+        <span>وضع المدير</span>
+        <button type="button" id="adminExit">خروج</button>
+    </div>
+
     <!--  JAVASCRIPT  -->
     <script>
     (function(){
@@ -3010,16 +3057,13 @@ button img, a img, .gallery__thumbs img, .gthumb img,
 
 
         /*  CONFIG  */
-        // ملاحظة تقنية: تم استبدال الإرسال بواتساب مباشرة لأن رابط الـ API السابق
-        // كان يشير لسكربت تجريبي غير مرتبط بحسابكم — الطلبات لم تكن تصل فعلياً.
         const WA_NUM = '213656198526';
-        const WS_MIN = 180;
+        const WS_MIN = 18000;
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwaxZse5QDajIF0X3Mj17AH9LW2s6biAgMLUjXppx-Kiuml34_fhf5WLfNG7QrcIN5i/exec';
         const MAX_RETRIES = 2;
         const RETRY_DELAY_MS = 1200;
 
-        /*  DATA — لكل منتج صورتان: image (الستيكر) + applied (على اليد) 
-           ضعي روابط صورك الحقيقية في image و applied لاحقاً */
+        /*  DATA — لكل منتج صورتان: image (الستيكر) + applied (على اليد)  */
         const products = [
             {id:1, code:'D-01', name:'الرمز F-02', price:450, ws:320, old:550, cat:'vinyl', badge:'جديد', stock:25, image:'https://i.postimg.cc/Tw0bRcqv/Whats-App-Image-2026-07-26-at-9-01-52-AM.jpg', applied:'https://i.postimg.cc/MT5BWYbn/Whats-App-Image-2026-07-26-at-9-36-11-AM.jpg'},
             {id:2, code:'D-02', name:'رشمّة الزهرة المتفتحة', price:480, ws:340, old:null, cat:'vinyl', badge:null, stock:0, image:'', applied:''},
@@ -3122,7 +3166,7 @@ button img, a img, .gallery__thumbs img, .gthumb img,
             stock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
         };
 
-        /*  PLACEHOLDERS (تُستبدل بالصور الحقيقية عند توفرها)  */
+        /*  PLACEHOLDERS  */
         function phSticker(code){
             return `<div class="gallery__ph"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="60" cy="60" r="46"/><circle cx="60" cy="60" r="32"/><circle cx="60" cy="60" r="18"/><path d="M60 14 Q72 38 60 60 Q48 38 60 14Z"/><path d="M106 60 Q82 72 60 60 Q82 48 106 60Z"/><path d="M60 106 Q48 82 60 60 Q72 82 60 106Z"/><path d="M14 60 Q38 48 60 60 Q38 72 14 60Z"/><circle cx="60" cy="60" r="5" fill="currentColor"/></svg><span>${code}</span></div>`;
         }
@@ -3167,6 +3211,7 @@ button img, a img, .gallery__thumbs img, .gthumb img,
                     <div class="pcard__body">
                         <span class="pcard__cat">${catNames[p.cat]}</span>
                         <h3 class="pcard__name">${p.name}</h3>
+                        <span class="pcard__admin-stock ${p.stock<=5?'pcard__admin-stock--low':''}">المخزون: ${p.stock||0} قطعة</span>
                         <div class="pcard__price">${old?`<del>${old} دج</del>`:''}<b>${pr} دج</b></div>
                         ${out?'<p class="pcard__stock pcard__stock--out">غير متوفر حالياً</p>':''}
                         ${out?'':`<div class="qty pcard__qty" data-id="${p.id}">
@@ -3184,7 +3229,7 @@ button img, a img, .gallery__thumbs img, .gthumb img,
             D.pgrid.querySelectorAll('.gallery').forEach(g=>bindGallery(g));
         }
 
-        /*  GALLERY LOGIC (fade + hover + thumbs)  */
+        /*  GALLERY LOGIC  */
         function bindGallery(g){
             const slides = g.querySelectorAll('.gallery__slide');
             const thumbs = g.querySelectorAll('.gthumb');
@@ -3196,7 +3241,6 @@ button img, a img, .gallery__thumbs img, .gthumb img,
                 if(label) label.textContent = labels[i];
             }
             thumbs.forEach(t=>t.addEventListener('click', e=>{ e.stopPropagation(); show(+t.dataset.g); }));
-            // hover auto-switch على الديسكوب
             g.addEventListener('mouseenter', ()=>{ if(window.matchMedia('(hover:hover)').matches) show(1); });
             g.addEventListener('mouseleave', ()=>{ if(window.matchMedia('(hover:hover)').matches) show(0); });
         }
@@ -3384,11 +3428,7 @@ button img, a img, .gallery__thumbs img, .gthumb img,
         async function sendOrder(payload, retriesLeft){
             if(retriesLeft===undefined) retriesLeft = MAX_RETRIES;
             try{
-                // ملاحظة: نستخدم text/plain بدل application/json عمداً — Google Apps Script
-                // لا يستجيب لطلبات OPTIONS (CORS preflight)، فلو استخدمنا application/json
-                // سيرسل المتصفح preflight يفشل ويُحجب الطلب بالكامل (يظهر كخطأ شبكة وهمي).
-                // text/plain يُعتبر "simple request" فلا يحتاج preflight، والسكربت
-                // يقرأ e.postData.contents ثم يحوّله بنفسه عبر JSON.parse.
+                // text/plain بدل application/json عمداً: Google Apps Script لا يدعم preflight (OPTIONS)
                 const res = await fetch(APPS_SCRIPT_URL, {
                     method:'POST',
                     headers:{ 'Content-Type':'text/plain;charset=utf-8' },
@@ -3404,7 +3444,6 @@ button img, a img, .gallery__thumbs img, .gthumb img,
                 }
                 return data || { success:false, message:'تعذر إرسال الطلب. يرجى المحاولة مرة أخرى.' };
             }catch(networkErr){
-                // fetch throws a TypeError on network failures (offline, DNS, CORS-blocked, etc.)
                 if(retriesLeft>0){
                     await wait(RETRY_DELAY_MS);
                     return sendOrder(payload, retriesLeft-1);
@@ -3466,22 +3505,18 @@ button img, a img, .gallery__thumbs img, .gthumb img,
         }
 
         /*  TESTIMONIALS / FAQ  */
-        /* ════════════════════════════════════════
-   📸 روابط صور آراء العميلات (Postimages)
-   استبدلي كل رابط فارغ "" بـ رابط الصورة
-   ════════════════════════════════════════ */
         const reviewImages = [
-            "https://i.postimg.cc/nz63D93R/Whats-App-Image-2026-07-28-at-9-59-41-PM-(3).jpg",  // رأي 1  ← ضعي الرابط هنا
-            "https://i.postimg.cc/FR2TLkT6/Whats-App-Image-2026-07-28-at-9-59-41-PM-(2).jpg",  // رأي 2  ← ضعي الرابط هنا
-            "https://i.postimg.cc/90ZJtXkY/Whats-App-Image-2026-07-28-at-9-59-41-PM-(1).jpg",  // رأي 3  ← ضعي الرابط هنا
-            "https://i.postimg.cc/Y0Ybf2P8/Whats-App-Image-2026-07-28-at-9-59-41-PM.jpg",  // رأي 4  ← ضعي الرابط هنا
-            "https://i.postimg.cc/BbHMcZzm/Whats-App-Image-2026-07-28-at-9-59-40-PM-(1).jpg",  // رأي 5  ← ضعي الرابط هنا
-            "https://i.postimg.cc/J0ZPc7F6/Whats-App-Image-2026-07-28-at-9-59-40-PM.jpg",  // رأي 6  ← ضعي الرابط هنا
-            "https://i.postimg.cc/sXtThGT4/Whats-App-Image-2026-07-28-at-9-59-42-PM-(3).jpg",  // رأي 7  ← ضعي الرابط هنا
-            "https://i.postimg.cc/zB9xgHxn/Whats-App-Image-2026-07-28-at-9-59-42-PM-(2).jpg",  // رأي 8  ← ضعي الرابط هنا
-            "https://i.postimg.cc/Jn9pkHpN/Whats-App-Image-2026-07-28-at-9-59-42-PM-(1).jpg",  // رأي 9  ← ضعي الرابط هنا
-            "https://i.postimg.cc/SswgMYg7/Whats-App-Image-2026-07-28-at-9-59-42-PM.jpg",  // رأي 10 ← ضعي الرابط هنا
-            "https://i.postimg.cc/SswgMYgd/Whats-App-Image-2026-07-28-at-9-59-41-PM-(4).jpg"   // رأي 11 ← ضعي الرابط هنا
+            "https://i.postimg.cc/nz63D93R/Whats-App-Image-2026-07-28-at-9-59-41-PM-(3).jpg",
+            "https://i.postimg.cc/FR2TLkT6/Whats-App-Image-2026-07-28-at-9-59-41-PM-(2).jpg",
+            "https://i.postimg.cc/90ZJtXkY/Whats-App-Image-2026-07-28-at-9-59-41-PM-(1).jpg",
+            "https://i.postimg.cc/Y0Ybf2P8/Whats-App-Image-2026-07-28-at-9-59-41-PM.jpg",
+            "https://i.postimg.cc/BbHMcZzm/Whats-App-Image-2026-07-28-at-9-59-40-PM-(1).jpg",
+            "https://i.postimg.cc/J0ZPc7F6/Whats-App-Image-2026-07-28-at-9-59-40-PM.jpg",
+            "https://i.postimg.cc/sXtThGT4/Whats-App-Image-2026-07-28-at-9-59-42-PM-(3).jpg",
+            "https://i.postimg.cc/zB9xgHxn/Whats-App-Image-2026-07-28-at-9-59-42-PM-(2).jpg",
+            "https://i.postimg.cc/Jn9pkHpN/Whats-App-Image-2026-07-28-at-9-59-42-PM-(1).jpg",
+            "https://i.postimg.cc/SswgMYg7/Whats-App-Image-2026-07-28-at-9-59-42-PM.jpg",
+            "https://i.postimg.cc/SswgMYgd/Whats-App-Image-2026-07-28-at-9-59-41-PM-(4).jpg"
         ];
 
         function renderTestimonials(){
@@ -3532,7 +3567,7 @@ button img, a img, .gallery__thumbs img, .gthumb img,
         function lock(on){ document.body.style.overflow = on?'hidden':''; }
         function toggleMnav(){ const on=D.mnav.classList.toggle('on'); D.burger.classList.toggle('on',on); D.burger.setAttribute('aria-expanded',on); }
 
-        /*  REVEAL (IntersectionObserver)  */
+        /*  REVEAL  */
         function initReveal(){
             const io=new IntersectionObserver((ents)=>{
                 ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
@@ -3564,12 +3599,63 @@ button img, a img, .gallery__thumbs img, .gthumb img,
 
         document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeCart(); closeCheckout(); hideError(); D.mnav.classList.remove('on'); D.burger.classList.remove('on'); } });
 
-        // header shadow
         let ticking=false;
         window.addEventListener('scroll',()=>{ if(!ticking){ requestAnimationFrame(()=>{ D.header.classList.toggle('scrolled', window.scrollY>10); ticking=false; }); ticking=true; } },{passive:true});
 
+        /*  ADMIN MODE: المدير فقط يرى المخزون  */
+        const ADMIN_PASS = 'Lamsa@2026#Dz';
+
+        let adminOn = false;
+        function applyAdmin(){ document.body.classList.toggle('is-admin', adminOn); }
+
+        function openAdminLogin(){
+            const w = document.getElementById('adminLogin');
+            if(!w) return;
+            w.classList.add('on');
+            const inp = document.getElementById('adminPass');
+            if(inp){ inp.value=''; setTimeout(()=>inp.focus(),100); }
+        }
+        function closeAdminLogin(){
+            const w = document.getElementById('adminLogin');
+            if(w) w.classList.remove('on');
+        }
+
+        function checkAdmin(){
+            try{ adminOn = localStorage.getItem('lamsa_admin')==='1'; }catch(e){ adminOn = false; }
+            const wantsLogin = location.hash === '#admin' || /[?&]admin(=|&|$)/.test(location.search);
+            if(wantsLogin && !adminOn){ openAdminLogin(); }
+            applyAdmin();
+        }
+
+        const adminLoginBtn = document.getElementById('adminLoginBtn');
+        const adminPassInp = document.getElementById('adminPass');
+        function submitAdminLogin(){
+            if(adminPassInp.value === ADMIN_PASS){
+                adminOn = true;
+                try{ localStorage.setItem('lamsa_admin','1'); }catch(e){}
+                applyAdmin(); closeAdminLogin();
+                toast('success','تم تفعيل وضع المدير');
+                try{ history.replaceState(null,'',location.pathname); }catch(e){}
+            } else {
+                toast('error','كلمة السر غير صحيحة');
+            }
+        }
+        if(adminLoginBtn) adminLoginBtn.addEventListener('click',submitAdminLogin);
+        if(adminPassInp) adminPassInp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); submitAdminLogin(); } });
+        const adminCancel = document.getElementById('adminCancel');
+        if(adminCancel) adminCancel.addEventListener('click',closeAdminLogin);
+        const adminExitBtn = document.getElementById('adminExit');
+        if(adminExitBtn) adminExitBtn.addEventListener('click',()=>{
+            try{ localStorage.removeItem('lamsa_admin'); }catch(e){}
+            adminOn = false;
+            document.body.classList.remove('is-admin');
+            toast('success','تم الخروج من وضع المدير');
+        });
+        window.addEventListener('hashchange', checkAdmin);
+
         /*  INIT  */
         function init(){
+            checkAdmin();
             renderProducts(); updateCart(); renderTestimonials(); renderFaq();
             requestAnimationFrame(initReveal);
         }
